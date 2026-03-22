@@ -1,0 +1,24 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files (never commit secrets)
+.env
+.env.local
+.env.production
+
+# Dependency folders (not needed — no build tools)
+node_modules/
+
+# Build outputs (not needed — no build step)
+dist/
+build/
+
+# Logs
+*.log

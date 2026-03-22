@@ -1,0 +1,10 @@
+# GitHub Pages Configuration for NagarDrishti
+
+title: NagarDrishti
+description: India's Civic Audit Platform — Real-time monitoring of traffic, footpaths, garbage, cleanliness and water body pollution across India.
+url: "https://yourusername.github.io"
+baseurl: "/nagardrishti"
+
+# Disable Jekyll processing — we're serving plain HTML
+# This tells GitHub Pages to serve index.html as-is
+plugins: []
