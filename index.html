@@ -372,6 +372,64 @@ nav.sh{box-shadow:var(--s2)}
 .sub-b:hover{background:var(--b5);box-shadow:0 4px 16px rgba(0,82,204,.32);transform:translateY(-1px)}
 .fm-fn{font-family:var(--fm);font-size:8.5px;color:var(--t3);text-align:center;margin-top:8px;letter-spacing:.04em}
 
+
+/* ─ INCIDENT LIST VIEW ─ */
+.il-wrap{background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);overflow:hidden;box-shadow:var(--s2)}
+.il-toolbar{background:var(--g50);border-bottom:1px solid var(--g200);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.il-toolbar-left{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.il-toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.il-search{display:flex;align-items:center;gap:7px;background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);padding:7px 11px;min-width:220px}
+.il-search input{border:none;outline:none;font-family:var(--ff);font-size:12.5px;color:var(--t7);background:none;width:100%}
+.il-search input::placeholder{color:var(--t3)}
+.il-filter-row{display:flex;align-items:center;gap:6px;padding:10px 20px;border-bottom:1px solid var(--g100);flex-wrap:wrap;background:var(--w)}
+.il-sel{background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--ff);font-size:12px;color:var(--t7);padding:6px 10px;outline:none;cursor:pointer;transition:border-color .13s}
+.il-sel:focus{border-color:var(--b6)}
+.il-badge{font-family:var(--fm);font-size:9.5px;padding:3px 9px;border-radius:20px;font-weight:600;white-space:nowrap}
+.il-table{width:100%;border-collapse:collapse}
+.il-table th{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;padding:10px 14px;text-align:left;background:var(--g50);border-bottom:1px solid var(--g200);white-space:nowrap;cursor:pointer;user-select:none;transition:color .13s}
+.il-table th:hover{color:var(--b6)}
+.il-table th .sort-arrow{margin-left:4px;opacity:.4;font-size:10px}
+.il-table th.sorted .sort-arrow{opacity:1;color:var(--b6)}
+.il-table td{padding:11px 14px;border-bottom:1px solid var(--g100);font-size:12.5px;color:var(--t7);vertical-align:middle}
+.il-table tr:last-child td{border-bottom:none}
+.il-table tr:hover td{background:var(--g50)}
+.il-table tr.resolved td{opacity:.65}
+.il-cat-pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:9.5px;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap}
+.il-status{font-family:var(--fm);font-size:9px;font-weight:600;padding:3px 8px;border-radius:var(--r1);letter-spacing:.04em;white-space:nowrap}
+.il-status.open{background:#FEF9C3;color:#854D0E}
+.il-status.active{background:#DBEAFE;color:#1e40af}
+.il-status.resolved{background:var(--gb);color:var(--grn)}
+.il-action{background:none;border:1px solid var(--g200);border-radius:var(--r1);font-family:var(--fm);font-size:9px;font-weight:600;color:var(--t5);padding:3px 8px;cursor:pointer;transition:all .13s}
+.il-action:hover{border-color:var(--red);color:var(--red)}
+.il-pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--g100);flex-wrap:wrap;gap:8px}
+.il-page-info{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.il-page-btns{display:flex;gap:5px}
+.il-page-btn{background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--fm);font-size:11px;color:var(--t5);padding:5px 10px;cursor:pointer;transition:all .13s}
+.il-page-btn:hover{border-color:var(--b6);color:var(--b6)}
+.il-page-btn.active{background:var(--b6);border-color:var(--b6);color:#fff}
+.il-page-btn:disabled{opacity:.35;cursor:not-allowed}
+.exp-btn{display:inline-flex;align-items:center;gap:6px;background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--ff);font-size:12px;font-weight:600;color:var(--t7);padding:7px 14px;cursor:pointer;transition:all .13s}
+.exp-btn:hover{border-color:var(--b6);color:var(--b6);background:var(--b0)}
+.exp-btn.primary{background:var(--b6);border-color:var(--b6);color:#fff}
+.exp-btn.primary:hover{background:var(--b5)}
+.exp-dropdown{position:relative}
+.exp-menu{display:none;position:absolute;top:calc(100% + 4px);right:0;background:var(--w);border:1px solid var(--g200);border-radius:var(--r3);box-shadow:var(--s3);min-width:180px;z-index:200;overflow:hidden}
+.exp-menu.open{display:block}
+.exp-menu-item{display:flex;align-items:center;gap:9px;padding:10px 14px;font-family:var(--ff);font-size:13px;color:var(--t7);cursor:pointer;transition:background .12s;border-bottom:1px solid var(--g100)}
+.exp-menu-item:last-child{border-bottom:none}
+.exp-menu-item:hover{background:var(--g50);color:var(--n9)}
+.exp-menu-item .exp-ico{font-size:15px;flex-shrink:0}
+.exp-menu-item .exp-lbl{font-weight:500}
+.exp-menu-item .exp-sub{font-family:var(--fm);font-size:9.5px;color:var(--t3);margin-top:1px}
+@media(max-width:768px){
+  .il-table thead{display:none}
+  .il-table tr{display:block;padding:12px 14px;border-bottom:1px solid var(--g100)}
+  .il-table td{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border:none;font-size:12px}
+  .il-table td::before{content:attr(data-label);font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;margin-right:8px}
+  .il-search{min-width:0;flex:1}
+  .exp-menu{right:auto;left:0}
+}
+
 /* ─ FOOTER ─ */
 footer{background:var(--n9);color:#fff}
 .ft-in{max-width:1160px;margin:0 auto;padding:36px 40px 20px}
@@ -500,7 +558,7 @@ footer{background:var(--n9);color:#fff}
       <div><div class="logo-nm">NagarDrishti</div><div class="logo-sb">Urban Intelligence</div></div>
     </div>
     <div class="nav-lk">
-      <a onclick="gs('features')">Features</a><a onclick="gs('quickstart')">Quick Start</a><a onclick="gs('incidents')">Incidents</a><a onclick="gs('auditor')">Auditor Badge</a><a onclick="gs('bestpractices')">Best Practices</a><a onclick="gs('cities')">Cities</a><a onclick="gs('impact')">Impact</a>
+      <a onclick="gs('features')">Features</a><a onclick="gs('quickstart')">Quick Start</a><a onclick="gs('incidents')">Incidents</a><a onclick="gs('incidentlist')">List View</a><a onclick="gs('auditor')">Auditor Badge</a><a onclick="gs('bestpractices')">Best Practices</a><a onclick="gs('cities')">Cities</a><a onclick="gs('impact')">Impact</a>
     </div>
     <div class="nav-ct">
       <button class="bn-g" onclick="om('signin')">Sign In</button>
@@ -519,7 +577,7 @@ footer{background:var(--n9);color:#fff}
       <button class="drw-x" onclick="closeD()">✕</button>
     </div>
     <div class="drw-lk">
-      <a onclick="gsD('features')">Features</a><a onclick="gsD('quickstart')">Quick Start</a><a onclick="gsD('incidents')">Incidents</a><a onclick="gsD('auditor')">Auditor Badge</a><a onclick="gsD('bestpractices')">Best Practices</a><a onclick="gsD('cities')">Cities</a><a onclick="gsD('impact')">Impact</a>
+      <a onclick="gsD('features')">Features</a><a onclick="gsD('quickstart')">Quick Start</a><a onclick="gsD('incidents')">Incidents</a><a onclick="gsD('incidentlist')">List View</a><a onclick="gsD('auditor')">Auditor Badge</a><a onclick="gsD('bestpractices')">Best Practices</a><a onclick="gsD('cities')">Cities</a><a onclick="gsD('impact')">Impact</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
       <button class="bn-a" style="width:100%;padding:10px;font-size:13.5px;justify-content:center" onclick="om('report');closeD()">📋 Submit an Audit</button>
@@ -729,6 +787,130 @@ footer{background:var(--n9);color:#fff}
   </div>
   <div class="bp-tabs rv"><button class="bpt on" id="bpt-g" onclick="setBP('g')">🗑️ Garbage</button><button class="bpt" id="bpt-t" onclick="setBP('t')">🚦 Traffic</button><button class="bpt" id="bpt-f" onclick="setBP('f')">🚶 Footpath</button><button class="bpt" id="bpt-c" onclick="setBP('c')">✨ Cleanliness</button></div>
   <div id="bpPanel" class="rv"></div>
+</div></div>
+
+
+<!-- INCIDENT LIST VIEW -->
+<div class="sec" id="incidentlist" style="border-top:1px solid var(--g200)"><div class="wrap">
+  <div class="stag rv">Incident List View</div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:26px">
+    <h2 class="sh2 rv">All incidents,<br><span class="hl">in one table</span></h2>
+    <p class="sp rv" style="margin:0">Browse, filter, search and export every civic audit. Sortable by city, category, severity and status.</p>
+  </div>
+
+  <div class="il-wrap rv">
+    <!-- Toolbar -->
+    <div class="il-toolbar">
+      <div class="il-toolbar-left">
+        <div class="il-search">
+          <span style="color:var(--t3);font-size:14px">⌕</span>
+          <input type="text" id="ilSearch" placeholder="Search city, pincode, issue..." oninput="ilFilter()">
+        </div>
+        <select class="il-sel" id="ilCatFilter" onchange="ilFilter()">
+          <option value="">All Categories</option>
+          <option value="garbage">🗑️ Garbage</option>
+          <option value="traffic">🚦 Traffic</option>
+          <option value="footpath">🚶 Footpath</option>
+          <option value="cleanliness">✨ Cleanliness</option>
+          <option value="water">🌊 Water Pollution</option>
+          <option value="drain">💧 Drain</option>
+        </select>
+        <select class="il-sel" id="ilSevFilter" onchange="ilFilter()">
+          <option value="">All Severities</option>
+          <option value="critical">🔴 Critical</option>
+          <option value="high">🟠 High</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="low">🟢 Low</option>
+        </select>
+        <select class="il-sel" id="ilStatusFilter" onchange="ilFilter()">
+          <option value="">All Statuses</option>
+          <option value="open">Open</option>
+          <option value="active">Active</option>
+          <option value="resolved">Resolved</option>
+        </select>
+        <select class="il-sel" id="ilCityFilter" onchange="ilFilter()">
+          <option value="">All Cities</option>
+          <option>Mumbai</option><option>Delhi</option><option>Bengaluru</option>
+          <option>Chennai</option><option>Kolkata</option><option>Hyderabad</option>
+          <option>Pune</option><option>Jaipur</option><option>Ahmedabad</option>
+          <option>Lucknow</option><option>Surat</option><option>Chandigarh</option>
+          <option>Bhopal</option><option>Patna</option><option>Thane</option>
+          <option>Gurgaon</option><option>Coimbatore</option><option>Vadodara</option>
+        </select>
+      </div>
+      <div class="il-toolbar-right">
+        <span id="ilCount" style="font-family:var(--fm);font-size:10px;color:var(--t3)">Showing 20 of 247 incidents</span>
+        <!-- Export dropdown -->
+        <div class="exp-dropdown" id="expDropdown">
+          <button class="exp-btn primary" onclick="toggleExpMenu()">
+            ⬇ Export <span style="font-size:10px;opacity:.7">▾</span>
+          </button>
+          <div class="exp-menu" id="expMenu">
+            <div class="exp-menu-item" onclick="exportData('csv')">
+              <span class="exp-ico">📄</span>
+              <div><div class="exp-lbl">Export as CSV</div><div class="exp-sub">Opens in Excel, Google Sheets</div></div>
+            </div>
+            <div class="exp-menu-item" onclick="exportData('json')">
+              <span class="exp-ico">📦</span>
+              <div><div class="exp-lbl">Export as JSON</div><div class="exp-sub">For developers and APIs</div></div>
+            </div>
+            <div class="exp-menu-item" onclick="exportData('pdf')">
+              <span class="exp-ico">📑</span>
+              <div><div class="exp-lbl">Export as PDF Report</div><div class="exp-sub">Formatted municipal report</div></div>
+            </div>
+            <div class="exp-menu-item" onclick="exportData('filtered')">
+              <span class="exp-ico">🔍</span>
+              <div><div class="exp-lbl">Export Current Filter</div><div class="exp-sub">Only what's visible now</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter summary chips -->
+    <div id="ilChips" style="display:none;padding:8px 20px;background:var(--b0);border-bottom:1px solid #C7D9FF;flex-wrap:wrap;gap:6px;align-items:center">
+      <span style="font-family:var(--fm);font-size:9.5px;color:var(--b6)">Active filters:</span>
+      <span id="ilChipContainer" style="display:flex;gap:5px;flex-wrap:wrap"></span>
+      <button onclick="clearFilters()" style="background:none;border:none;font-family:var(--fm);font-size:9.5px;color:var(--red);cursor:pointer;padding:0 4px">✕ Clear all</button>
+    </div>
+
+    <!-- Table -->
+    <div style="overflow-x:auto">
+      <table class="il-table">
+        <thead>
+          <tr>
+            <th onclick="ilSort('id')">#<span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('city')">City <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('pincode')">PIN<span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('category')">Category <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('severity')">Severity <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('status')">Status <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('confirmations')">Confirms <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('created_at')">Submitted <span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('resolved_at')">Resolved In <span class="sort-arrow">↕</span></th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ilTbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="il-pagination">
+      <div class="il-page-info" id="ilPageInfo">Page 1 of 13</div>
+      <div class="il-page-btns">
+        <button class="il-page-btn" id="ilPrev" onclick="ilPage(-1)">← Prev</button>
+        <span id="ilPageNums" style="display:flex;gap:4px"></span>
+        <button class="il-page-btn" id="ilNext" onclick="ilPage(1)">Next →</button>
+      </div>
+      <select class="il-sel" id="ilPageSize" onchange="ilChangePageSize()" style="font-size:11px;padding:5px 8px">
+        <option value="10">10 per page</option>
+        <option value="20" selected>20 per page</option>
+        <option value="50">50 per page</option>
+        <option value="100">100 per page</option>
+      </select>
+    </div>
+  </div>
 </div></div>
 
 <!-- CITIES -->
@@ -1001,6 +1183,264 @@ document.querySelectorAll('.ctr').forEach(function(el){cio.observe(el)});
 /* ─ LIVE JITTER ─ */
 function jit(id,r){var el=document.getElementById(id);if(!el)return;el.textContent=(parseInt(el.textContent.replace(/,/g,''))+Math.floor(Math.random()*r*2)-r).toLocaleString('en-IN')}
 setInterval(function(){jit('la',3);jit('lr',15)},5000);
+
+
+/* ─ INCIDENT LIST VIEW DATA & LOGIC ─ */
+var IL_DATA = [
+  {id:'ND-0001',city:'Mumbai',pincode:'400017',category:'garbage',catLabel:'🗑️ Garbage',severity:'critical',status:'open',confirmations:12,issue:'Garbage overflow near Dharavi',created_at:'2025-01-15 09:02',resolved_at:null,resolvedIn:null},
+  {id:'ND-0002',city:'Delhi',pincode:'110001',category:'traffic',catLabel:'🚦 Traffic',severity:'high',status:'active',confirmations:7,issue:'Congestion at Connaught Place',created_at:'2025-01-15 08:45',resolved_at:null,resolvedIn:null},
+  {id:'ND-0003',city:'Bengaluru',pincode:'560001',category:'footpath',catLabel:'🚶 Footpath',severity:'medium',status:'resolved',confirmations:5,issue:'Footpath blocked near MG Road metro',created_at:'2025-01-14 14:20',resolved_at:'2025-01-15 08:10',resolvedIn:'17.8h'},
+  {id:'ND-0004',city:'Chennai',pincode:'600001',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'low',status:'resolved',confirmations:3,issue:'Marina Beach litter accumulation',created_at:'2025-01-14 11:30',resolved_at:'2025-01-14 21:45',resolvedIn:'10.2h'},
+  {id:'ND-0005',city:'Kolkata',pincode:'700001',category:'garbage',catLabel:'🗑️ Garbage',severity:'high',status:'active',confirmations:9,issue:'Overflowing bins near Howrah Bridge',created_at:'2025-01-15 07:15',resolved_at:null,resolvedIn:null},
+  {id:'ND-0006',city:'Hyderabad',pincode:'500081',category:'traffic',catLabel:'🚦 Traffic',severity:'critical',status:'open',confirmations:14,issue:'Road closure Hitech City flyover',created_at:'2025-01-15 06:30',resolved_at:null,resolvedIn:null},
+  {id:'ND-0007',city:'Jaipur',pincode:'302001',category:'footpath',catLabel:'🚶 Footpath',severity:'medium',status:'resolved',confirmations:4,issue:'Uneven pavement near Amber Fort',created_at:'2025-01-13 10:00',resolved_at:'2025-01-14 12:30',resolvedIn:'26.5h'},
+  {id:'ND-0008',city:'Ahmedabad',pincode:'380001',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'low',status:'resolved',confirmations:2,issue:'Sabarmati Riverfront — model zone',created_at:'2025-01-13 09:00',resolved_at:'2025-01-13 15:20',resolvedIn:'6.3h'},
+  {id:'ND-0009',city:'Pune',pincode:'411001',category:'garbage',catLabel:'🗑️ Garbage',severity:'medium',status:'active',confirmations:6,issue:'Waste dumping on FC Road',created_at:'2025-01-15 10:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0010',city:'Surat',pincode:'395001',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'low',status:'resolved',confirmations:1,issue:'Riverfront zero litter this week',created_at:'2025-01-12 08:00',resolved_at:'2025-01-12 11:00',resolvedIn:'3.0h'},
+  {id:'ND-0011',city:'Patna',pincode:'800001',category:'water',catLabel:'🌊 Water',severity:'high',status:'active',confirmations:8,issue:'Ganga riverbank pollution — industrial discharge',created_at:'2025-01-14 16:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0012',city:'Lucknow',pincode:'226001',category:'footpath',catLabel:'🚶 Footpath',severity:'high',status:'open',confirmations:11,issue:'Hazratganj footpath 80m blocked',created_at:'2025-01-15 08:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0013',city:'Chandigarh',pincode:'160017',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'low',status:'resolved',confirmations:2,issue:'Sector 17 community maintained',created_at:'2025-01-14 07:00',resolved_at:'2025-01-14 14:00',resolvedIn:'7.0h'},
+  {id:'ND-0014',city:'Bhopal',pincode:'462001',category:'traffic',catLabel:'🚦 Traffic',severity:'medium',status:'active',confirmations:5,issue:'Signal failure at DB Mall crossing',created_at:'2025-01-15 07:30',resolved_at:null,resolvedIn:null},
+  {id:'ND-0015',city:'Thane',pincode:'400601',category:'garbage',catLabel:'🗑️ Garbage',severity:'critical',status:'open',confirmations:16,issue:'Debris near Thane lake — water risk',created_at:'2025-01-15 05:45',resolved_at:null,resolvedIn:null},
+  {id:'ND-0016',city:'Gurgaon',pincode:'122001',category:'footpath',catLabel:'🚶 Footpath',severity:'high',status:'active',confirmations:7,issue:'Cyber Hub crossing in poor state',created_at:'2025-01-14 13:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0017',city:'Coimbatore',pincode:'641001',category:'water',catLabel:'🌊 Water',severity:'critical',status:'open',confirmations:19,issue:'Noyyal river sewage discharge',created_at:'2025-01-15 06:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0018',city:'Vadodara',pincode:'390001',category:'drain',catLabel:'💧 Drain',severity:'medium',status:'resolved',confirmations:4,issue:'Blocked drain causing waterlogging',created_at:'2025-01-13 12:00',resolved_at:'2025-01-14 09:00',resolvedIn:'21.0h'},
+  {id:'ND-0019',city:'Mumbai',pincode:'400028',category:'footpath',catLabel:'🚶 Footpath',severity:'medium',status:'resolved',confirmations:23,issue:'Dadar TT Circle footpath cleared',created_at:'2025-01-14 07:00',resolved_at:'2025-01-14 08:48',resolvedIn:'1.8h'},
+  {id:'ND-0020',city:'Delhi',pincode:'110006',category:'garbage',catLabel:'🗑️ Garbage',severity:'high',status:'active',confirmations:10,issue:'Garbage piled near Chandni Chowk',created_at:'2025-01-15 09:30',resolved_at:null,resolvedIn:null},
+  {id:'ND-0021',city:'Bengaluru',pincode:'560034',category:'water',catLabel:'🌊 Water',severity:'high',status:'open',confirmations:6,issue:'Bellandur lake foam overflow',created_at:'2025-01-15 10:30',resolved_at:null,resolvedIn:null},
+  {id:'ND-0022',city:'Chennai',pincode:'600004',category:'drain',catLabel:'💧 Drain',severity:'high',status:'active',confirmations:8,issue:'Open drain near school Adyar',created_at:'2025-01-14 15:00',resolved_at:null,resolvedIn:null},
+  {id:'ND-0023',city:'Mumbai',pincode:'400063',category:'traffic',catLabel:'🚦 Traffic',severity:'high',status:'active',confirmations:7,issue:'Western Express Highway congestion',created_at:'2025-01-15 08:10',resolved_at:null,resolvedIn:null},
+  {id:'ND-0024',city:'Kolkata',pincode:'700013',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'medium',status:'resolved',confirmations:3,issue:'Park Street litter post-event',created_at:'2025-01-13 20:00',resolved_at:'2025-01-14 06:30',resolvedIn:'10.5h'},
+  {id:'ND-0025',city:'Hyderabad',pincode:'500038',category:'garbage',catLabel:'🗑️ Garbage',severity:'medium',status:'open',confirmations:5,issue:'HIIT campus road garbage dump',created_at:'2025-01-15 11:00',resolved_at:null,resolvedIn:null},
+];
+
+var ilFiltered = IL_DATA.slice();
+var ilCurrentPage = 1;
+var ilPageSize = 20;
+var ilSortCol = 'created_at';
+var ilSortDir = -1; // -1 = desc, 1 = asc
+
+var SEV_ORDER = {critical:4,high:3,medium:2,low:1};
+var SEV_STYLE = {
+  critical: 'background:var(--rb);color:var(--red);border:1px solid #FCA5A5',
+  high:     'background:#FFF7ED;color:#C2410C;border:1px solid #FD8C56',
+  medium:   'background:#FFFBEB;color:var(--amb);border:1px solid #FCD34D',
+  low:      'background:var(--gb);color:var(--grn);border:1px solid #6EE7B7'
+};
+
+function ilFilter(){
+  var q   = (document.getElementById('ilSearch').value||'').toLowerCase();
+  var cat = (document.getElementById('ilCatFilter').value||'');
+  var sev = (document.getElementById('ilSevFilter').value||'');
+  var sts = (document.getElementById('ilStatusFilter').value||'');
+  var cty = (document.getElementById('ilCityFilter').value||'');
+
+  ilFiltered = IL_DATA.filter(function(r){
+    var matchQ   = !q || r.city.toLowerCase().includes(q) || r.pincode.includes(q) || r.issue.toLowerCase().includes(q) || r.id.toLowerCase().includes(q);
+    var matchCat = !cat || r.category === cat;
+    var matchSev = !sev || r.severity === sev;
+    var matchSts = !sts || r.status === sts;
+    var matchCty = !cty || r.city === cty;
+    return matchQ && matchCat && matchSev && matchSts && matchCty;
+  });
+
+  ilCurrentPage = 1;
+  ilSort(ilSortCol, true);
+  renderChips(q, cat, sev, sts, cty);
+}
+
+function renderChips(q, cat, sev, sts, cty){
+  var chips = [];
+  if(q)   chips.push({label:'Search: "'+q+'"',  clear:function(){document.getElementById('ilSearch').value='';ilFilter()}});
+  if(cat) chips.push({label:'Category: '+cat,   clear:function(){document.getElementById('ilCatFilter').value='';ilFilter()}});
+  if(sev) chips.push({label:'Severity: '+sev,   clear:function(){document.getElementById('ilSevFilter').value='';ilFilter()}});
+  if(sts) chips.push({label:'Status: '+sts,     clear:function(){document.getElementById('ilStatusFilter').value='';ilFilter()}});
+  if(cty) chips.push({label:'City: '+cty,       clear:function(){document.getElementById('ilCityFilter').value='';ilFilter()}});
+  var row = document.getElementById('ilChips');
+  var con = document.getElementById('ilChipContainer');
+  if(!row||!con)return;
+  if(chips.length===0){row.style.display='none';return;}
+  row.style.display='flex';
+  con.innerHTML = chips.map(function(c,i){
+    return '<span style="background:var(--b0);border:1px solid #C7D9FF;border-radius:20px;padding:2px 8px;font-family:var(--fm);font-size:9.5px;color:var(--b6);display:inline-flex;align-items:center;gap:4px" data-chip="'+i+'">'+c.label+'<button onclick="ilChipClear('+i+')" style="background:none;border:none;color:var(--b6);cursor:pointer;font-size:11px;padding:0;line-height:1">✕</button></span>';
+  }).join('');
+  window._ilChips = chips;
+}
+
+function ilChipClear(i){ if(window._ilChips && window._ilChips[i]) window._ilChips[i].clear(); }
+
+function clearFilters(){
+  document.getElementById('ilSearch').value='';
+  document.getElementById('ilCatFilter').value='';
+  document.getElementById('ilSevFilter').value='';
+  document.getElementById('ilStatusFilter').value='';
+  document.getElementById('ilCityFilter').value='';
+  ilFilter();
+}
+
+function ilSort(col, keepDir){
+  if(!keepDir){
+    if(ilSortCol === col) ilSortDir *= -1;
+    else { ilSortCol = col; ilSortDir = -1; }
+  }
+  ilFiltered.sort(function(a,b){
+    var av = a[col], bv = b[col];
+    if(col==='severity'){av=SEV_ORDER[av]||0;bv=SEV_ORDER[bv]||0;}
+    if(col==='confirmations'){av=+av||0;bv=+bv||0;}
+    if(av===null)av='';if(bv===null)bv='';
+    if(av<bv)return -1*ilSortDir;
+    if(av>bv)return 1*ilSortDir;
+    return 0;
+  });
+  document.querySelectorAll('.il-table th').forEach(function(th){th.classList.remove('sorted')});
+  renderTable();
+}
+
+function renderTable(){
+  var total = ilFiltered.length;
+  var pages = Math.ceil(total / ilPageSize) || 1;
+  if(ilCurrentPage > pages) ilCurrentPage = pages;
+  var start = (ilCurrentPage-1)*ilPageSize;
+  var slice = ilFiltered.slice(start, start+ilPageSize);
+
+  var tbody = document.getElementById('ilTbody');
+  if(!tbody)return;
+
+  if(slice.length===0){
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters. <button onclick="clearFilters()" style="background:none;border:none;color:var(--b6);cursor:pointer;font-family:var(--fm);font-size:11px;text-decoration:underline">Clear filters</button></td></tr>';
+  } else {
+    tbody.innerHTML = slice.map(function(r){
+      var sevStyle = SEV_STYLE[r.severity]||'';
+      var statusClass = r.status;
+      var rowClass = r.status==='resolved'?'resolved':'';
+      return '<tr class="'+rowClass+'">'
+        +'<td data-label="ID"><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">'+r.id+'</span></td>'
+        +'<td data-label="City"><strong>'+r.city+'</strong></td>'
+        +'<td data-label="Pincode"><span style="font-family:var(--fm);font-size:11px;color:var(--t5)">'+r.pincode+'</span></td>'
+        +'<td data-label="Category"><span class="il-cat-pill" style="background:var(--g50);border:1px solid var(--g200)">'+r.catLabel+'</span></td>'
+        +'<td data-label="Severity"><span class="il-badge" style="'+sevStyle+'">'+r.severity.toUpperCase()+'</span></td>'
+        +'<td data-label="Status"><span class="il-status '+statusClass+'">'+r.status.toUpperCase()+'</span></td>'
+        +'<td data-label="Confirms" style="font-family:var(--fm);font-size:11px;text-align:center">'+r.confirmations+'</td>'
+        +'<td data-label="Submitted"><span style="font-family:var(--fm);font-size:10.5px;color:var(--t5)">'+r.created_at+'</span></td>'
+        +'<td data-label="Resolved In"><span style="font-family:var(--fm);font-size:10.5px;color:'+(r.resolvedIn?'var(--grn)':'var(--t3)')+'">'+( r.resolvedIn||'—')+'</span></td>'
+        +'<td data-label="Action"><button class="il-action" onclick="ilEscRow(this)" data-issue="'+r.issue.replace(/"/g,'&quot;')+'" data-city="'+r.city+'">'+(r.status==='resolved'?'View':'🚩 Escalate')+'</button></td>'
+        +'</tr>';
+    }).join('');
+  }
+
+  // Update count
+  var el = document.getElementById('ilCount');
+  if(el) el.textContent = 'Showing '+(start+1)+'-'+Math.min(start+ilPageSize,total)+' of '+total+' incident'+(total===1?'':'s');
+
+  // Update pagination
+  var pi = document.getElementById('ilPageInfo');
+  if(pi) pi.textContent = 'Page '+ilCurrentPage+' of '+pages;
+  var pn = document.getElementById('ilPageNums');
+  if(pn){
+    var nums='', lo=Math.max(1,ilCurrentPage-2), hi=Math.min(pages,ilCurrentPage+2);
+    if(lo>1) nums+='<button class="il-page-btn" onclick="ilGoPage(1)">1</button>'+(lo>2?'<span style="padding:0 3px;color:var(--t3)">…</span>':'');
+    for(var p=lo;p<=hi;p++) nums+='<button class="il-page-btn'+(p===ilCurrentPage?' active':'')+'" onclick="ilGoPage('+p+')">'+p+'</button>';
+    if(hi<pages) nums+=(hi<pages-1?'<span style="padding:0 3px;color:var(--t3)">…</span>':'')+'<button class="il-page-btn" onclick="ilGoPage('+pages+')">'+pages+'</button>';
+    pn.innerHTML = nums;
+  }
+  var prev=document.getElementById('ilPrev'),next=document.getElementById('ilNext');
+  if(prev)prev.disabled=(ilCurrentPage<=1);
+  if(next)next.disabled=(ilCurrentPage>=pages);
+}
+
+function ilPage(d){ ilCurrentPage+=d; renderTable(); }
+function ilEscRow(btn){
+  var issue = btn.getAttribute('data-issue');
+  var city  = btn.getAttribute('data-city');
+  showEsc(issue, city, 'Municipal Dept.');
+}
+function ilGoPage(p){ ilCurrentPage=p; renderTable(); }
+function ilChangePageSize(){ ilPageSize=+document.getElementById('ilPageSize').value; ilCurrentPage=1; renderTable(); }
+
+/* ─ EXPORT FUNCTIONS ─ */
+function toggleExpMenu(){
+  var m=document.getElementById('expMenu');
+  if(m)m.classList.toggle('open');
+}
+// Close export menu when clicking outside
+document.addEventListener('click',function(e){
+  var dd=document.getElementById('expDropdown');
+  if(dd&&!dd.contains(e.target)){
+    var m=document.getElementById('expMenu');
+    if(m)m.classList.remove('open');
+  }
+});
+
+function exportData(type){
+  var m=document.getElementById('expMenu');
+  if(m)m.classList.remove('open');
+
+  var data = type==='filtered' ? ilFiltered : IL_DATA;
+  var filename = 'NagarDrishti_Incidents_'+new Date().toISOString().slice(0,10);
+
+  if(type==='csv' || type==='filtered'){
+    var headers = ['ID','City','Pincode','Category','Severity','Status','Confirmations','Issue','Submitted','Resolved In'];
+    var rows = data.map(function(r){
+      return [r.id,r.city,r.pincode,r.category,r.severity,r.status,r.confirmations,'"'+r.issue+'"',r.created_at,r.resolvedIn||''].join(',');
+    });
+    var csv = [headers.join(',')].concat(rows).join('\n');
+    downloadFile(csv, filename+'.csv', 'text/csv');
+    toast('✅ CSV downloaded — '+data.length+' incidents exported','var(--grn)');
+  }
+  else if(type==='json'){
+    var json = JSON.stringify(data, null, 2);
+    downloadFile(json, filename+'.json', 'application/json');
+    toast('✅ JSON downloaded — '+data.length+' incidents exported','var(--grn)');
+  }
+  else if(type==='pdf'){
+    // PDF: open a print-friendly window
+    var printHtml = buildPrintHTML(data);
+    var w = window.open('','_blank','width=900,height=600');
+    w.document.write(printHtml);
+    w.document.close();
+    w.focus();
+    setTimeout(function(){ w.print(); }, 500);
+    toast('📑 PDF report opened — use browser Print → Save as PDF','var(--b6)');
+  }
+}
+
+function downloadFile(content, filename, mime){
+  var blob = new Blob([content], {type: mime});
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function buildPrintHTML(data){
+  var rows = data.map(function(r,i){
+    var bg = r.status==='resolved'?'#f0fdf4': r.severity==='critical'?'#fef2f2': r.severity==='high'?'#fffbeb':'#fff';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #e5e7eb">'
+      +'<td style="padding:7px 10px;font-size:11px;color:#6b7280;font-family:monospace">'+r.id+'</td>'
+      +'<td style="padding:7px 10px;font-size:12px;font-weight:600">'+r.city+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;font-family:monospace">'+r.pincode+'</td>'
+      +'<td style="padding:7px 10px;font-size:11.5px">'+r.catLabel+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;font-weight:700;text-transform:uppercase;color:'+(r.severity==='critical'?'#dc2626':r.severity==='high'?'#d97706':r.severity==='medium'?'#b45309':'#059669')+'">'+r.severity+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;font-weight:600;text-transform:uppercase;color:'+(r.status==='resolved'?'#059669':r.status==='active'?'#1d4ed8':'#92400e')+'">'+r.status+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;text-align:center">'+r.confirmations+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;font-family:monospace">'+r.created_at+'</td>'
+      +'<td style="padding:7px 10px;font-size:11px;color:'+(r.resolvedIn?'#059669':'#9ca3af')+'">'+( r.resolvedIn||'Pending')+'</td>'
+      +'</tr>';
+  }).join('');
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>NagarDrishti — Incident Report</title>'
+    +'<style>body{font-family:Arial,sans-serif;padding:30px;color:#111827}h1{font-size:20px;margin-bottom:4px}p{font-size:12px;color:#6b7280;margin-bottom:20px}table{width:100%;border-collapse:collapse}th{background:#f3f4f6;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;text-align:left;color:#6b7280;border-bottom:2px solid #e5e7eb}@media print{@page{size:A4 landscape;margin:15mm}}</style>'
+    +'</head><body>'
+    +'<h1>🇮🇳 NagarDrishti — Incident Report</h1>'
+    +'<p>Generated: '+new Date().toLocaleString('en-IN')+' · Total incidents: '+data.length+'</p>'
+    +'<table><thead><tr><th>ID</th><th>City</th><th>PIN</th><th>Category</th><th>Severity</th><th>Status</th><th>Confirms</th><th>Submitted</th><th>Resolved In</th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table>'
+    +'</body></html>';
+}
+
+/* Init list view on page load */
+ilSort('created_at', true);
 
 /* ─ SCROLL REVEAL ─ */
 var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}})},{threshold:.08});
