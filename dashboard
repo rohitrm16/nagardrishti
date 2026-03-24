@@ -201,3 +201,9 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .mti{font-size:18px;font-weight:800;color:var(--n9);margin-bottom:3px;letter-spacing:-.01em}
 .mde{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
 .mx{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r1);width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t5);font-size:12px;transition:a
+
+
+
+
+
+
