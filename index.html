@@ -430,6 +430,25 @@ nav.sh{box-shadow:var(--s2)}
   .exp-menu{right:auto;left:0}
 }
 
+
+/* ─ CITY PINCODE MODAL ─ */
+.pin-modal-grid{display:flex;flex-direction:column;gap:7px}
+.pin-row{display:flex;align-items:center;gap:10px;padding:10px 13px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r2);transition:all .13s;cursor:pointer}
+.pin-row:hover{background:var(--b0);border-color:#C7D9FF}
+.pin-rank{font-family:var(--fm);font-size:11px;font-weight:600;width:22px;text-align:center;flex-shrink:0}
+.pin-code{font-family:var(--fm);font-size:13px;font-weight:600;color:var(--n9);flex-shrink:0;width:60px}
+.pin-area{font-size:12.5px;color:var(--t7);flex:1}
+.pin-score-wrap{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.pin-bar-track{width:60px;height:4px;background:var(--g200);border-radius:2px;overflow:hidden}
+.pin-bar-fill{height:100%;border-radius:2px}
+.pin-score{font-family:var(--fm);font-size:11px;font-weight:600;width:26px;text-align:right}
+.pin-tag{font-family:var(--fm);font-size:8.5px;padding:2px 7px;border-radius:var(--r1);border:1px solid;white-space:nowrap;flex-shrink:0}
+.city-modal-header{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r3);margin-bottom:16px}
+.city-modal-score-big{font-size:36px;font-weight:800;line-height:1;letter-spacing:-.03em}
+.city-modal-rank{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;margin-bottom:3px}
+.city-modal-name{font-size:19px;font-weight:800;color:var(--n9);letter-spacing:-.01em}
+.city-modal-state{font-family:var(--fm);font-size:10px;color:var(--t3);margin-top:1px}
+
 /* ─ FOOTER ─ */
 footer{background:var(--n9);color:#fff}
 .ft-in{max-width:1160px;margin:0 auto;padding:36px 40px 20px}
@@ -558,12 +577,12 @@ footer{background:var(--n9);color:#fff}
       <div><div class="logo-nm">NagarDrishti</div><div class="logo-sb">Urban Intelligence</div></div>
     </div>
     <div class="nav-lk">
-      <a onclick="gs('features')">Features</a><a onclick="gs('quickstart')">Quick Start</a><a onclick="gs('incidents')">Incidents</a><a onclick="gs('incidentlist')">List View</a><a onclick="gs('auditor')">Auditor Badge</a><a onclick="gs('bestpractices')">Best Practices</a><a onclick="gs('cities')">Cities</a><a onclick="gs('impact')">Impact</a>
+      <a onclick="gs('features')">Features</a><a onclick="gs('quickstart')">Quick Start</a><a onclick="gs('incidents')">Incidents</a><a onclick="gs('auditor')">Auditor Badge</a><a onclick="gs('bestpractices')">Best Practices</a><a onclick="gs('cities')">Cities</a><a onclick="gs('impact')">Impact</a>
     </div>
     <div class="nav-ct">
       <button class="bn-g" onclick="om('signin')">Sign In</button>
       <button class="bn-a" onclick="om('report')">📋 Submit an Audit</button>
-      <button class="bn-b" onclick="goDash()">View Live Incidents →</button>
+      <button class="bn-b" onclick="goDash()">Open Live Dashboard →</button>
       <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -577,11 +596,11 @@ footer{background:var(--n9);color:#fff}
       <button class="drw-x" onclick="closeD()">✕</button>
     </div>
     <div class="drw-lk">
-      <a onclick="gsD('features')">Features</a><a onclick="gsD('quickstart')">Quick Start</a><a onclick="gsD('incidents')">Incidents</a><a onclick="gsD('incidentlist')">List View</a><a onclick="gsD('auditor')">Auditor Badge</a><a onclick="gsD('bestpractices')">Best Practices</a><a onclick="gsD('cities')">Cities</a><a onclick="gsD('impact')">Impact</a>
+      <a onclick="gsD('features')">Features</a><a onclick="gsD('quickstart')">Quick Start</a><a onclick="gsD('incidents')">Incidents</a><a onclick="gsD('auditor')">Auditor Badge</a><a onclick="gsD('bestpractices')">Best Practices</a><a onclick="gsD('cities')">Cities</a><a onclick="gsD('impact')">Impact</a>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
       <button class="bn-a" style="width:100%;padding:10px;font-size:13.5px;justify-content:center" onclick="om('report');closeD()">📋 Submit an Audit</button>
-      <button class="bn-b" style="width:100%;padding:11px;font-size:13.5px" onclick="goDash();closeD()">View Live Incidents →</button>
+      <button class="bn-b" style="width:100%;padding:11px;font-size:13.5px" onclick="goDash();closeD()">Open Live Dashboard →</button>
       <button class="bn-g" style="width:100%;padding:10px;font-size:13.5px" onclick="om('signin');closeD()">Sign In</button>
     </div>
   </div>
@@ -742,62 +761,14 @@ footer{background:var(--n9);color:#fff}
       </div>
     </div>
   </div>
-</div></div>
 
-<!-- AUDITOR BADGES -->
-<div class="sec alt" id="auditor"><div class="wrap">
-  <div class="stag rv">Citizen Auditor Programme</div>
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:48px">
-    <h2 class="sh2 rv">Earn your badge.<br><span class="hl">Make cities accountable.</span></h2>
-    <p class="sp rv" style="margin:0">Every audit earns points. Points unlock badges. Badges build your verified public civic record.</p>
-  </div>
-  <div class="bg-grid rvs">
-    <div class="bg-card"><div class="bg-ic">👁</div><div class="bg-lv" style="color:var(--t3)">Level 1</div><div class="bg-nm">Observer</div><div class="bg-ct">1–5 audits</div><div class="bg-bar"><div class="bg-bf" style="width:20%;background:var(--g400)"></div></div><p class="bg-de">You've started. Your first reports are on the map.</p></div>
-    <div class="bg-card" style="border-color:#6EE7B7"><div class="bg-ic">📋</div><div class="bg-lv" style="color:var(--grn)">Level 2</div><div class="bg-nm">Reporter</div><div class="bg-ct">6–20 audits</div><div class="bg-bar"><div class="bg-bf" style="width:40%;background:var(--grn)"></div></div><p class="bg-de">Consistent reporter with photo-verified community-confirmed audits.</p></div>
-    <div class="bg-card" style="border-color:#93C5FD;position:relative"><div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--b6);color:#fff;font-family:var(--fm);font-size:7.5px;font-weight:600;padding:3px 9px;border-radius:0 0 var(--r2) var(--r2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap">Most Common</div><div class="bg-ic" style="margin-top:8px">🔍</div><div class="bg-lv" style="color:var(--b6)">Level 3</div><div class="bg-nm">Inspector</div><div class="bg-ct">21–50 audits</div><div class="bg-bar"><div class="bg-bf" style="width:60%;background:var(--b6)"></div></div><p class="bg-de">Video evidence included. Triggered 3+ Community Surge events.</p></div>
-    <div class="bg-card" style="border-color:#FCD34D"><div class="bg-ic">🛡</div><div class="bg-lv" style="color:var(--amb)">Level 4</div><div class="bg-nm">Sentinel</div><div class="bg-ct">51–100 audits</div><div class="bg-bar"><div class="bg-bf" style="width:80%;background:var(--amb)"></div></div><p class="bg-de">Your pincode's top auditor. Officers recognise your reports.</p></div>
-    <div class="bg-card gdn"><div class="bg-ic">🏛</div><div class="bg-lv" style="color:rgba(255,255,255,.45)">Level 5</div><div class="bg-nm">Guardian</div><div class="bg-ct" style="color:rgba(255,255,255,.3)">100+ audits</div><div class="bg-bar" style="background:rgba(255,255,255,.12)"><div class="bg-bf" style="width:100%;background:linear-gradient(90deg,#60A5FA,#A78BFA)"></div></div><p class="bg-de">Your audits are cited by name in official municipal reports.</p></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="rvs">
-    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
-      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">How you earn points</div>
-      <div class="pts-row"><div class="pts-ic">📝</div><div class="pts-lb">Submit a civic audit</div><div class="pts-vl" style="color:var(--b6);border-color:#C7D9FF;background:var(--b0)">+10 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">📷</div><div class="pts-lb">Include photo evidence</div><div class="pts-vl" style="color:var(--grn);border-color:#6EE7B7;background:var(--gb)">+15 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">🎥</div><div class="pts-lb">Include video evidence</div><div class="pts-vl" style="color:var(--vio);border-color:#DDD6FE;background:var(--vb)">+25 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">👍</div><div class="pts-lb">Community confirms your audit</div><div class="pts-vl" style="color:var(--amb);border-color:#FCD34D;background:var(--ab)">+5 each</div></div>
-      <div class="pts-row"><div class="pts-ic">✅</div><div class="pts-lb">Your audit leads to resolution</div><div class="pts-vl" style="color:var(--red);border-color:#FCA5A5;background:var(--rb)">+50 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">🚨</div><div class="pts-lb">You trigger a Community Surge</div><div class="pts-vl" style="color:var(--n9);border-color:#C7D9FF;background:var(--b0)">+100 pts</div></div>
+  <!-- LIST VIEW — part of Incidents section -->
+  <div id="incidentlist" style="margin-top:32px;padding-top:28px;border-top:1px solid var(--g200)">
+    <div class="stag rv" style="margin-bottom:10px">Incident List View</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:20px">
+      <h2 class="sh2 rv" style="font-size:clamp(22px,3vw,34px)">All incidents,<br><span class="hl">in one table</span></h2>
+      <p class="sp rv" style="margin:0;font-size:14px">Browse, filter, search and export every civic audit. Sortable by city, category, severity and status.</p>
     </div>
-    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
-      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">What your badge unlocks</div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--b0);border:1px solid #C7D9FF">🪪</div><div><div class="ul-ti">Verified Public Profile</div><div class="ul-de">A shareable page showing your audit history, badges and resolution rate — verifiable by anyone.</div></div></div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--gb);border:1px solid #6EE7B7">📊</div><div><div class="ul-ti">Priority Escalation</div><div class="ul-de">Inspector+ auditors get escalations fast-tracked with a verified badge shown to municipal officers.</div></div></div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--ab);border:1px solid #FCD34D">🏆</div><div><div class="ul-ti">City Leaderboard</div><div class="ul-de">Top auditors per pincode, ward and city are ranked publicly on the NagarDrishti homepage.</div></div></div>
-      <div class="ul-row" style="margin-bottom:0"><div class="ul-ic" style="background:var(--vb);border:1px solid #DDD6FE">🏛</div><div><div class="ul-ti">Guardian: Municipal Reports</div><div class="ul-de">Guardian-level audits are cited by name in quarterly municipal compliance reports.</div></div></div>
-    </div>
-  </div>
-</div></div>
-
-<!-- BEST PRACTICES -->
-<div class="sec" id="bestpractices"><div class="wrap">
-  <div class="stag rv">Best Practices</div>
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:36px">
-    <h2 class="sh2 rv">What good looks like.<br><span class="hl">Before and after.</span></h2>
-    <p class="sp rv" style="margin:0">Each category has a resolution standard. These benchmarks help auditors and municipalities know what success looks like.</p>
-  </div>
-  <div class="bp-tabs rv"><button class="bpt on" id="bpt-g" onclick="setBP('g')">🗑️ Garbage</button><button class="bpt" id="bpt-t" onclick="setBP('t')">🚦 Traffic</button><button class="bpt" id="bpt-f" onclick="setBP('f')">🚶 Footpath</button><button class="bpt" id="bpt-c" onclick="setBP('c')">✨ Cleanliness</button></div>
-  <div id="bpPanel" class="rv"></div>
-</div></div>
-
-
-<!-- INCIDENT LIST VIEW -->
-<div class="sec" id="incidentlist" style="border-top:1px solid var(--g200)"><div class="wrap">
-  <div class="stag rv">Incident List View</div>
-  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:26px">
-    <h2 class="sh2 rv">All incidents,<br><span class="hl">in one table</span></h2>
-    <p class="sp rv" style="margin:0">Browse, filter, search and export every civic audit. Sortable by city, category, severity and status.</p>
-  </div>
-
   <div class="il-wrap rv">
     <!-- Toolbar -->
     <div class="il-toolbar">
@@ -911,6 +882,53 @@ footer{background:var(--n9);color:#fff}
       </select>
     </div>
   </div>
+  </div>
+</div></div>
+
+
+<!-- AUDITOR BADGES -->
+<div class="sec alt" id="auditor"><div class="wrap">
+  <div class="stag rv">Citizen Auditor Programme</div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:36px">
+    <h2 class="sh2 rv">Earn your badge.<br><span class="hl">Make cities accountable.</span></h2>
+    <p class="sp rv" style="margin:0">Every audit earns points. Points unlock badges. Badges build your verified public civic record.</p>
+  </div>
+  <div class="bg-grid rvs">
+    <div class="bg-card"><div class="bg-ic">👁</div><div class="bg-lv" style="color:var(--t3)">Level 1</div><div class="bg-nm">Observer</div><div class="bg-ct">1–5 audits</div><div class="bg-bar"><div class="bg-bf" style="width:20%;background:var(--g400)"></div></div><p class="bg-de">You have started. Your first reports are on the map.</p></div>
+    <div class="bg-card" style="border-color:#6EE7B7"><div class="bg-ic">📋</div><div class="bg-lv" style="color:var(--grn)">Level 2</div><div class="bg-nm">Reporter</div><div class="bg-ct">6–20 audits</div><div class="bg-bar"><div class="bg-bf" style="width:40%;background:var(--grn)"></div></div><p class="bg-de">Consistent reporter with photo-verified community-confirmed audits.</p></div>
+    <div class="bg-card" style="border-color:#93C5FD;position:relative"><div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--b6);color:#fff;font-family:var(--fm);font-size:7.5px;font-weight:600;padding:3px 9px;border-radius:0 0 var(--r2) var(--r2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap">Most Common</div><div class="bg-ic" style="margin-top:8px">🔍</div><div class="bg-lv" style="color:var(--b6)">Level 3</div><div class="bg-nm">Inspector</div><div class="bg-ct">21–50 audits</div><div class="bg-bar"><div class="bg-bf" style="width:60%;background:var(--b6)"></div></div><p class="bg-de">Video evidence included. Triggered 3+ Community Surge events.</p></div>
+    <div class="bg-card" style="border-color:#FCD34D"><div class="bg-ic">🛡</div><div class="bg-lv" style="color:var(--amb)">Level 4</div><div class="bg-nm">Sentinel</div><div class="bg-ct">51–100 audits</div><div class="bg-bar"><div class="bg-bf" style="width:80%;background:var(--amb)"></div></div><p class="bg-de">Your pincode's top auditor. Officers recognise your reports.</p></div>
+    <div class="bg-card gdn"><div class="bg-ic">🏛</div><div class="bg-lv" style="color:rgba(255,255,255,.45)">Level 5</div><div class="bg-nm">Guardian</div><div class="bg-ct" style="color:rgba(255,255,255,.3)">100+ audits</div><div class="bg-bar" style="background:rgba(255,255,255,.12)"><div class="bg-bf" style="width:100%;background:linear-gradient(90deg,#60A5FA,#A78BFA)"></div></div><p class="bg-de">Your audits are cited by name in official municipal reports.</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px" class="rvs">
+    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
+      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">How you earn points</div>
+      <div class="pts-row"><div class="pts-ic">📝</div><div class="pts-lb">Submit a civic audit</div><div class="pts-vl" style="color:var(--b6);border-color:#C7D9FF;background:var(--b0)">+10 pts</div></div>
+      <div class="pts-row"><div class="pts-ic">📷</div><div class="pts-lb">Include photo evidence</div><div class="pts-vl" style="color:var(--grn);border-color:#6EE7B7;background:var(--gb)">+15 pts</div></div>
+      <div class="pts-row"><div class="pts-ic">🎥</div><div class="pts-lb">Include video evidence</div><div class="pts-vl" style="color:var(--vio);border-color:#DDD6FE;background:var(--vb)">+25 pts</div></div>
+      <div class="pts-row"><div class="pts-ic">👍</div><div class="pts-lb">Community confirms your audit</div><div class="pts-vl" style="color:var(--amb);border-color:#FCD34D;background:var(--ab)">+5 each</div></div>
+      <div class="pts-row"><div class="pts-ic">✅</div><div class="pts-lb">Your audit leads to resolution</div><div class="pts-vl" style="color:var(--red);border-color:#FCA5A5;background:var(--rb)">+50 pts</div></div>
+      <div class="pts-row"><div class="pts-ic">🚨</div><div class="pts-lb">You trigger a Community Surge</div><div class="pts-vl" style="color:var(--n9);border-color:#C7D9FF;background:var(--b0)">+100 pts</div></div>
+    </div>
+    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
+      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">What your badge unlocks</div>
+      <div class="ul-row"><div class="ul-ic" style="background:var(--b0);border:1px solid #C7D9FF">🪪</div><div><div class="ul-ti">Verified Public Profile</div><div class="ul-de">A shareable page showing your audit history, badges and resolution rate — verifiable by anyone.</div></div></div>
+      <div class="ul-row"><div class="ul-ic" style="background:var(--gb);border:1px solid #6EE7B7">📊</div><div><div class="ul-ti">Priority Escalation</div><div class="ul-de">Inspector+ auditors get escalations fast-tracked with a verified badge shown to municipal officers.</div></div></div>
+      <div class="ul-row"><div class="ul-ic" style="background:var(--ab);border:1px solid #FCD34D">🏆</div><div><div class="ul-ti">City Leaderboard</div><div class="ul-de">Top auditors per pincode, ward and city are ranked publicly on the NagarDrishti homepage.</div></div></div>
+      <div class="ul-row" style="margin-bottom:0"><div class="ul-ic" style="background:var(--vb);border:1px solid #DDD6FE">🏛</div><div><div class="ul-ti">Guardian: Municipal Reports</div><div class="ul-de">Guardian-level audits are cited by name in quarterly municipal compliance reports.</div></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- BEST PRACTICES -->
+<div class="sec" id="bestpractices"><div class="wrap">
+  <div class="stag rv">Best Practices</div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:36px">
+    <h2 class="sh2 rv">What good looks like.<br><span class="hl">Before and after.</span></h2>
+    <p class="sp rv" style="margin:0">Each category has a resolution standard. These benchmarks help auditors and municipalities know what success looks like.</p>
+  </div>
+  <div class="bp-tabs rv"><button class="bpt on" id="bpt-g" onclick="setBP('g')">🗑️ Garbage</button><button class="bpt" id="bpt-t" onclick="setBP('t')">🚦 Traffic</button><button class="bpt" id="bpt-f" onclick="setBP('f')">🚶 Footpath</button><button class="bpt" id="bpt-c" onclick="setBP('c')">✨ Cleanliness</button></div>
+  <div id="bpPanel" class="rv"></div>
 </div></div>
 
 <!-- CITIES -->
@@ -955,8 +973,30 @@ footer{background:var(--n9);color:#fff}
     <div><div class="ft-cti">Categories</div><div class="ft-lk"><a onclick="gs('features')">🚦 Traffic</a><a onclick="gs('features')">🚶 Footpath</a><a onclick="gs('features')">🗑️ Garbage</a><a onclick="gs('features')">✨ Cleanliness</a></div></div>
     <div><div class="ft-cti">About</div><div class="ft-lk"><a onclick="om('mission')">Mission</a><a onclick="om('muni')">For Municipalities</a><a onclick="gs('contact')">Press / Media</a></div></div>
   </div>
-  <div class="ft-bt"><div class="ft-cp">© 2025 NagarDrishti · Made with ❤️ in India 🇮🇳</div><div class="ft-bg"><span class="fbg">Smart Cities Mission</span><span class="fbg">SWACHH Bharat</span><span class="fbg">Digital India</span></div></div>
+  <div class="ft-bt"><div class="ft-cp">© 2026 NagarDrishti · Made with ❤️ in India 🇮🇳</div><div class="ft-bg"><span class="fbg">Smart Cities Mission</span><span class="fbg">SWACHH Bharat</span><span class="fbg">Digital India</span></div></div>
 </div></footer>
+
+
+<!-- CITY PINCODE MODAL -->
+<div class="ovl" id="m-city" onclick="moc(event,'city')">
+  <div class="mbox" style="width:520px">
+    <div class="mhd">
+      <div>
+        <div class="mti" id="city-modal-title">City Pincode Rankings</div>
+        <div class="mde">Ranked by cleanliness score · Click any pincode row to jump to its incidents</div>
+      </div>
+      <button class="mx" onclick="cm('city')">✕</button>
+    </div>
+    <div class="mbd">
+      <div id="city-modal-header-wrap"></div>
+      <div style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:7px">
+        Pincode Rankings
+        <span style="flex:1;height:1px;background:var(--g200);display:block"></span>
+      </div>
+      <div class="pin-modal-grid" id="city-modal-pins"></div>
+    </div>
+  </div>
+</div>
 
 <!-- MODALS -->
 <div class="ovl" id="m-signin" onclick="moc(event,'signin')">
@@ -1034,12 +1074,7 @@ function toast(msg,clr){var b=document.getElementById('tbar'),e=document.createE
 function gs(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
 function sto(){window.scrollTo({top:0,behavior:'smooth'})}
 function goDash(){
-  // Dashboard is embedded in this page — scroll to the live incidents section
-  var el = document.getElementById('incidents');
-  if(el){
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    toast('🗺 Scrolled to Live Incidents dashboard','var(--b6)');
-  }
+  window.open('dashboard.html','_blank');
 }
 
 /* ─ NAV ─ */
@@ -1171,7 +1206,7 @@ document.getElementById('tktr').innerHTML=th;
 
 /* ─ CITIES ─ */
 var CIT=[{n:'Surat',s:92,st:'Gujarat',c:'var(--grn)',b:'🏆'},{n:'Indore',s:88,st:'M.P.',c:'var(--grn)',b:'🥈'},{n:'Pune',s:84,st:'Maharashtra',c:'var(--grn)',b:'🥉'},{n:'Navi Mumbai',s:81,st:'Maharashtra',c:'var(--tel)',b:'🌊'},{n:'Bhopal',s:78,st:'M.P.',c:'var(--tel)',b:'🌿'},{n:'Chandigarh',s:76,st:'Punjab',c:'var(--tel)',b:'🌸'},{n:'Ahmedabad',s:73,st:'Gujarat',c:'var(--amb)',b:'🌅'},{n:'Mysuru',s:70,st:'Karnataka',c:'var(--amb)',b:'🏛'}];
-document.getElementById('cityCards').innerHTML=CIT.map(function(c,i){return '<div class="cc"><div class="cc-em">'+c.b+'</div><div class="cc-rk">Rank #'+(i+1)+'</div><div class="cc-nm">'+c.n+'</div><div class="cc-st">'+c.st+'</div><div style="display:flex;align-items:baseline;gap:4px;margin-bottom:7px"><span class="cc-sc" style="color:'+c.c+'">'+c.s+'</span><span class="cc-sl">/ 100</span></div><div class="cc-bar"><div class="cc-bf" style="width:'+c.s+'%;background:'+c.c+'"></div></div></div>'}).join('');
+document.getElementById('cityCards').innerHTML=CIT.map(function(c,i){return '<div class="cc" onclick="openCityModal(\''+c.n+'\')" style="cursor:pointer" title="Click to see pincode rankings"><div class="cc-em">'+c.b+'</div><div class="cc-rk">Rank #'+(i+1)+'</div><div class="cc-nm">'+c.n+'</div><div class="cc-st">'+c.st+'</div><div style="display:flex;align-items:baseline;gap:4px;margin-bottom:7px"><span class="cc-sc" style="color:'+c.c+'">'+c.s+'</span><span class="cc-sl">/ 100</span></div><div class="cc-bar"><div class="cc-bf" style="width:'+c.s+'%;background:'+c.c+'"></div></div></div>'}).join('');
 
 /* ─ FEATURE CITY LIST ─ */
 document.getElementById('fcl').innerHTML='<div style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:11px">Top cities today</div>'+[{n:'Surat',s:92,c:'var(--grn)'},{n:'Indore',s:88,c:'var(--grn)'},{n:'Pune',s:84,c:'var(--grn)'},{n:'Navi Mumbai',s:81,c:'var(--tel)'},{n:'Bhopal',s:78,c:'var(--tel)'}].map(function(c,i){return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="font-family:var(--fm);font-size:8.5px;color:var(--t3);width:18px">'+['🥇','🥈','🥉','#4','#5'][i]+'</span><span style="font-size:12px;color:var(--t7);flex:1">'+c.n+'</span><div style="flex:1;height:3px;background:var(--g100);border-radius:2px;overflow:hidden"><div style="width:'+c.s+'%;height:100%;background:'+c.c+';border-radius:2px"></div></div><span style="font-family:var(--fm);font-size:9.5px;font-weight:600;color:'+c.c+';width:22px;text-align:right">'+c.s+'</span></div>'}).join('');
@@ -1442,6 +1477,196 @@ function buildPrintHTML(data){
 /* Init list view on page load */
 ilSort('created_at', true);
 
+
+/* ── CITY PINCODE DATA ── */
+var CITY_PINS = {
+  'Surat': {
+    rank:1, score:92, state:'Gujarat', emoji:'🏆',
+    pincodes:[
+      {pin:'395001',area:'City Center / Nanpura',score:95,audits:142,status:'clean'},
+      {pin:'395002',area:'Rander / Piplod',score:93,audits:118,status:'clean'},
+      {pin:'395003',area:'Katargam',score:90,audits:97,status:'clean'},
+      {pin:'395004',area:'Varachha',score:88,audits:203,status:'clean'},
+      {pin:'395005',area:'Udhna / Limbayat',score:86,audits:156,status:'clean'},
+      {pin:'395006',area:'Althan / Bhatar',score:91,audits:88,status:'clean'},
+      {pin:'395007',area:'Adajan / Parvat',score:94,audits:76,status:'clean'},
+      {pin:'395009',area:'Dumas / Hazira',score:89,audits:54,status:'clean'},
+    ]
+  },
+  'Indore': {
+    rank:2, score:88, state:'Madhya Pradesh', emoji:'🥈',
+    pincodes:[
+      {pin:'452001',area:'City Center / Rajwada',score:91,audits:134,status:'clean'},
+      {pin:'452002',area:'Palasia / AB Road',score:89,audits:112,status:'clean'},
+      {pin:'452003',area:'Vijay Nagar',score:92,audits:89,status:'clean'},
+      {pin:'452004',area:'Scheme No. 54',score:87,audits:97,status:'clean'},
+      {pin:'452005',area:'Annapurna / Bijalpur',score:84,audits:143,status:'watch'},
+      {pin:'452006',area:'Bhanwarkuan',score:88,audits:76,status:'clean'},
+      {pin:'452007',area:'Kanadia Road',score:86,audits:62,status:'clean'},
+    ]
+  },
+  'Pune': {
+    rank:3, score:84, state:'Maharashtra', emoji:'🥉',
+    pincodes:[
+      {pin:'411001',area:'Shivajinagar / Camp',score:88,audits:187,status:'clean'},
+      {pin:'411002',area:'Deccan / Kothrud',score:86,audits:154,status:'clean'},
+      {pin:'411004',area:'Erandwane / Karve Rd',score:91,audits:98,status:'clean'},
+      {pin:'411005',area:'Hadapsar',score:79,audits:213,status:'watch'},
+      {pin:'411006',area:'Pimpri-Chinchwad',score:77,audits:198,status:'watch'},
+      {pin:'411007',area:'Bhosari',score:75,audits:167,status:'watch'},
+      {pin:'411028',area:'Hinjawadi IT Park',score:82,audits:134,status:'clean'},
+      {pin:'411045',area:'Baner / Balewadi',score:85,audits:112,status:'clean'},
+    ]
+  },
+  'Navi Mumbai': {
+    rank:4, score:81, state:'Maharashtra', emoji:'🌊',
+    pincodes:[
+      {pin:'400701',area:'Vashi',score:85,audits:112,status:'clean'},
+      {pin:'400703',area:'Belapur / CBD',score:87,audits:89,status:'clean'},
+      {pin:'400706',area:'Nerul',score:83,audits:97,status:'clean'},
+      {pin:'400709',area:'Kharghar',score:82,audits:104,status:'clean'},
+      {pin:'400710',area:'Khanda Colony',score:78,audits:87,status:'watch'},
+      {pin:'400614',area:'Panvel',score:76,audits:134,status:'watch'},
+    ]
+  },
+  'Bhopal': {
+    rank:5, score:78, state:'Madhya Pradesh', emoji:'🌿',
+    pincodes:[
+      {pin:'462001',area:'Old Bhopal / DB Mall',score:81,audits:143,status:'clean'},
+      {pin:'462002',area:'New Market / TT Nagar',score:80,audits:118,status:'clean'},
+      {pin:'462003',area:'Shivaji Nagar',score:77,audits:97,status:'watch'},
+      {pin:'462011',area:'Kolar Road',score:75,audits:112,status:'watch'},
+      {pin:'462021',area:'Misrod',score:73,audits:88,status:'watch'},
+      {pin:'462016',area:'Berasia Road',score:76,audits:76,status:'watch'},
+    ]
+  },
+  'Chandigarh': {
+    rank:6, score:76, state:'Punjab/Haryana UT', emoji:'🌸',
+    pincodes:[
+      {pin:'160001',area:'Sector 1–4 (Capitol)',score:82,audits:67,status:'clean'},
+      {pin:'160009',area:'Sector 9',score:80,audits:54,status:'clean'},
+      {pin:'160011',area:'Sector 11',score:79,audits:61,status:'watch'},
+      {pin:'160014',area:'Sector 14',score:77,audits:58,status:'watch'},
+      {pin:'160017',area:'Sector 17 (City Center)',score:84,audits:89,status:'clean'},
+      {pin:'160022',area:'Sector 22',score:78,audits:72,status:'watch'},
+      {pin:'160036',area:'Sector 36',score:75,audits:63,status:'watch'},
+      {pin:'160047',area:'Sector 47',score:73,audits:54,status:'watch'},
+    ]
+  },
+  'Ahmedabad': {
+    rank:7, score:73, state:'Gujarat', emoji:'🌅',
+    pincodes:[
+      {pin:'380001',area:'Relief Road / Ellis Bridge',score:78,audits:198,status:'watch'},
+      {pin:'380004',area:'Maninagar',score:74,audits:167,status:'watch'},
+      {pin:'380006',area:'Naranpura',score:76,audits:143,status:'watch'},
+      {pin:'380009',area:'Bopal / South Bopal',score:79,audits:112,status:'watch'},
+      {pin:'380013',area:'Ghatlodia',score:77,audits:98,status:'watch'},
+      {pin:'380015',area:'Satellite / Prahlad Nagar',score:81,audits:87,status:'clean'},
+      {pin:'380054',area:'Chandkheda',score:72,audits:134,status:'watch'},
+      {pin:'380059',area:'Nikol / Odhav',score:68,audits:187,status:'monitor'},
+    ]
+  },
+  'Mysuru': {
+    rank:8, score:70, state:'Karnataka', emoji:'🏛',
+    pincodes:[
+      {pin:'570001',area:'City Center / Devaraja',score:75,audits:98,status:'watch'},
+      {pin:'570002',area:'Vijayanagar',score:73,audits:87,status:'watch'},
+      {pin:'570004',area:'Kuvempunagar',score:71,audits:76,status:'watch'},
+      {pin:'570008',area:'Hebbal',score:69,audits:112,status:'monitor'},
+      {pin:'570010',area:'Nazarbad',score:67,audits:98,status:'monitor'},
+      {pin:'570016',area:'Yadavagiri',score:72,audits:67,status:'watch'},
+    ]
+  },
+};
+
+function openCityModal(cityName) {
+  var d = CITY_PINS[cityName];
+  if (!d) { toast('ℹ No pincode data available for ' + cityName, 'var(--t3)'); return; }
+
+  document.getElementById('city-modal-title').textContent = cityName + ' — Pincode Rankings';
+
+  // Header card
+  var scoreCol = d.score >= 85 ? 'var(--grn)' : d.score >= 75 ? 'var(--tel)' : 'var(--amb)';
+  document.getElementById('city-modal-header-wrap').innerHTML =
+    '<div class="city-modal-header">'
+    + '<div><div class="city-modal-rank">Rank #' + d.rank + ' of 87 cities</div>'
+    + '<div class="city-modal-name">' + cityName + ' ' + d.emoji + '</div>'
+    + '<div class="city-modal-state">' + d.state + '</div></div>'
+    + '<div style="margin-left:auto;text-align:right">'
+    + '<div class="city-modal-score-big" style="color:' + scoreCol + '">' + d.score + '</div>'
+    + '<div style="font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.08em">/ 100 Clean Score</div></div>'
+    + '</div>';
+
+  // Sort pincodes by score desc
+  var sorted = d.pincodes.slice().sort(function(a,b){ return b.score - a.score; });
+
+  document.getElementById('city-modal-pins').innerHTML = sorted.map(function(p, i) {
+    var sc = p.score >= 85 ? 'var(--grn)' : p.score >= 75 ? 'var(--tel)' : p.score >= 65 ? 'var(--amb)' : 'var(--red)';
+    var tagStyle = p.status === 'clean'
+      ? 'background:var(--gb);color:var(--grn);border-color:#6EE7B7'
+      : p.status === 'watch'
+      ? 'background:var(--ab);color:var(--amb);border-color:#FCD34D'
+      : 'background:var(--rb);color:var(--red);border-color:#FCA5A5';
+    var tagLabel = p.status === 'clean' ? '✅ Clean' : p.status === 'watch' ? '⚠️ Watch' : '🔴 Monitor';
+    var rankEmoji = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i+1);
+    return '<div class="pin-row" onclick="viewPincodeIncidents(\''+p.pin+'\',\''+p.area+'\',\''+cityName+'\')" title="Click to view incidents in PIN '+p.pin+'">'
+      + '<div class="pin-rank">' + rankEmoji + '</div>'
+      + '<div class="pin-code" style="color:var(--b6)">' + p.pin + '</div>'
+      + '<div class="pin-area">' + p.area + '</div>'
+      + '<div class="pin-score-wrap">'
+      + '<div class="pin-bar-track"><div class="pin-bar-fill" style="width:' + p.score + '%;background:' + sc + '"></div></div>'
+      + '<div class="pin-score" style="color:' + sc + '">' + p.score + '</div>'
+      + '</div>'
+      + '<div class="pin-tag" style="' + tagStyle + '">' + tagLabel + '</div>'
+      + '<div style="font-size:11px;color:var(--t3);flex-shrink:0">→</div>'
+      + '</div>';
+  }).join('');
+
+  om('city');
+}
+
+
+/* ── VIEW PINCODE INCIDENTS ── */
+function viewPincodeIncidents(pin, area, city) {
+  // Close city modal
+  cm('city');
+
+  // Small delay to let modal close, then scroll + filter
+  setTimeout(function() {
+    // Scroll to incident list section
+    var el = document.getElementById('incidentlist');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Pre-fill the search box with the pincode
+    var searchEl = document.getElementById('ilSearch');
+    if (searchEl) {
+      searchEl.value = pin;
+    }
+
+    // Clear other filters first
+    ['ilCatFilter','ilSevFilter','ilStatusFilter','ilCityFilter'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+
+    // Run filter to show only this pincode's incidents
+    ilFilter();
+
+    // Show toast confirmation
+    var count = IL_DATA.filter(function(r) { return r.pincode === pin; }).length;
+    if (count > 0) {
+      toast('📍 Showing ' + count + ' incident' + (count === 1 ? '' : 's') + ' for PIN ' + pin + ' — ' + area, 'var(--b6)');
+    } else {
+      // No exact match in demo data — show city incidents instead
+      var cityEl = document.getElementById('ilCityFilter');
+      if (cityEl) cityEl.value = city;
+      if (searchEl) searchEl.value = '';
+      ilFilter();
+      toast('📍 No recorded incidents for PIN ' + pin + ' yet · Showing all ' + city + ' incidents', 'var(--amb)');
+    }
+  }, 300);
+}
+
 /* ─ SCROLL REVEAL ─ */
 var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}})},{threshold:.08});
 document.querySelectorAll('.rv,.rvs').forEach(function(el){io.observe(el)});
@@ -1452,242 +1677,7 @@ if(navigator.geolocation)navigator.geolocation.getCurrentPosition(function(p){va
 </body>
 </html>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>NagarDrishti — India Civic Audit Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --w:#fff;--g50:#F8F9FB;--g100:#EFF1F5;--g200:#DDE1EA;--g300:#B8C0D0;--g400:#8892A4;--g500:#5C6880;
-  --n9:#0F1C3F;--n8:#1B2A5C;--n6:#2D3E8E;
-  --b6:#0052CC;--b5:#1664D6;--b4:#3D80EF;--b1:#E8F0FE;--b0:#F0F5FF;
-  --gh:linear-gradient(135deg,#0F1C3F 0%,#1B2A5C 40%,#2D3E8E 100%);
-  --ga:linear-gradient(135deg,#1664D6,#7C3AED);
-  --red:#DC2626;--rb:#FEF2F2;--amb:#D97706;--ab:#FFFBEB;
-  --grn:#059669;--gb:#ECFDF5;--tel:#0891B2;--tb:#ECFEFF;--vio:#7C3AED;--vb:#F5F3FF;
-  --t9:#0F1C3F;--t7:#374151;--t5:#6B7280;--t3:#9CA3AF;
-  --s1:0 1px 3px rgba(15,28,63,.08);--s2:0 4px 16px rgba(15,28,63,.10);--s3:0 10px 40px rgba(15,28,63,.12);--s4:0 24px 64px rgba(15,28,63,.15);
-  --ff:'Plus Jakarta Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
-  --r1:4px;--r2:8px;--r3:12px;--r4:16px;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--w);color:var(--t9);font-family:var(--ff);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--g300);border-radius:4px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
 
-/* ─ TOAST ─ */
-.tbar{position:fixed;top:72px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:7px;pointer-events:none}
-.tmsg{background:var(--w);border:1px solid var(--g200);border-left:3px solid var(--b6);border-radius:var(--r3);padding:11px 16px;font-size:13px;color:var(--t7);box-shadow:var(--s4);transform:translateX(110%);transition:transform .32s cubic-bezier(.22,1,.36,1);pointer-events:all;max-width:310px}
-.tmsg.show{transform:translateX(0)}
 
-/* ─ NAV ─ */
-nav{position:sticky;top:0;z-index:600;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--g100);transition:box-shadow .2s}
-nav.sh{box-shadow:var(--s2)}
-.nav-in{max-width:1160px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0}
-.logo-ic{width:32px;height:32px;border-radius:var(--r2);background:var(--gh);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 4px 12px rgba(15,28,63,.25)}
-.logo-nm{font-size:15px;font-weight:800;color:var(--n9);letter-spacing:-.01em}
-.logo-sb{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
-.nav-lk{display:flex;align-items:center;gap:1px;flex:1}
-.nav-lk a{font-size:13px;font-weight:500;color:var(--t5);text-decoration:none;padding:6px 10px;border-radius:var(--r2);cursor:pointer;transition:all .13s}
-.nav-lk a:hover{background:var(--g50);color:var(--n9)}
-.nav-ct{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.bn-g{background:none;border:1.5px solid var(--g200);border-radius:var(--r2);font-size:13px;font-weight:600;color:var(--t7);padding:7px 15px;cursor:pointer;transition:all .13s;font-family:var(--ff)}
-.bn-g:hover{border-color:var(--b6);color:var(--b6)}
-.bn-b{background:var(--b6);border:none;border-radius:var(--r2);font-size:13px;font-weight:700;color:#fff;padding:8px 18px;cursor:pointer;transition:all .17s;font-family:var(--ff);box-shadow:0 2px 8px rgba(0,82,204,.28)}
-.bn-b:hover{background:var(--b5);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,82,204,.38)}
-.bn-a{background:none;border:1.5px solid var(--b6);border-radius:var(--r2);font-size:13px;font-weight:700;color:var(--b6);padding:8px 16px;cursor:pointer;transition:all .17s;font-family:var(--ff);display:inline-flex;align-items:center;gap:5px}
-.bn-a:hover{background:var(--b6);color:#fff;box-shadow:0 2px 8px rgba(0,82,204,.22)}
-.ham{display:none;flex-direction:column;gap:5px;border:none;background:none;cursor:pointer;padding:5px}
-.ham span{display:block;width:20px;height:2px;background:var(--n9);border-radius:2px}
-
-/* ─ DRAWER ─ */
-.drw{position:fixed;inset:0;z-index:8000;opacity:0;pointer-events:none;transition:opacity .22s}
-.drw.open{opacity:1;pointer-events:all}
-.drw-bd{position:absolute;inset:0;background:rgba(15,28,63,.5);backdrop-filter:blur(4px)}
-.drw-pn{position:absolute;top:0;right:0;bottom:0;width:min(290px,85vw);background:var(--w);padding:20px;overflow-y:auto;transform:translateX(100%);transition:transform .26s cubic-bezier(.22,1,.36,1);box-shadow:var(--s4)}
-.drw.open .drw-pn{transform:translateX(0)}
-.drw-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-.drw-x{background:var(--g100);border:none;border-radius:var(--r2);width:30px;height:30px;font-size:14px;cursor:pointer;color:var(--t5)}
-.drw-lk{display:flex;flex-direction:column;gap:2px;margin-bottom:18px}
-.drw-lk a{font-size:14px;font-weight:500;color:var(--t7);text-decoration:none;padding:10px 11px;border-radius:var(--r2);cursor:pointer;display:block;transition:background .12s}
-.drw-lk a:hover{background:var(--g50);color:var(--n9)}
-
-/* ─ HERO ─ */
-.hero{background:var(--gh);padding:56px 0 0;overflow:hidden;position:relative}
-.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 100% 80% at 50% 0%,#000 40%,transparent 100%)}
-.hero::after{content:'';position:absolute;pointer-events:none;width:580px;height:580px;border-radius:50%;background:radial-gradient(circle,rgba(22,100,214,.22),transparent 70%);top:-80px;right:-80px}
-.hero-in{position:relative;z-index:1}
-.hero-ey{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:5px 13px;font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.85);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
-.ep{width:6px;height:6px;border-radius:50%;background:#4ADE80;box-shadow:0 0 7px #4ADE80;animation:bl 1.6s ease-in-out infinite}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
-.hero-h1{font-size:clamp(38px,6.5vw,74px);font-weight:800;line-height:1.02;letter-spacing:-.025em;color:#fff;margin-bottom:8px;max-width:740px;margin-bottom:4px}
-.hero-p{font-size:clamp(14px,1.7vw,18px);color:rgba(255,255,255,.68);line-height:1.68;max-width:560px;margin:18px 0 36px;font-weight:400}
-.hero-bts{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:40px}
-.bh-w{background:#fff;border:none;border-radius:var(--r3);font-size:14.5px;font-weight:700;color:var(--n9);padding:12px 28px;cursor:pointer;transition:all .17s;box-shadow:0 4px 16px rgba(0,0,0,.18);display:inline-flex;align-items:center;gap:7px;font-family:var(--ff)}
-.bh-w:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.28)}
-.bh-o{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.26);border-radius:var(--r3);font-size:14.5px;font-weight:600;color:rgba(255,255,255,.9);padding:12px 28px;cursor:pointer;transition:all .17s;display:inline-flex;align-items:center;gap:7px;font-family:var(--ff);backdrop-filter:blur(8px)}
-.bh-o:hover{background:rgba(255,255,255,.14)}
-.hero-st{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:26px}
-.hsi{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.04em}
-.hsd{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.hsn{font-weight:700;color:#fff;font-family:var(--ff);font-size:13.5px}
-.hss{color:rgba(255,255,255,.18);font-size:14px}
-
-/* ─ SCREEN MOCKUP ─ */
-.mock{border-radius:var(--r4) var(--r4) 0 0;overflow:hidden;box-shadow:0 -8px 60px rgba(0,0,0,.48),0 0 0 1px rgba(255,255,255,.07);background:#fff;max-width:940px;margin:0 auto}
-.mock-chr{background:#F0F2F5;border-bottom:1px solid #DDE1EA;padding:8px 14px;display:flex;align-items:center;gap:6px}
-.mock-dt{display:flex;gap:5px}
-.mock-d{width:9px;height:9px;border-radius:50%}
-.mock-url{flex:1;background:#fff;border:1px solid #DDE1EA;border-radius:5px;padding:4px 11px;margin:0 7px;font-family:var(--fm);font-size:9px;color:#8892A4}
-.mock-bd{display:grid;grid-template-columns:185px 1fr 215px;height:290px}
-.mock-lt{background:var(--g50);border-right:1px solid var(--g200);padding:12px}
-.mpt{font-family:var(--fm);font-size:7.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;margin-bottom:8px}
-.mlyr{display:flex;align-items:center;gap:6px;padding:6px 7px;border-radius:var(--r2);margin-bottom:3px;font-size:10.5px;color:var(--t5)}
-.mlyr.on{background:var(--b0);color:var(--b6);font-weight:600}
-.mld{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.mmr{margin-bottom:5px}
-.mmrr{display:flex;justify-content:space-between;font-family:var(--fm);font-size:8px;color:var(--t5);margin-bottom:3px}
-.mmt{height:3px;background:var(--g200);border-radius:2px;overflow:hidden}
-.mmf{height:100%;border-radius:2px}
-.mock-mp{background:#E8EDF4;position:relative;overflow:hidden}
-.mmg{position:absolute;inset:0;background-image:linear-gradient(rgba(15,28,63,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,28,63,.04) 1px,transparent 1px);background-size:33px 33px}
-.mmgw{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:140px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(0,82,204,.09),transparent 70%)}
-.mpin{position:absolute;font-size:13px;animation:sp 3s ease-in-out infinite}
-@keyframes sp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.2)}}
-.mock-rt{background:#fff;border-left:1px solid var(--g200);padding:12px}
-.mal{border-radius:var(--r2);padding:7px 9px;margin-bottom:5px;border-left:3px solid}
-.mal.r{background:var(--rb);border-left-color:var(--red)}
-.mal.a{background:var(--ab);border-left-color:var(--amb)}
-.mal.g{background:var(--gb);border-left-color:var(--grn)}
-.mat{font-size:10px;font-weight:600;color:var(--t7);margin-bottom:2px}
-.mas{font-family:var(--fm);font-size:8px;color:var(--t3)}
-
-/* ─ TICKER ─ */
-.tick-wr{background:var(--g50);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);padding:16px 0;overflow:hidden}
-.tick-tr{display:flex;white-space:nowrap;animation:tk 36s linear infinite}
-.tick-tr:hover{animation-play-state:paused}
-@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tick-it{display:inline-flex;align-items:center;gap:7px;padding:0 30px;font-family:var(--fm);font-size:10px;color:var(--t3);border-right:1px solid var(--g200)}
-.tkd{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-
-/* ─ STATS ROW ─ */
-.st-row{background:var(--w);border-bottom:1px solid var(--g100)}
-.st-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.sc{padding:24px 26px;border-right:1px solid var(--g100);position:relative;transition:background .13s;cursor:default}
-.sc:last-child{border-right:none}
-.sc:hover{background:var(--g50)}
-.sc::after{content:'';position:absolute;bottom:0;left:26px;right:26px;height:2px;background:var(--ga);transform:scaleX(0);transform-origin:left;transition:transform .24s}
-.sc:hover::after{transform:scaleX(1)}
-.sc-n{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:6px}
-.sc-l{font-size:13px;color:var(--t5);margin-bottom:3px}
-.sc-d{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.04em}
-
-/* ─ SECTION BASE ─ */
-.sec{padding:52px 0}
-.sec.alt{background:var(--g50)}
-.stag{font-family:var(--fm);font-size:10px;font-weight:500;color:var(--b6);letter-spacing:.14em;text-transform:uppercase;margin-bottom:11px}
-.sh2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--n9);margin-bottom:13px}
-.sh2 .hl{position:relative}
-.sh2 .hl::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:3px;border-radius:2px;background:var(--ga)}
-.sp{font-size:15.5px;color:var(--t5);line-height:1.72;max-width:480px;font-weight:400}
-
-/* ─ FEAT GRID ─ */
-.fg2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--g200);border:1px solid var(--g200);border-radius:var(--r4);overflow:hidden;margin-top:48px}
-.fc2{background:var(--w);padding:28px;position:relative;transition:background .17s}
-.fc2:hover{background:var(--g50)}
-.fc2.w{grid-column:1/-1}
-.fc2::before{content:'';position:absolute;top:0;left:38px;right:38px;height:2px;background:var(--ga);transform:scaleX(0);transform-origin:left;transition:transform .27s}
-.fc2:hover::before{transform:scaleX(1)}
-.fc2-ic{width:44px;height:44px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:17px}
-.fc2-tg{font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
-.fc2-ti{font-size:20px;font-weight:700;color:var(--n9);margin-bottom:9px;letter-spacing:-.01em}
-.fc2-de{font-size:13px;color:var(--t5);line-height:1.68}
-.fc2-mt{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
-.fc2-mv{font-size:25px;font-weight:800;color:var(--n9);line-height:1}
-.fc2-ml{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
-
-/* ─ STEPS ─ */
-.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
-.sk{background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:20px 18px;position:relative;overflow:hidden;transition:all .17s;box-shadow:var(--s1)}
-.sk:hover{box-shadow:var(--s3);transform:translateY(-3px);border-color:var(--b4)}
-.sk-bg{position:absolute;right:-8px;bottom:-12px;font-size:88px;font-weight:800;line-height:1;pointer-events:none}
-.sk:nth-child(1) .sk-bg{color:rgba(220,38,38,.08)}
-.sk:nth-child(2) .sk-bg{color:rgba(217,119,6,.08)}
-.sk:nth-child(3) .sk-bg{color:rgba(0,82,204,.08)}
-.sk:nth-child(4) .sk-bg{color:rgba(5,150,105,.08)}
-.sk:hover .sk-bg{filter:brightness(1.5)}
-.sk-iw{width:41px;height:41px;border-radius:var(--r3);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
-.sk-lbl{font-family:var(--fm);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-.sk-ti{font-size:16px;font-weight:700;color:var(--n9);margin-bottom:7px}
-.sk-de{font-size:12px;color:var(--t5);line-height:1.62}
-
-/* ─ INCIDENTS ─ */
-.ig{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--g200);border:1px solid var(--g200);border-radius:var(--r4);overflow:hidden;margin-top:24px}
-.ip{background:var(--w);padding:26px}
-.ip.alt{background:var(--g50)}
-.ipt{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:7px}
-.ipt::after{content:'';flex:1;height:1px;background:var(--g200)}
-.live-sm{background:#DCFCE7;color:#166534;border:1px solid #BBF7D0;border-radius:var(--r1);padding:2px 7px;font-family:var(--fm);font-size:8px;white-space:nowrap}
-.fbar{display:flex;align-items:center;gap:5px;margin-bottom:12px;flex-wrap:wrap}
-.fbt{font-family:var(--fm);font-size:9.5px;padding:5px 10px;border-radius:20px;border:1px solid var(--g200);background:var(--w);color:var(--t5);cursor:pointer;transition:all .13s}
-.fbt:hover{border-color:var(--b4);color:var(--b6)}
-.fbt.on{background:var(--b6);border-color:var(--b6);color:#fff}
-.dtg{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--g100);border:1px solid var(--g200);border-radius:var(--r2);padding:3px;margin-bottom:12px}
-.dtb{background:none;border:none;border-radius:5px;font-family:var(--fm);font-size:9.5px;color:var(--t5);padding:6px 3px;cursor:pointer;transition:all .14s}
-.dtb.on{background:var(--w);color:var(--n9);font-weight:600;box-shadow:var(--s1)}
-.i-sum{background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r2);padding:7px 11px;margin-bottom:11px;font-family:var(--fm);font-size:9.5px;color:var(--b6)}
-.az{display:flex;align-items:center;gap:7px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r2);padding:8px 10px;margin-bottom:12px}
-.az-l{font-family:var(--fm);font-size:7.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1px}
-.az-v{font-size:11.5px;font-weight:600;color:var(--n9)}
-.az-r{font-family:var(--fm);font-size:8.5px;color:var(--b6);background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r1);padding:2px 7px}
-.ic{background:var(--w);border:1px solid var(--g200);border-radius:var(--r3);padding:11px 12px;margin-bottom:7px;cursor:pointer;transition:all .13s;border-left:3px solid var(--g200);box-shadow:var(--s1)}
-.ic:hover{box-shadow:var(--s2);transform:translateX(2px)}
-.ic.cr{border-left-color:var(--red)}
-.ic.hi{border-left-color:var(--amb)}
-.ic.re{border-left-color:var(--grn);opacity:.78}
-.ic-tp{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.ic-nm{font-size:12.5px;font-weight:600;color:var(--n9);display:flex;align-items:center;gap:5px}
-.svb{font-family:var(--fm);font-size:8px;padding:2px 6px;border-radius:var(--r1);font-weight:500}
-.svb.c{background:var(--rb);color:var(--red)}
-.svb.h{background:var(--ab);color:var(--amb)}
-.svb.r{background:var(--gb);color:var(--grn)}
-.ic-lc{font-size:11px;color:var(--t3);margin-bottom:4px}
-.ic-mt{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.ict{font-family:var(--fm);font-size:8.5px;color:var(--t3)}
-.esc-b{background:none;border:1px solid var(--red);border-radius:var(--r1);color:var(--red);font-family:var(--fm);font-size:8.5px;font-weight:600;padding:2px 8px;cursor:pointer;transition:all .13s;display:inline-flex;align-items:center;gap:3px}
-.esc-b:hover{background:var(--red);color:#fff}
-.esc-b.tl{border-color:var(--tel);color:var(--tel)}
-.esc-b.tl:hover{background:var(--tel);color:#fff}
-
-/* ─ LIFECYCLE ─ */
-.lc{display:flex;gap:11px}
-.lc-sp{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
-.lc-nd{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid}
-.lc-ln{width:2px;flex:1;min-height:16px;margin:3px 0}
-.lc-ct{padding-top:3px;padding-bottom:14px}
-.lc-ti{font-size:12.5px;font-weight:700;color:var(--n9);margin-bottom:2px}
-.lc-de{font-size:11px;color:var(--t5);line-height:1.55}
-
-/* ─ SURGE ─ */
-.surge{background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);overflow:hidden;box-shadow:var(--s2);margin-bottom:16px}
-.surge-hd{background:var(--g50);border-bottom:1px solid var(--g200);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px}
-.surge-ti{font-size:13.5px;font-weight:700;color:var(--n9);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.surge-cr{display:flex;align-items:center;gap:9px}
-.surge-cn{font-size:18px;font-weight:800;color:var(--red)}
-.surge-ad{background:var(--b6);border:none;border-radius:var(--r2);color:#fff;font-family:var(--ff);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer;transition:all .13s}
-.surge-ad:hover{background:var(--b5)}
-.surge-pr{padding:16px 20px;border-bottom:1px solid var(--g200)}
-.surge-tk{position:relative;height:10px;background:var(--g100);border-radius:5px;overflow:hidden;margin-bottom:6px}
-.surge-fl{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--grn),var(--amb),var(--b6),var(--red));transition:width .5s cubic-bezier(.22,1,.36,1)}
-.surge-lbs{position:relative;height:24px}
-.surge-lb{position:absolute;transform:translateX(-50%);font-family:var(--fm);font-size:8px;text-align:center;white-space:nowrap}
-.surge-st{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g200);border-top:1px solid var(--g200)}
-.ss{background:var(--w);padding:15px 13px;transition:background .17s}
-.ss.sa{background:v
 
 
