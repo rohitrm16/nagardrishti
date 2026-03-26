@@ -1667,6 +1667,21 @@ function viewPincodeIncidents(pin, area, city) {
   }, 300);
 }
 
+/* ─ URL PARAM READER — reads ?pin= or ?city= passed from dashboard ─ */
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var pin=params.get('pin'),city=params.get('city');
+  if(pin||city){
+    setTimeout(function(){
+      var el=document.getElementById('incidentlist');
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+      if(pin){var s=document.getElementById('ilSearch');if(s)s.value=pin;toast('📍 Showing incidents for PIN '+pin+' — from Dashboard','var(--b6)');}
+      else if(city){var c=document.getElementById('ilCityFilter');if(c)c.value=city;toast('📍 Showing incidents for '+city+' — from Dashboard','var(--b6)');}
+      ilFilter();
+    },600);
+  }
+})();
+
 /* ─ SCROLL REVEAL ─ */
 var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target)}})},{threshold:.08});
 document.querySelectorAll('.rv,.rvs').forEach(function(el){io.observe(el)});
@@ -1676,8 +1691,3 @@ if(navigator.geolocation)navigator.geolocation.getCurrentPosition(function(p){va
 </script>
 </body>
 </html>
-
-
-
-
-
