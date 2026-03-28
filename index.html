@@ -875,8 +875,9 @@ footer{background:var(--n9);color:#fff}
         <button class="il-page-btn" id="ilNext" onclick="ilPage(1)">Next →</button>
       </div>
       <select class="il-sel" id="ilPageSize" onchange="ilChangePageSize()" style="font-size:11px;padding:5px 8px">
+        <option value="5" selected>5 per page</option>
         <option value="10">10 per page</option>
-        <option value="20" selected>20 per page</option>
+        <option value="20">20 per page</option>
         <option value="50">50 per page</option>
         <option value="100">100 per page</option>
       </select>
@@ -1251,7 +1252,7 @@ var IL_DATA = [
 
 var ilFiltered = IL_DATA.slice();
 var ilCurrentPage = 1;
-var ilPageSize = 20;
+var ilPageSize = 5;
 var ilSortCol = 'created_at';
 var ilSortDir = -1; // -1 = desc, 1 = asc
 
