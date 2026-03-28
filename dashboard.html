@@ -99,7 +99,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .ltab-count{margin-left:auto;font-family:var(--fm);font-size:9.5px;color:var(--t3)}
 .leg-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .leg-row:last-child{margin-bottom:0}
-.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1.5px solid}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1.5px solid}.leg-ico{width:22px;height:22px;border-radius:6px;flex-shrink:0;border:1.5px solid;display:flex;align-items:center;justify-content:center;font-size:12px}
 .leg-lbl{font-size:11.5px;color:var(--t7);flex:1}.leg-note{font-family:var(--fm);font-size:9px;color:var(--t3)}
 .meter{margin-bottom:7px}.meter:last-child{margin-bottom:0}
 .meter-hd{display:flex;justify-content:space-between;margin-bottom:4px}
@@ -119,14 +119,14 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .search-go{background:var(--b6);border:none;border-radius:var(--r2);color:#fff;font-family:var(--ff);font-size:11px;font-weight:700;padding:7px 12px;cursor:pointer;transition:all .12s}
 .search-go:hover{background:var(--b5)}
 #map{width:100%;height:100%;background:var(--g50);z-index:1}
-.map-wrap{position:relative;height:100%;background:var(--g50)}
+.map-wrap{position:relative;height:100%;background:var(--g50);overflow:hidden}
 .drill-tip{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(15,28,63,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:7px 16px;font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.8);letter-spacing:.07em;z-index:500;pointer-events:none;white-space:nowrap;backdrop-filter:blur(8px);transition:opacity .3s}
 .drill-tip.hide{opacity:0}
 .refresh-ring{position:absolute;top:14px;right:14px;width:32px;height:32px;z-index:500;display:none}
 .refresh-ring.show{display:block}
 .refresh-ring svg{width:32px;height:32px;animation:spin .8s linear infinite}
-.spotlight{position:absolute;top:14px;left:14px;width:278px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border:1px solid var(--g200);border-radius:var(--r4);box-shadow:var(--s4);z-index:600;transform:translateX(-110%);transition:transform .3s cubic-bezier(.22,1,.36,1);max-height:calc(100vh - 100px);overflow-y:auto}
-.spotlight.open{transform:translateX(0)}
+.spotlight{position:absolute;top:14px;left:14px;width:278px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border:1px solid var(--g200);border-radius:var(--r4);box-shadow:var(--s4);z-index:600;display:none;max-height:calc(100vh - 100px);overflow-y:auto;animation:spSlideIn .25s ease}
+.spotlight.open{display:block}@keyframes spSlideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .sp-hd{padding:14px 16px 10px;border-bottom:1px solid var(--g100);display:flex;align-items:flex-start;justify-content:space-between}
 .sp-type{font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
 .sp-name{font-size:15px;font-weight:800;color:var(--n9);letter-spacing:-.01em;line-height:1.2}
@@ -221,6 +221,56 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 @media(max-width:1100px){.main{grid-template-columns:230px 1fr 248px}}
 @media(max-width:900px){.main{grid-template-columns:210px 1fr 0}.sidebar-r{display:none}}
 @media(max-width:600px){.main{grid-template-columns:0 1fr 0}.sidebar-l,.sidebar-r{display:none}}
+
+/* ── INCIDENT LIST MODAL ── */
+.il-overlay{position:fixed;inset:0;background:rgba(15,28,63,.6);backdrop-filter:blur(6px);z-index:8000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.il-overlay.open{opacity:1;pointer-events:all}
+.il-sheet{background:var(--w);border-radius:var(--r4) var(--r4) 0 0;box-shadow:var(--s4);width:100%;max-width:100vw;height:90vh;display:flex;flex-direction:column;transform:translateY(40px);transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.il-overlay.open .il-sheet{transform:translateY(0)}
+.il-hd{display:flex;align-items:center;gap:12px;padding:16px 22px 12px;border-bottom:1px solid var(--g100);flex-shrink:0}
+.il-title{font-size:17px;font-weight:800;color:var(--n9);letter-spacing:-.01em}
+.il-count{font-family:var(--fm);font-size:10px;color:var(--t3);background:var(--g100);border-radius:20px;padding:2px 9px}
+.il-close{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r1);width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t5);font-size:13px;margin-left:auto;transition:all .12s;flex-shrink:0}
+.il-close:hover{background:var(--rb);color:var(--red);border-color:#FCA5A5}
+.il-filters{display:flex;align-items:center;gap:8px;padding:10px 22px;border-bottom:1px solid var(--g100);flex-wrap:wrap;flex-shrink:0;background:var(--g50)}
+.il-inp{background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--ff);font-size:12px;color:var(--t7);padding:6px 10px;outline:none;transition:border-color .12s;height:32px}
+.il-inp:focus{border-color:var(--b6)}
+.il-inp::placeholder{color:var(--t3)}
+.il-sel{background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--ff);font-size:12px;color:var(--t7);padding:0 8px;outline:none;height:32px;cursor:pointer;transition:border-color .12s}
+.il-sel:focus{border-color:var(--b6)}
+.il-clear{background:none;border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--ff);font-size:11px;color:var(--t5);padding:0 12px;height:32px;cursor:pointer;transition:all .12s;white-space:nowrap}
+.il-clear:hover{border-color:var(--red);color:var(--red)}
+.il-export{background:var(--b6);border:none;border-radius:var(--r2);font-family:var(--ff);font-size:11px;font-weight:700;color:#fff;padding:0 14px;height:32px;cursor:pointer;transition:all .12s;white-space:nowrap;margin-left:auto}
+.il-export:hover{background:var(--b5)}
+.il-chips{display:flex;align-items:center;gap:6px;padding:8px 22px;flex-wrap:wrap;flex-shrink:0;min-height:0}
+.il-chip{display:inline-flex;align-items:center;gap:5px;background:var(--b0);border:1px solid #C7D9FF;border-radius:20px;padding:3px 10px;font-family:var(--fm);font-size:10px;color:var(--b6)}
+.il-chip button{background:none;border:none;cursor:pointer;color:var(--b6);font-size:11px;padding:0;line-height:1}
+.il-body{flex:1;overflow-y:auto;padding:0}
+.il-table{width:100%;border-collapse:collapse;font-size:12px}
+.il-table th{position:sticky;top:0;background:var(--g50);border-bottom:2px solid var(--g200);padding:9px 14px;text-align:left;font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;cursor:pointer;white-space:nowrap;user-select:none;z-index:10}
+.il-table th:hover{color:var(--n9)}
+.il-table th.sorted{color:var(--b6)}
+.sort-arr{margin-left:4px;opacity:.4;font-size:9px}
+.il-table th.sorted .sort-arr{opacity:1}
+.il-table td{padding:9px 14px;border-bottom:1px solid var(--g100);vertical-align:middle;white-space:nowrap}
+.il-table tr:hover td{background:var(--g50)}
+.il-table tr:last-child td{border-bottom:none}
+.il-id{font-family:var(--fm);font-size:11px;color:var(--b6);font-weight:600}
+.il-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--fm);font-size:9.5px;padding:2px 8px;border-radius:var(--r1);border:1px solid;white-space:nowrap;font-weight:500}
+.il-issue{max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t7);font-size:12px}
+.il-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;border-top:1px solid var(--g100);flex-shrink:0;background:var(--g50);flex-wrap:wrap;gap:8px}
+.il-pginfo{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.il-pages{display:flex;gap:4px;align-items:center}
+.il-pg{background:var(--w);border:1px solid var(--g200);border-radius:var(--r1);font-family:var(--fm);font-size:10px;color:var(--t5);padding:4px 9px;cursor:pointer;transition:all .12s;min-width:28px;text-align:center}
+.il-pg:hover{border-color:var(--b6);color:var(--b6)}
+.il-pg.active{background:var(--b6);border-color:var(--b6);color:#fff}
+.il-pg:disabled{opacity:.4;cursor:not-allowed}
+.il-psz{background:var(--w);border:1.5px solid var(--g200);border-radius:var(--r2);font-family:var(--fm);font-size:11px;color:var(--t5);padding:3px 7px;outline:none;cursor:pointer}
+
+.il-act-map{background:var(--g50);border:1.5px solid var(--g200);border-radius:var(--r1);font-size:10px;padding:3px 9px;cursor:pointer;font-family:var(--ff);color:var(--t5);transition:all .12s;white-space:nowrap}
+.il-act-map:hover{border-color:var(--b6);color:var(--b6);background:var(--b0)}
+.il-act-esc{background:var(--g50);border:1.5px solid var(--g200);border-radius:var(--r1);font-size:10px;padding:3px 9px;cursor:pointer;font-family:var(--ff);color:var(--t5);transition:all .12s;white-space:nowrap}
+.il-act-esc:hover{border-color:var(--red);color:var(--red);background:var(--rb)}
 </style>
 </head>
 <body>
@@ -320,12 +370,12 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
           <div class="leg-row"><div class="leg-dot" style="background:var(--ab);border-color:var(--amb)"></div><div class="leg-lbl">High</div><div class="leg-note">Blinking</div></div>
           <div class="leg-row"><div class="leg-dot" style="background:var(--tb);border-color:var(--tel)"></div><div class="leg-lbl">Medium</div><div class="leg-note">Solid</div></div>
           <div class="leg-row" style="margin-bottom:10px"><div class="leg-dot" style="background:var(--gb);border-color:var(--grn)"></div><div class="leg-lbl">Low</div><div class="leg-note">Small</div></div>
-          <div style="font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.08em;margin-bottom:7px">CATEGORY — ring colour</div>
-          <div class="leg-row"><div class="leg-dot" style="background:#FFF7ED;border-color:#EA580C"></div><div class="leg-lbl">Garbage</div></div>
-          <div class="leg-row"><div class="leg-dot" style="background:#FEFCE8;border-color:#CA8A04"></div><div class="leg-lbl">Traffic</div></div>
-          <div class="leg-row"><div class="leg-dot" style="background:#E0F2FE;border-color:#0284C7"></div><div class="leg-lbl">Footpath</div></div>
-          <div class="leg-row"><div class="leg-dot" style="background:#F0FDF4;border-color:#16A34A"></div><div class="leg-lbl">Cleanliness</div></div>
-          <div class="leg-row"><div class="leg-dot" style="background:#F5F3FF;border-color:#7C3AED"></div><div class="leg-lbl">Water / Drainage</div></div>
+          <div style="font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.08em;margin-bottom:8px">CATEGORY — marker ring</div>
+          <div class="leg-row"><div class="leg-ico" style="background:#FFF7ED;border-color:#EA580C;color:#EA580C">🗑</div><div class="leg-lbl">Garbage</div><div class="leg-note" style="color:#EA580C;font-weight:600">Orange</div></div>
+          <div class="leg-row"><div class="leg-ico" style="background:#FEFCE8;border-color:#CA8A04;color:#CA8A04">🚦</div><div class="leg-lbl">Traffic</div><div class="leg-note" style="color:#CA8A04;font-weight:600">Yellow</div></div>
+          <div class="leg-row"><div class="leg-ico" style="background:#E0F2FE;border-color:#0284C7;color:#0284C7">🚶</div><div class="leg-lbl">Footpath</div><div class="leg-note" style="color:#0284C7;font-weight:600">Sky</div></div>
+          <div class="leg-row"><div class="leg-ico" style="background:#F0FDF4;border-color:#16A34A;color:#16A34A">✨</div><div class="leg-lbl">Cleanliness</div><div class="leg-note" style="color:#16A34A;font-weight:600">Green</div></div>
+          <div class="leg-row"><div class="leg-ico" style="background:#F5F3FF;border-color:#7C3AED;color:#7C3AED">🌊</div><div class="leg-lbl">Water / Drain</div><div class="leg-note" style="color:#7C3AED;font-weight:600">Indigo</div></div>
         </div>
       </div>
       <div>
@@ -666,13 +716,134 @@ function searchByPin(){
 }
 
 /* ── VIEW INCIDENT LIST — links to landing page pre-filtered ── */
+/* ── INCIDENT LIST MODAL ── */
+var ilPage=1,ilSortCol='id',ilSortDir=1,ilFiltered=[];
+
 function viewIncidentList(pin){
-  var params=[];
-  if(pin){params.push('pin='+pin);}
-  else if(curCity){params.push('city='+encodeURIComponent(curCity.city));}
-  else if(curState){params.push('state='+encodeURIComponent(curState.name));}
-  var qs=params.length?'?'+params.join('&'):'';
-  window.open('index.html'+qs+'#incidentlist','_blank');
+  /* Pre-fill filters if called with pin or from current drill context */
+  document.getElementById('ilQ').value='';
+  document.getElementById('ilCat').value='';
+  document.getElementById('ilSev').value='';
+  var cityEl=document.getElementById('ilCity');
+  cityEl.value='';
+  if(pin){document.getElementById('ilQ').value=pin;}
+  else if(curCity){cityEl.value=curCity.city;}
+  ilPage=1;
+  /* Populate city dropdown */
+  var cities=[...new Set(INC.map(function(d){return d.city}))].sort();
+  cityEl.innerHTML='<option value="">All Cities</option>'+cities.map(function(c){return '<option value="'+c+'">'+c+'</option>'}).join('');
+  if(curCity)cityEl.value=curCity.city;
+  ilRender();
+  document.getElementById('ilOverlay').classList.add('open');
+}
+
+function closeILModal(){
+  document.getElementById('ilOverlay').classList.remove('open');
+}
+
+function ilSortBy(col){
+  if(ilSortCol===col)ilSortDir*=-1;
+  else{ilSortCol=col;ilSortDir=1;}
+  document.querySelectorAll('.il-table th').forEach(function(th){th.classList.remove('sorted')});
+  var th=document.getElementById('ilTh-'+col);if(th)th.classList.add('sorted');
+  var arr=th&&th.querySelector('.sort-arr');
+  if(arr)arr.textContent=ilSortDir===1?' ↑':' ↓';
+  ilRender();
+}
+
+function ilClearFilters(){
+  ['ilQ','ilCat','ilSev','ilCity'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  ilPage=1;ilRender();
+}
+
+function ilChipClear(btn){var el=document.getElementById(btn.dataset.fid);if(el)el.value='';ilPage=1;ilRender();}
+function ilRender(){
+  var q=(document.getElementById('ilQ').value||'').toLowerCase();
+  var cat=document.getElementById('ilCat').value;
+  var sev=document.getElementById('ilSev').value;
+  var city=document.getElementById('ilCity').value;
+  var sevOrd={critical:4,high:3,medium:2,low:1};
+  ilFiltered=INC.filter(function(d){
+    if(cat&&d.type!==cat)return false;
+    if(sev&&d.sev!==sev)return false;
+    if(city&&d.city!==city)return false;
+    if(q&&!(d.city.toLowerCase().includes(q)||d.pin.includes(q)||d.issue.toLowerCase().includes(q)||d.type.includes(q)))return false;
+    return true;
+  }).sort(function(a,b){
+    var av=ilSortCol==='sev'?sevOrd[a.sev]:a[ilSortCol]||'';
+    var bv=ilSortCol==='sev'?sevOrd[b.sev]:b[ilSortCol]||'';
+    return av<bv?-ilSortDir:av>bv?ilSortDir:0;
+  });
+  var psz=parseInt(document.getElementById('ilPsz').value)||20;
+  var total=ilFiltered.length;
+  var maxPage=Math.max(1,Math.ceil(total/psz));
+  if(ilPage>maxPage)ilPage=maxPage;
+  var start=(ilPage-1)*psz,end=Math.min(start+psz,total);
+  var page=ilFiltered.slice(start,end);
+  /* Count badge */
+  document.getElementById('ilCountBadge').textContent=total+' incident'+(total!==1?'s':'');
+  /* Table body */
+  var sevC={critical:'#DC2626',high:'#D97706',medium:'#0891B2',low:'#059669'};
+  var sevBg={critical:'#FEF2F2',high:'#FFFBEB',medium:'#ECFEFF',low:'#ECFDF5'};
+  var sevBd={critical:'#FCA5A5',high:'#FCD34D',medium:'#67E8F9',low:'#6EE7B7'};
+  document.getElementById('ilBody').innerHTML=page.length?page.map(function(d,i){
+    var cc=CATC[d.type]||'#374151',cb=CATBG[d.type]||'#F8F9FB';
+    var sc=sevC[d.sev],sb=sevBg[d.sev],sbd=sevBd[d.sev];
+    var rowId='ND-'+String(start+i+1).padStart(4,'0');
+    return '<tr>'
+      +'<td><span class="il-id">'+rowId+'</span></td>'
+      +'<td style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
+      +'<td><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
+      +'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
+      +'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
+      +'<td><div class="il-issue" title="'+d.issue+'">'+d.issue+'</div></td>'
+      +'<td style="display:flex;gap:5px">'
+      +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)">📍 Map</button>'
+      +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Esc</button>'
+      +'</td>'
+      +'</tr>';
+  }).join(''):'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>';
+  /* Chips */
+  var chips=[];
+  if(q)chips.push({l:'Search: "'+q+'"',c:'ilQ'});
+  if(cat)chips.push({l:'Category: '+cat,c:'ilCat'});
+  if(sev)chips.push({l:'Severity: '+sev,c:'ilSev'});
+  if(city)chips.push({l:'City: '+city,c:'ilCity'});
+  var chipEl=document.getElementById('ilChips');
+  chipEl.style.display=chips.length?'flex':'none';
+  chipEl.innerHTML=chips.map(function(ch){return '<div class="il-chip">'+ch.l+'<button class="il-chip-x" data-fid="'+ch.c+'" onclick="ilChipClear(this)">×</button></div>';}).join('');
+  /* Pagination info */
+  document.getElementById('ilPgInfo').textContent='Showing '+(total?start+1:0)+'–'+end+' of '+total;
+  /* Page buttons */
+  var pages='';
+  if(ilPage>1)pages+='<button class="il-pg" onclick="ilGoPage('+(ilPage-1)+')">‹</button>';
+  for(var p=1;p<=maxPage;p++){
+    if(p===1||p===maxPage||Math.abs(p-ilPage)<=1)pages+='<button class="il-pg'+(p===ilPage?' active':'')+'" onclick="ilGoPage('+p+')">'+p+'</button>';
+    else if(Math.abs(p-ilPage)===2)pages+='<span style="padding:0 3px;color:var(--t3);font-size:12px">…</span>';
+  }
+  if(ilPage<maxPage)pages+='<button class="il-pg" onclick="ilGoPage('+(ilPage+1)+')">›</button>';
+  document.getElementById('ilPages').innerHTML=pages;
+}
+
+function ilGoPage(p){ilPage=p;ilRender();}
+
+function ilFlyToBtn(btn){ilFlyTo(parseFloat(btn.dataset.lat),parseFloat(btn.dataset.lng),btn.dataset.city);}
+function ilEscBtn(btn){showToast('🚩 Escalated: '+btn.dataset.city+' → Authority');}
+function ilFlyTo(lat,lng,city){
+  closeILModal();
+  gMap.flyTo([lat,lng],14,{duration:1.2});
+  showToast('📍 Flying to '+city);
+}
+
+function ilExportCSV(){
+  var rows=[['City','PIN','Category','Severity','Issue','Lat','Lng']];
+  ilFiltered.forEach(function(d){rows.push([d.city,d.pin,d.type,d.sev,'"'+d.issue+'"',d.lat,d.lng]);});
+  var csv=rows.map(function(r){return r.join(',')}).join('\n');
+  var a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='nagardrishti_incidents.csv';
+  a.click();
+  showToast('⬇ CSV downloaded — '+ilFiltered.length+' incidents');
 }
 
 /* ── SEARCH ── */
@@ -705,9 +876,100 @@ setInterval(function(){jit('kAlerts',247,5);jit('kResolved',624,18)},5000);
 function showToast(msg,warn){var t=document.getElementById('toast');t.textContent=msg;t.style.borderLeftColor=warn?'var(--red)':'var(--b6)';t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3800)}
 function openModal(){document.getElementById('overlay').classList.add('open');if(navigator.geolocation)navigator.geolocation.getCurrentPosition(function(p){var el=document.getElementById('fcoords');if(el)el.value=p.coords.latitude.toFixed(5)+', '+p.coords.longitude.toFixed(5)})}
 function closeModal(){document.getElementById('overlay').classList.remove('open')}
-function doSubmit(){var cat=document.getElementById('fcat').value,city=(document.getElementById('fcity').value||'').trim(),pin=(document.getElementById('fpin').value||'').trim(),desc=(document.getElementById('fdesc').value||'').trim();if(!cat||!city||!pin||!desc){showToast('⚠ Fill all required fields',true);return}if(!/^\d{6}$/.test(pin)){showToast('⚠ Enter a valid 6-digit pincode',true);return}closeModal();showToast('✅ Audit ND'+(Math.floor(Math.random()*90000)+10000)+' submitted · +10 pts!');FEED.unshift({av:'👤',bg:'var(--b0)',who:'New Audit',wh:'just now',desc:cat.slice(3)+' in '+city+'.',tag:city+' · '+cat.slice(0,2)});renderFeed();['fcat','fcity','fpin','fcoords','fdesc'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=''});}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeSpotlight()}});
+/* ── RATE LIMITER: 10 audits per hour per user ── */
+var RATE_LIMIT=10,RATE_WINDOW=3600000;
+function getRateData(){try{var d=JSON.parse(localStorage.getItem('nd_rl')||'{}');return{ts:d.ts||[],blocked:d.blocked||false};}catch(e){return{ts:[],blocked:false};}}
+function setRateData(d){try{localStorage.setItem('nd_rl',JSON.stringify(d));}catch(e){}}
+function checkRateLimit(){
+  var now=Date.now(),d=getRateData();
+  d.ts=d.ts.filter(function(t){return now-t<RATE_WINDOW});
+  if(d.ts.length>=RATE_LIMIT){
+    var oldest=d.ts[0],wait=Math.ceil((RATE_WINDOW-(now-oldest))/60000);
+    showToast('⏱ Rate limit reached — max 10 audits/hour. Try again in ~'+wait+' min.',true);
+    return false;
+  }
+  d.ts.push(now);setRateData(d);
+  return true;
+}
+function doSubmit(){
+  var cat=document.getElementById('fcat').value,city=(document.getElementById('fcity').value||'').trim(),pin=(document.getElementById('fpin').value||'').trim(),desc=(document.getElementById('fdesc').value||'').trim();
+  if(!cat||!city||!pin||!desc){showToast('⚠ Fill all required fields',true);return}
+  if(!/^\d{6}$/.test(pin)){showToast('⚠ Enter a valid 6-digit pincode',true);return}
+  if(!checkRateLimit())return;
+  closeModal();
+  var ref='ND'+(Math.floor(Math.random()*90000)+10000);
+  showToast('✅ Audit '+ref+' submitted · +10 pts earned!');
+  FEED.unshift({av:'👤',bg:'var(--b0)',who:'New Audit',wh:'just now',desc:cat.slice(3)+' in '+city+'.',tag:city+' · '+cat.slice(0,2)});
+  renderFeed();
+  ['fcat','fcity','fpin','fcoords','fdesc'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=''});
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeSpotlight();closeILModal()}});
 waitForLeaflet(initMap);
 </script>
+
+<!-- INCIDENT LIST MODAL -->
+<div class="il-overlay" id="ilOverlay" onclick="if(event.target===this)closeILModal()">
+  <div class="il-sheet">
+    <div class="il-hd">
+      <div>
+        <div class="il-title">Incident List</div>
+      </div>
+      <span class="il-count" id="ilCountBadge">0 incidents</span>
+      <button class="il-close" onclick="closeILModal()">✕</button>
+    </div>
+    <div class="il-filters">
+      <input class="il-inp" id="ilQ" placeholder="🔍 Search issue, city, PIN..." style="width:200px" oninput="ilRender()">
+      <select class="il-sel" id="ilCat" onchange="ilRender()">
+        <option value="">All Categories</option>
+        <option value="garbage">🗑️ Garbage</option>
+        <option value="traffic">🚦 Traffic</option>
+        <option value="footpath">🚶 Footpath</option>
+        <option value="cleanliness">✨ Cleanliness</option>
+        <option value="water">🌊 Water</option>
+      </select>
+      <select class="il-sel" id="ilSev" onchange="ilRender()">
+        <option value="">All Severities</option>
+        <option value="critical">🔴 Critical</option>
+        <option value="high">🟠 High</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="low">🟢 Low</option>
+      </select>
+      <select class="il-sel" id="ilCity" onchange="ilRender()">
+        <option value="">All Cities</option>
+      </select>
+      <button class="il-clear" onclick="ilClearFilters()">Clear</button>
+      <button class="il-export" onclick="ilExportCSV()">⬇ Export CSV</button>
+    </div>
+    <div id="ilChips" style="display:none" class="il-chips"></div>
+    <div class="il-body">
+      <table class="il-table">
+        <thead>
+          <tr>
+            <th onclick="ilSortBy('id')" id="ilTh-id">#ID <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('city')" id="ilTh-city">City <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('pin')" id="ilTh-pin">PIN <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('type')" id="ilTh-type">Category <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('sev')" id="ilTh-sev">Severity <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('issue')" id="ilTh-issue">Issue <span class="sort-arr">↕</span></th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ilBody"></tbody>
+      </table>
+    </div>
+    <div class="il-foot">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="il-pginfo" id="ilPgInfo">Showing 0–0 of 0</span>
+        <select class="il-psz" id="ilPsz" onchange="ilRender()">
+          <option value="10">10 / page</option>
+          <option value="20" selected>20 / page</option>
+          <option value="50">50 / page</option>
+        </select>
+      </div>
+      <div class="il-pages" id="ilPages"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
