@@ -449,6 +449,99 @@ nav.sh{box-shadow:var(--s2)}
 .city-modal-name{font-size:19px;font-weight:800;color:var(--n9);letter-spacing:-.01em}
 .city-modal-state{font-family:var(--fm);font-size:10px;color:var(--t3);margin-top:1px}
 
+
+/* ── SIGN-IN FLOW ── */
+.si-steps{display:flex;align-items:center;margin-bottom:22px}
+.si-step{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;color:var(--t3)}
+.si-step.active .si-snum{background:var(--b6);border-color:var(--b6);color:#fff}
+.si-step.active .si-slbl{color:var(--n9);font-weight:600}
+.si-step.done .si-snum{background:var(--grn);border-color:var(--grn);color:#fff}
+.si-step.done .si-slbl{color:var(--grn)}
+.si-snum{width:22px;height:22px;border-radius:50%;border:2px solid var(--g300);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;transition:all .2s;font-family:var(--fm)}
+.si-slbl{white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:9px}
+.si-sline{flex:1;height:1px;background:var(--g200);margin:0 8px}
+.si-sline.done{background:var(--grn)}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
+.role-card{border:2px solid var(--g200);border-radius:var(--r3);padding:22px 16px;text-align:center;cursor:pointer;transition:all .18s;background:var(--w);position:relative;user-select:none}
+.role-card:hover{border-color:var(--b4);background:var(--b0);transform:translateY(-2px);box-shadow:var(--s2)}
+.role-card.sel{border-color:var(--b6);background:var(--b0);box-shadow:0 0 0 3px rgba(0,82,204,.09)}
+.rc-ico{font-size:34px;display:block;margin-bottom:10px}
+.rc-title{font-size:14px;font-weight:800;color:var(--n9);margin-bottom:5px;letter-spacing:-.01em}
+.rc-desc{font-family:var(--fm);font-size:9.5px;color:var(--t5);line-height:1.6}
+.rc-check{position:absolute;top:9px;right:9px;width:19px;height:19px;border-radius:50%;background:var(--b6);display:none;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700}
+.role-card.sel .rc-check{display:flex}
+
+.auth-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.auth-btn{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid var(--g200);border-radius:var(--r3);cursor:pointer;transition:all .15s;background:var(--w);width:100%;text-align:left;font-family:var(--ff)}
+.auth-btn:hover{border-color:var(--b4);background:var(--b0);transform:translateY(-1px);box-shadow:var(--s1)}
+.auth-btn.prim{border-color:var(--b6);background:var(--b6)}
+.auth-btn.prim:hover{background:var(--b5);border-color:var(--b5)}
+.auth-btn.prim .ab-title{color:#fff}
+.auth-btn.prim .ab-sub{color:rgba(255,255,255,.7)}
+.auth-btn.prim .ab-arr{color:rgba(255,255,255,.6)}
+.ab-ico{font-size:21px;width:28px;text-align:center;flex-shrink:0}
+.ab-body{flex:1}
+.ab-title{font-size:13px;font-weight:700;color:var(--n9);line-height:1}
+.ab-sub{font-family:var(--fm);font-size:9.5px;color:var(--t3);margin-top:3px}
+.ab-arr{font-size:14px;color:var(--t3);flex-shrink:0}
+
+.otp-box{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r3);padding:22px}
+.otp-head{font-size:15px;font-weight:800;color:var(--n9);margin-bottom:3px;letter-spacing:-.01em}
+.otp-sent{font-family:var(--fm);font-size:10px;color:var(--t5);margin-bottom:18px}
+.otp-row{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.otp-d{width:46px;height:54px;border:2px solid var(--g200);border-radius:var(--r2);text-align:center;font-size:22px;font-weight:700;font-family:var(--fm);color:var(--n9);background:var(--w);outline:none;transition:border-color .12s,box-shadow .12s;caret-color:var(--b6)}
+.otp-d:focus{border-color:var(--b6);box-shadow:0 0 0 3px rgba(0,82,204,.09)}
+.otp-d.filled{border-color:var(--b6);background:var(--b0);color:var(--b6)}
+.otp-timer-row{text-align:center;font-family:var(--fm);font-size:10px;color:var(--t3);margin-bottom:14px}
+.otp-timer-row a{color:var(--b6);cursor:pointer}
+
+.cit-card{background:linear-gradient(135deg,#0F1C3F 0%,#1B2A5C 50%,#2D3E8E 100%);border-radius:var(--r4);padding:22px;color:#fff;margin-bottom:14px;position:relative;overflow:hidden}
+.cit-card::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.04)}
+.cit-card::after{content:'';position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.03)}
+.cit-av{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:11px;position:relative;z-index:1}
+.cit-name{font-size:17px;font-weight:800;margin-bottom:2px;letter-spacing:-.01em;position:relative;z-index:1}
+.cit-role{font-family:var(--fm);font-size:9px;opacity:.55;letter-spacing:.10em;text-transform:uppercase;margin-bottom:11px;position:relative;z-index:1}
+.cit-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,190,48,.18);border:1px solid rgba(245,190,48,.3);border-radius:20px;padding:4px 12px;font-family:var(--fm);font-size:10px;color:#F5BE30;margin-bottom:14px;position:relative;z-index:1}
+.cit-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;position:relative;z-index:1}
+.cit-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:var(--r2);padding:9px;text-align:center}
+.cit-stat-v{font-size:19px;font-weight:800;line-height:1;letter-spacing:-.02em}
+.cit-stat-l{font-family:var(--fm);font-size:8px;opacity:.5;letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+
+.audit-item{display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r2);margin-bottom:6px}
+.audit-item:last-child{margin-bottom:0}
+.audit-ico{font-size:16px;flex-shrink:0}
+.audit-body{flex:1;min-width:0}
+.audit-title{font-size:11.5px;font-weight:600;color:var(--n9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audit-meta{font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:2px}
+.audit-tag{font-family:var(--fm);font-size:9px;padding:2px 8px;border-radius:var(--r1);border:1px solid;flex-shrink:0;white-space:nowrap}
+
+.of-card{background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:20px;margin-bottom:14px;box-shadow:var(--s1)}
+.of-header{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.of-avatar{width:46px;height:46px;border-radius:var(--r3);background:var(--n9);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.of-name{font-size:15px;font-weight:800;color:var(--n9);letter-spacing:-.01em;line-height:1.2}
+.of-dept{font-family:var(--fm);font-size:9px;color:var(--t5);letter-spacing:.04em;margin-top:3px}
+.of-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.of-tag{font-family:var(--fm);font-size:9px;padding:3px 9px;border-radius:20px;border:1px solid}
+.of-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+.of-stat{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r2);padding:9px;text-align:center}
+.of-stat-v{font-size:17px;font-weight:800;color:var(--n9);line-height:1;letter-spacing:-.02em}
+.of-stat-l{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+
+.pending-item{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--r2);margin-bottom:6px;border:1px solid}
+.pending-item:last-child{margin-bottom:0}
+.pending-item.overdue{background:var(--rb);border-color:#FCA5A5}
+.pending-item.urgent{background:var(--ab);border-color:#FCD34D}
+.pending-item.ok{background:var(--g50);border-color:var(--g200)}
+.pi-ico{font-size:16px;flex-shrink:0}
+.pi-body{flex:1;min-width:0}
+.pi-title{font-size:11.5px;font-weight:600;color:var(--n9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pi-meta{font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:2px}
+.pi-tag{font-family:var(--fm);font-size:9px;padding:2px 8px;border-radius:var(--r1);color:#fff;flex-shrink:0;white-space:nowrap}
+
+.si-back-btn{display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:10px;color:var(--t5);margin-bottom:16px;padding:0;transition:color .12s}
+.si-back-btn:hover{color:var(--b6)}
+
 /* ─ FOOTER ─ */
 footer{background:var(--n9);color:#fff}
 .ft-in{max-width:1160px;margin:0 auto;padding:36px 40px 20px}
@@ -1001,51 +1094,321 @@ footer{background:var(--n9);color:#fff}
 
 <!-- MODALS -->
 <div class="ovl" id="m-signin" onclick="moc(event,'signin')">
-  <div class="mbox" style="width:440px">
+  <div class="mbox" style="width:480px">
+    <!-- HEADER -->
     <div class="mhd">
       <div>
-        <div class="mti">Citizen Sign In</div>
-        <div class="mde">For verified civic auditors — coming soon</div>
+        <div class="mti" id="si-hd-title">Sign In to NagarDrishti</div>
+        <div class="mde" id="si-hd-sub">India&#8217;s Civic Audit Platform</div>
       </div>
-      <button class="mx" onclick="cm('signin')">✕</button>
+      <button class="mx" onclick="cm('signin');siReset()">&#10005;</button>
     </div>
     <div class="mbd">
-      <!-- Purpose explanation -->
-      <div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:16px;margin-bottom:18px">
-        <div style="font-size:13.5px;font-weight:700;color:var(--n9);margin-bottom:10px">Who is Sign In for?</div>
-        <div style="display:flex;flex-direction:column;gap:9px">
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <span style="font-size:16px;flex-shrink:0">👤</span>
-            <div>
-              <div style="font-size:12.5px;font-weight:600;color:var(--n9)">Citizens — Civic Auditors</div>
-              <div style="font-family:var(--fm);font-size:10.5px;color:var(--t5);line-height:1.55">Track your submitted audits, earn Citizen Auditor Badge points, build your verified public profile, and get notified when your reports are resolved.</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <span style="font-size:16px;flex-shrink:0">🏛</span>
-            <div>
-              <div style="font-size:12.5px;font-weight:600;color:var(--n9)">Municipal Officers</div>
-              <div style="font-family:var(--fm);font-size:10.5px;color:var(--t5);line-height:1.55">Access your city dashboard, view incidents by ward and severity, update resolution status, and track SLA compliance.</div>
-            </div>
-          </div>
+
+      <!-- STEP INDICATOR -->
+      <div class="si-steps" id="si-steps">
+        <div class="si-step active" id="si-st1">
+          <div class="si-snum">1</div>
+          <span class="si-slbl">Role</span>
+        </div>
+        <div class="si-sline" id="si-ln1"></div>
+        <div class="si-step" id="si-st2">
+          <div class="si-snum">2</div>
+          <span class="si-slbl">Verify</span>
+        </div>
+        <div class="si-sline" id="si-ln2"></div>
+        <div class="si-step" id="si-st3">
+          <div class="si-snum">3</div>
+          <span class="si-slbl">Dashboard</span>
         </div>
       </div>
-      <!-- Coming Soon state -->
-      <div style="background:var(--g50);border:1.5px dashed var(--g300);border-radius:var(--r3);padding:22px;text-align:center;margin-bottom:16px">
-        <div style="font-size:28px;margin-bottom:10px">🔐</div>
-        <div style="font-size:14px;font-weight:700;color:var(--n9);margin-bottom:6px">Authentication Coming Soon</div>
-        <div style="font-family:var(--fm);font-size:10.5px;color:var(--t5);line-height:1.6">Sign in with Google, Aadhaar / DigiLocker, and Mobile OTP will be enabled when the platform goes live with real data. Currently in demo mode.</div>
+
+      <!-- ─── STEP 1: ROLE SELECTOR ─── -->
+      <div id="si-p1">
+        <div style="font-size:13.5px;font-weight:700;color:var(--n9);margin-bottom:4px">Who are you signing in as?</div>
+        <div style="font-family:var(--fm);font-size:10px;color:var(--t5);margin-bottom:16px">Select your role to get the right experience</div>
+        <div class="role-grid">
+          <div class="role-card" id="rc-citizen" onclick="siPickRole('citizen')">
+            <div class="rc-check">&#10003;</div>
+            <span class="rc-ico">&#128100;</span>
+            <div class="rc-title">Citizen Auditor</div>
+            <div class="rc-desc">Submit reports, earn badges, track your audits &amp; build a verified civic profile</div>
+          </div>
+          <div class="role-card" id="rc-officer" onclick="siPickRole('officer')">
+            <div class="rc-check">&#10003;</div>
+            <span class="rc-ico">&#127963;</span>
+            <div class="rc-title">Municipal Officer</div>
+            <div class="rc-desc">View city incidents by ward, manage SLAs &amp; update resolution status</div>
+          </div>
+        </div>
+        <div style="font-family:var(--fm);font-size:10px;color:var(--t3);text-align:center;margin-top:10px">Select a role to continue &#8594;</div>
       </div>
-      <!-- Notify me -->
-      <div style="font-size:12px;color:var(--t5);margin-bottom:8px;font-weight:500">Get notified when sign-in launches:</div>
-      <div style="display:flex;gap:8px">
-        <input class="fi2" id="sie" placeholder="your@email.com or mobile number" style="flex:1">
-        <button class="sub-m" style="width:auto;padding:9px 16px;white-space:nowrap;flex-shrink:0" onclick="notifyMe()">Notify Me</button>
+
+      <!-- ─── STEP 2A: CITIZEN AUTH ─── -->
+      <div id="si-p2c" style="display:none">
+        <button class="si-back-btn" onclick="siBack()">&#8592; Back to role</button>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:12px 14px;margin-bottom:18px">
+          <span style="font-size:20px">&#128100;</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--n9)">Citizen Auditor</div>
+            <div style="font-family:var(--fm);font-size:10px;color:var(--t5)">Earn badges &#183; Track audits &#183; Build civic profile</div>
+          </div>
+        </div>
+        <div class="auth-list">
+          <button class="auth-btn prim" onclick="siStartOTP()">
+            <div class="ab-ico">&#128241;</div>
+            <div class="ab-body">
+              <div class="ab-title">Continue with Mobile OTP</div>
+              <div class="ab-sub">Recommended &#183; Instant &#183; No password needed</div>
+            </div>
+            <div class="ab-arr">&#8594;</div>
+          </button>
+          <button class="auth-btn" onclick="siGoogleAuth('citizen')">
+            <div class="ab-ico" style="font-size:17px;font-weight:800;color:#4285F4;font-family:Georgia,serif">G</div>
+            <div class="ab-body">
+              <div class="ab-title">Continue with Google</div>
+              <div class="ab-sub">Use your existing Google account</div>
+            </div>
+            <div class="ab-arr">&#8594;</div>
+          </button>
+          <button class="auth-btn" onclick="siAadhaar()">
+            <div class="ab-ico">&#129514;</div>
+            <div class="ab-body">
+              <div class="ab-title">Aadhaar / DigiLocker</div>
+              <div class="ab-sub">Verified identity &#183; Highest trust score</div>
+            </div>
+            <div class="ab-arr">&#8594;</div>
+          </button>
+        </div>
+        <div style="font-family:var(--fm);font-size:9.5px;color:var(--t3);text-align:center;line-height:1.7">By signing in you agree to our Terms of Service.<br>Your Aadhaar number is never stored &#8212; only a verified flag.</div>
       </div>
-      <div class="si-ft" style="margin-top:12px">Want to partner as a municipality? <a onclick="cm('signin');om('muni')">Request a demo →</a></div>
-    </div>
-  </div>
-</div>
+
+      <!-- ─── STEP 2A-OTP: OTP ENTRY ─── -->
+      <div id="si-p2otp" style="display:none">
+        <button class="si-back-btn" onclick="siBackToAuth()">&#8592; Back</button>
+        <div class="otp-box">
+          <div class="otp-head">Enter 6-digit OTP</div>
+          <div class="otp-sent" id="si-otp-to">Sent to your mobile</div>
+          <div class="otp-row">
+            <input class="otp-d" id="od1" maxlength="1" oninput="otpIn(this,'od2')" onkeydown="otpKey(event,this,'')">
+            <input class="otp-d" id="od2" maxlength="1" oninput="otpIn(this,'od3')" onkeydown="otpKey(event,this,'od1')">
+            <input class="otp-d" id="od3" maxlength="1" oninput="otpIn(this,'od4')" onkeydown="otpKey(event,this,'od2')">
+            <input class="otp-d" id="od4" maxlength="1" oninput="otpIn(this,'od5')" onkeydown="otpKey(event,this,'od3')">
+            <input class="otp-d" id="od5" maxlength="1" oninput="otpIn(this,'od6')" onkeydown="otpKey(event,this,'od4')">
+            <input class="otp-d" id="od6" maxlength="1" oninput="otpIn(this,'')"   onkeydown="otpKey(event,this,'od5')">
+          </div>
+          <div class="otp-timer-row">Didn&#8217;t receive it? <a onclick="siResendOTP()">Resend OTP</a> &nbsp;&#183;&nbsp; <span id="si-otimer">0:30</span></div>
+          <button class="sub-m" onclick="siVerifyOTP()">Verify &amp; Sign In</button>
+        </div>
+        <div style="font-family:var(--fm);font-size:9.5px;color:var(--t3);text-align:center;margin-top:10px">Demo mode: any 6 digits will work</div>
+      </div>
+
+      <!-- ─── STEP 2B: OFFICER FORM ─── -->
+      <div id="si-p2o" style="display:none">
+        <button class="si-back-btn" onclick="siBack()">&#8592; Back to role</button>
+        <div style="display:flex;align-items:center;gap:10px;background:#F0FDF4;border:1px solid #6EE7B7;border-radius:var(--r3);padding:12px 14px;margin-bottom:18px">
+          <span style="font-size:20px">&#127963;</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--n9)">Municipal Officer Portal</div>
+            <div style="font-family:var(--fm);font-size:10px;color:var(--t5)">Verified government access only</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Municipality *</label>
+            <select class="fi2" id="of-muni" style="padding:8px 11px">
+              <option value="">Select</option>
+              <option>MCGM &#8212; Mumbai</option>
+              <option>PMC &#8212; Pune</option>
+              <option>BBMP &#8212; Bengaluru</option>
+              <option>GCC &#8212; Chennai</option>
+              <option>KMC &#8212; Kolkata</option>
+              <option>GHMC &#8212; Hyderabad</option>
+              <option>AMC &#8212; Ahmedabad</option>
+              <option>SMCG &#8212; Surat</option>
+              <option>IMC &#8212; Indore</option>
+              <option>JNNA &#8212; Jaipur</option>
+              <option>Chandigarh MC</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Department *</label>
+            <select class="fi2" id="of-dept" style="padding:8px 11px">
+              <option value="">Select</option>
+              <option>Sanitation &amp; Solid Waste</option>
+              <option>Roads &amp; Infrastructure</option>
+              <option>Traffic &amp; Transport</option>
+              <option>Water &amp; Drainage</option>
+              <option>Parks &amp; Green Spaces</option>
+              <option>City Commissioner Office</option>
+              <option>Health &amp; Environment</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Employee ID *</label>
+            <input class="fi2" id="of-eid" placeholder="e.g. MH-SAN-4421">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Official Email *</label>
+            <input class="fi2" id="of-email" type="email" placeholder="officer@mcgm.gov.in">
+          </div>
+        </div>
+        <div class="auth-list" style="margin-bottom:12px">
+          <button class="auth-btn prim" onclick="siOfficerSubmit()">
+            <div class="ab-ico">&#128272;</div>
+            <div class="ab-body">
+              <div class="ab-title">Sign In with Employee Credentials</div>
+              <div class="ab-sub">Verified government email required</div>
+            </div>
+            <div class="ab-arr">&#8594;</div>
+          </button>
+          <button class="auth-btn" onclick="siGoogleAuth('officer')">
+            <div class="ab-ico" style="font-size:17px;font-weight:800;color:#4285F4;font-family:Georgia,serif">G</div>
+            <div class="ab-body">
+              <div class="ab-title">Sign In with Government Google Workspace</div>
+              <div class="ab-sub">For .gov.in or municipal domain accounts</div>
+            </div>
+            <div class="ab-arr">&#8594;</div>
+          </button>
+        </div>
+        <div style="font-family:var(--fm);font-size:9.5px;color:var(--t3);text-align:center;line-height:1.7">Access is granted only to verified government employees.<br>New requests are reviewed within 1 business day.</div>
+        <div class="si-ft" style="margin-top:10px">Not registered yet? <a onclick="cm('signin');om('muni')">Request partnership &#8594;</a></div>
+      </div>
+
+      <!-- ─── STEP 3A: CITIZEN PROFILE ─── -->
+      <div id="si-p3c" style="display:none">
+        <!-- Profile card -->
+        <div class="cit-card">
+          <div class="cit-av">&#128100;</div>
+          <div class="cit-name" id="cit-name">Rahul Sharma</div>
+          <div class="cit-role">Citizen Auditor &#183; Mumbai, Maharashtra</div>
+          <div class="cit-badge">&#128269; Inspector &#183; Level 3</div>
+          <div class="cit-stats">
+            <div class="cit-stat"><div class="cit-stat-v">34</div><div class="cit-stat-l">Audits</div></div>
+            <div class="cit-stat"><div class="cit-stat-v">28</div><div class="cit-stat-l">Resolved</div></div>
+            <div class="cit-stat"><div class="cit-stat-v">460</div><div class="cit-stat-l">Points</div></div>
+          </div>
+        </div>
+        <!-- Progress + rank -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+          <div style="background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r3);padding:12px;text-align:center">
+            <div style="font-size:13px;font-weight:800;color:var(--grn)">82% resolved</div>
+            <div style="font-family:var(--fm);font-size:9px;color:var(--t5);margin-top:2px">Top 8% in Mumbai</div>
+          </div>
+          <div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:12px;text-align:center">
+            <div style="font-size:13px;font-weight:800;color:var(--b6)">40 pts to Sentinel</div>
+            <div style="font-family:var(--fm);font-size:9px;color:var(--t5);margin-top:2px">Level 4 needs 51 audits</div>
+          </div>
+        </div>
+        <!-- Recent audits -->
+        <div style="font-size:13px;font-weight:700;color:var(--n9);margin-bottom:9px">Recent Audits</div>
+        <div class="audit-item">
+          <div class="audit-ico">&#128465;&#65039;</div>
+          <div class="audit-body">
+            <div class="audit-title">Garbage overflow near Andheri station</div>
+            <div class="audit-meta">PIN 400053 &#183; 2 days ago &#183; 5 confirmations</div>
+          </div>
+          <div class="audit-tag" style="background:var(--gb);color:var(--grn);border-color:#6EE7B7">&#10003; Resolved</div>
+        </div>
+        <div class="audit-item">
+          <div class="audit-ico">&#128694;</div>
+          <div class="audit-body">
+            <div class="audit-title">Footpath blocked by vendors &#8212; FC Road</div>
+            <div class="audit-meta">PIN 400056 &#183; 5 days ago &#183; 3 confirmations</div>
+          </div>
+          <div class="audit-tag" style="background:var(--ab);color:var(--amb);border-color:#FCD34D">&#8987; Active</div>
+        </div>
+        <div class="audit-item" style="margin-bottom:14px">
+          <div class="audit-ico">&#127754;</div>
+          <div class="audit-body">
+            <div class="audit-title">Open drain near school &#8212; Dharavi</div>
+            <div class="audit-meta">PIN 400017 &#183; 1 week ago &#183; 8 confirmations</div>
+          </div>
+          <div class="audit-tag" style="background:var(--tb);color:var(--tel);border-color:#67E8F9">&#128065; Review</div>
+        </div>
+        <!-- Actions -->
+        <div style="display:flex;gap:8px">
+          <button class="sub-m" style="flex:1" onclick="goDash();cm('signin')">Open Dashboard &#8594;</button>
+          <button class="sub-m" style="flex:1;background:var(--g50);color:var(--n9);border:1.5px solid var(--g200)" onclick="cm('signin');om('report')">New Audit</button>
+        </div>
+      </div>
+
+      <!-- ─── STEP 3B: OFFICER DASHBOARD ─── -->
+      <div id="si-p3o" style="display:none">
+        <!-- Pending verification notice (shown for non-.gov emails) -->
+        <div id="of-pending" style="display:none;align-items:center;gap:12px;background:var(--ab);border:1px solid #FCD34D;border-radius:var(--r3);padding:14px;margin-bottom:14px">
+          <span style="font-size:24px;flex-shrink:0">&#8987;</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--amb)">Verification Pending</div>
+            <div style="font-family:var(--fm);font-size:10px;color:var(--t5);margin-top:3px;line-height:1.55">Your account is under review. You will receive a confirmation email within 1 business day once approved.</div>
+          </div>
+        </div>
+        <!-- Approved view -->
+        <div id="of-approved">
+          <div class="of-card">
+            <div class="of-header">
+              <div class="of-avatar">&#127963;</div>
+              <div>
+                <div class="of-name" id="of-dname">Priya Venkataraman</div>
+                <div class="of-dept" id="of-ddept">Sanitation &amp; Solid Waste &#183; MCGM Mumbai</div>
+              </div>
+            </div>
+            <div class="of-tags">
+              <span class="of-tag" style="background:var(--gb);color:var(--grn);border-color:#6EE7B7">&#10003; Verified Officer</span>
+              <span class="of-tag" style="background:var(--b0);color:var(--b6);border-color:#C7D9FF">&#128205; Western Mumbai</span>
+              <span class="of-tag" style="background:var(--rb);color:var(--red);border-color:#FCA5A5">&#128276; 12 Pending</span>
+            </div>
+            <div class="of-stats">
+              <div class="of-stat"><div class="of-stat-v" style="color:var(--red)">18</div><div class="of-stat-l">Open Issues</div></div>
+              <div class="of-stat"><div class="of-stat-v" style="color:var(--grn)">142</div><div class="of-stat-l">Resolved</div></div>
+              <div class="of-stat"><div class="of-stat-v" style="color:var(--amb)">3.8h</div><div class="of-stat-l">Avg Response</div></div>
+            </div>
+          </div>
+          <!-- Ward breakdown -->
+          <div style="font-size:12px;font-weight:700;color:var(--n9);margin-bottom:8px">Ward Load</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px">
+            <div style="background:var(--rb);border:1px solid #FCA5A5;border-radius:var(--r2);padding:9px;text-align:center"><div style="font-size:15px;font-weight:800;color:var(--red)">23</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Ward D</div></div>
+            <div style="background:var(--ab);border:1px solid #FCD34D;border-radius:var(--r2);padding:9px;text-align:center"><div style="font-size:15px;font-weight:800;color:var(--amb)">9</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Ward B</div></div>
+            <div style="background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r2);padding:9px;text-align:center"><div style="font-size:15px;font-weight:800;color:var(--grn)">4</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:2px">Ward E</div></div>
+          </div>
+          <!-- Pending actions -->
+          <div style="font-size:12px;font-weight:700;color:var(--n9);margin-bottom:8px">Pending Actions</div>
+          <div class="pending-item overdue">
+            <div class="pi-ico">&#128465;&#65039;</div>
+            <div class="pi-body">
+              <div class="pi-title">Dharavi garbage overflow &#8212; 9 confirmations</div>
+              <div class="pi-meta">PIN 400017 &#183; SLA: 2h overdue &#183; Escalated</div>
+            </div>
+            <div class="pi-tag" style="background:var(--red)">Overdue</div>
+          </div>
+          <div class="pending-item urgent">
+            <div class="pi-ico">&#128167;</div>
+            <div class="pi-body">
+              <div class="pi-title">Open drain &#8212; Dharavi school area</div>
+              <div class="pi-meta">PIN 400017 &#183; SLA: 4h remaining</div>
+            </div>
+            <div class="pi-tag" style="background:var(--amb)">Urgent</div>
+          </div>
+          <div class="pending-item ok" style="margin-bottom:14px">
+            <div class="pi-ico">&#128678;</div>
+            <div class="pi-body">
+              <div class="pi-title">Signal failure &#8212; Sion junction</div>
+              <div class="pi-meta">PIN 400022 &#183; SLA: 12h remaining &#183; On track</div>
+            </div>
+            <div class="pi-tag" style="background:var(--tel)">Assigned</div>
+          </div>
+          <button class="sub-m" onclick="goDash();cm('signin')">Open City Dashboard &#8594;</button>
+        </div>
+      </div>
+
+    </div><!-- end mbd -->
+  </div><!-- end mbox -->
+</div><!-- end m-signin -->
+
+
 
 <div class="ovl" id="m-report" onclick="moc(event,'report')"><div class="mbox" style="width:520px"><div class="mhd"><div><div class="mti">Submit a Civic Audit</div><div class="mde">Document an issue · Earn your Citizen Auditor Badge</div></div><button class="mx" onclick="cm('report')">✕</button></div><div class="mbd">
   <div class="fg3"><div class="fc3"><label class="flb">Category *</label><select class="fse" id="fc"><option value="">Select</option><option>🚦 Traffic Congestion</option><option>🚧 Road Blockage</option><option>🚶 Footpath Obstruction</option><option>🏗️ Pavement Encroachment</option><option>🗑️ Garbage Overflow</option><option>🧹 Uncollected Waste</option><option>💧 Open Drain / Waterlogging</option><option>🌊 River / Lake / Water Body Pollution</option><option>🐟 Aquatic Ecosystem Damage</option><option>✨ Dirty Public Space</option><option>💡 Broken Streetlight</option><option>🌳 Fallen Tree</option></select></div><div class="fc3"><label class="flb">City *</label><input class="fi2" id="fci" placeholder="e.g. Mumbai, Maharashtra"></div></div>
@@ -1090,12 +1453,137 @@ function gsD(id){closeD();setTimeout(function(){gs(id)},200)}
 function om(n){var e=document.getElementById('m-'+n);if(e)e.classList.add('open')}
 function cm(n){var e=document.getElementById('m-'+n);if(e)e.classList.remove('open')}
 function moc(ev,n){if(ev.target===document.getElementById('m-'+n))cm(n)}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')['signin','report','api','mission','muni'].forEach(cm)})
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){['signin','report','api','mission','muni'].forEach(cm);siReset();}})
 
 /* ─ SIGN IN ─ */
-function socL(p){toast('🔒 '+p+' sign-in coming soon — enter your email to get notified!','var(--b6)')}
-function doLogin(){var e=(document.getElementById('sie').value||'').trim();if(!e){toast('⚠ Enter your email','var(--red)');return}cm('signin');toast('✅ Welcome back! You are now signed in.','var(--grn)');}
-function notifyMe(){var e=(document.getElementById('sie').value||'').trim();if(!e){toast('⚠ Enter your email or mobile number','var(--red)');return;}cm('signin');toast('✅ Got it! We will notify you at '+e+' when sign-in launches.','var(--grn)');}
+/* ── SIGN-IN 3-STEP FLOW ── */
+var siRole=null,siOtpTmr=null;
+var SI_PAGES=['si-p1','si-p2c','si-p2otp','si-p2o','si-p3c','si-p3o'];
+
+function siShow(id){SI_PAGES.forEach(function(p){var el=document.getElementById(p);if(el)el.style.display=p===id?'block':'none'});}
+
+function siSetStep(n){
+  [1,2,3].forEach(function(i){
+    var el=document.getElementById('si-st'+i);if(!el)return;
+    var cls='si-step';if(i<n)cls+=' done';else if(i===n)cls+=' active';
+    el.className=cls;
+  });
+  var l1=document.getElementById('si-ln1'),l2=document.getElementById('si-ln2');
+  if(l1)l1.className='si-sline'+(n>1?' done':'');
+  if(l2)l2.className='si-sline'+(n>2?' done':'');
+}
+
+function siSetHeader(title,sub){
+  var t=document.getElementById('si-hd-title'),s=document.getElementById('si-hd-sub');
+  if(t)t.textContent=title;if(s)s.textContent=sub;
+}
+
+function siReset(){
+  siRole=null;if(siOtpTmr)clearInterval(siOtpTmr);
+  ['rc-citizen','rc-officer'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('sel');});
+  siShow('si-p1');siSetStep(1);siSetHeader('Sign In to NagarDrishti','India\u2019s Civic Audit Platform');
+}
+
+function siPickRole(role){
+  siRole=role;
+  ['rc-citizen','rc-officer'].forEach(function(id){document.getElementById(id).classList.remove('sel');});
+  document.getElementById('rc-'+role).classList.add('sel');
+  setTimeout(function(){
+    siShow(role==='citizen'?'si-p2c':'si-p2o');
+    siSetStep(2);
+    if(role==='citizen')siSetHeader('Citizen Auditor Sign In','Choose how you want to sign in');
+    else siSetHeader('Municipal Officer Sign In','Secure government portal');
+  },160);
+}
+
+function siBack(){
+  if(siOtpTmr)clearInterval(siOtpTmr);
+  siShow('si-p1');siSetStep(1);siSetHeader('Sign In to NagarDrishti','India\u2019s Civic Audit Platform');
+}
+function siBackToAuth(){if(siOtpTmr)clearInterval(siOtpTmr);siShow('si-p2c');}
+
+/* ── OTP ── */
+function siStartOTP(){
+  var phone=prompt('Enter your mobile number:','98765 43210');
+  if(!phone)return;
+  siShow('si-p2otp');
+  var el=document.getElementById('si-otp-to');
+  if(el)el.textContent='OTP sent to +91 '+phone.replace(/\s/g,'');
+  ['od1','od2','od3','od4','od5','od6'].forEach(function(id){var d=document.getElementById(id);if(d){d.value='';d.classList.remove('filled');}});
+  setTimeout(function(){var d=document.getElementById('od1');if(d)d.focus();},100);
+  siOtpCountdown(30);
+}
+function siOtpCountdown(secs){
+  if(siOtpTmr)clearInterval(siOtpTmr);
+  var rem=secs;
+  siOtpTmr=setInterval(function(){
+    rem--;var el=document.getElementById('si-otimer');
+    if(el)el.textContent='0:'+String(rem).padStart(2,'0');
+    if(rem<=0){clearInterval(siOtpTmr);if(el)el.textContent='Expired';}
+  },1000);
+}
+function otpIn(el,nxtId){
+  el.value=el.value.replace(/[^0-9]/g,'');
+  el.classList.toggle('filled',el.value!=='');
+  if(el.value&&nxtId){var nx=document.getElementById(nxtId);if(nx)nx.focus();}
+  var done=true;
+  ['od1','od2','od3','od4','od5','od6'].forEach(function(id){if(!(document.getElementById(id)||{value:''}).value)done=false;});
+  if(done)setTimeout(siVerifyOTP,280);
+}
+function otpKey(e,el,prevId){
+  if(e.key==='Backspace'&&!el.value&&prevId){var pv=document.getElementById(prevId);if(pv){pv.value='';pv.classList.remove('filled');pv.focus();}}
+}
+function siVerifyOTP(){
+  var code=['od1','od2','od3','od4','od5','od6'].map(function(id){return(document.getElementById(id)||{value:''}).value;}).join('');
+  if(code.length<6){toast('\u26A0\uFE0F Enter the full 6-digit OTP','var(--red)');return;}
+  if(siOtpTmr)clearInterval(siOtpTmr);
+  siShowCitizenDash();
+}
+function siResendOTP(){
+  ['od1','od2','od3','od4','od5','od6'].forEach(function(id){var d=document.getElementById(id);if(d){d.value='';d.classList.remove('filled');}});
+  siOtpCountdown(30);toast('OTP resent!','var(--b6)');
+  setTimeout(function(){var d=document.getElementById('od1');if(d)d.focus();},100);
+}
+
+/* ── OAUTH ── */
+function siGoogleAuth(role){
+  toast('Google sign-in coming soon \u2014 demo mode active','var(--b6)');
+  setTimeout(function(){if(role==='citizen')siShowCitizenDash();else siShowOfficerDash(false);},1100);
+}
+function siAadhaar(){toast('Aadhaar / DigiLocker integration coming soon','var(--b6)');setTimeout(siShowCitizenDash,1100);}
+
+/* ── OFFICER ── */
+function siOfficerSubmit(){
+  var muni=(document.getElementById('of-muni').value||'').trim();
+  var dept=(document.getElementById('of-dept').value||'').trim();
+  var eid =(document.getElementById('of-eid').value||'').trim();
+  var email=(document.getElementById('of-email').value||'').trim();
+  if(!muni||!dept||!eid||!email){toast('\u26A0\uFE0F Fill all required fields','var(--red)');return;}
+  if(!email.includes('@')){toast('\u26A0\uFE0F Enter a valid official email','var(--red)');return;}
+  var isGov=email.includes('.gov.in')||email.includes('.nic.in')||['mcgm','bbmp','kmc','ghmc','pmc','amc','imc'].some(function(d){return email.includes(d);});
+  var dn=document.getElementById('of-dname'),dd=document.getElementById('of-ddept');
+  if(dn)dn.textContent='Officer \u2014 '+eid;
+  if(dd)dd.textContent=dept+' \u00B7 '+muni;
+  siShowOfficerDash(!isGov);
+}
+
+/* ── PROFILE VIEWS ── */
+function siShowCitizenDash(){
+  siShow('si-p3c');siSetStep(3);
+  siSetHeader('Welcome back!','Signed in as Citizen Auditor');
+}
+function siShowOfficerDash(pending){
+  siShow('si-p3o');siSetStep(3);
+  var pe=document.getElementById('of-pending'),ae=document.getElementById('of-approved');
+  if(pe)pe.style.display=pending?'flex':'none';
+  if(ae)ae.style.display=pending?'none':'block';
+  siSetHeader(pending?'Verification Pending':'Welcome, Officer',pending?'Your access is being reviewed':'Signed in as Municipal Officer');
+}
+
+/* ── LEGACY STUBS ── */
+function socL(p){toast(p+' sign-in \u2014 use the Sign In button','var(--b6)');}
+function doLogin(){om('signin');}
+function notifyMe(){var e=(document.getElementById('sie')||{value:''}).value;if(e)toast('Noted! We will notify '+e,'var(--grn)');}
 
 /* ─ EVIDENCE TABS ─ */
 function evTab(t){
