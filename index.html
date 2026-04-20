@@ -566,6 +566,21 @@ nav.sh{box-shadow:var(--s2)}
 .glr-badge{display:inline-flex;align-items:center;gap:3px;background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r1);padding:2px 7px;font-family:var(--fm);font-size:8px;color:var(--grn);margin-top:4px}
 .glr-badge.pending{background:var(--ab);border-color:#FCD34D;color:var(--amb)}
 
+
+/* ── SUB-SEVERITY PICKER (IRC/MoRTH aligned) ── */
+.sub-sev-wrap{margin:0 0 11px;animation:ssIn .18s ease}
+@keyframes ssIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.sub-sev-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.sub-sev-lbl-txt{font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase}
+.sub-sev-std{font-family:var(--fm);font-size:7.5px;color:var(--b6);background:var(--b0);border:1px solid #C7D9FF;border-radius:20px;padding:2px 7px;letter-spacing:.05em}
+.sub-sev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:5px}
+.sub-sev-btn{border:1.5px solid var(--g200);border-radius:var(--r2);background:var(--g50);padding:9px 5px 8px;cursor:pointer;transition:border-color .13s,background .13s;display:flex;flex-direction:column;align-items:center;gap:5px;font-family:var(--ff);width:100%}
+.sub-sev-btn:hover,.sub-sev-btn.on{border-color:var(--ss-c,var(--b6));background:var(--w)}
+.sub-sev-btn.on{box-shadow:0 0 0 3px var(--ss-glow,rgba(0,82,204,.12))}
+.sub-sev-dot{width:9px;height:9px;border-radius:50%;background:var(--ss-c,#888);flex-shrink:0}
+.sub-sev-name{font-size:10px;font-weight:700;color:var(--t7);text-align:center;line-height:1.3}
+.sub-sev-desc{font-family:var(--fm);font-size:8px;color:var(--t3);text-align:center;line-height:1.4;min-height:22px;padding:0 2px}
+
 /* ─ FOOTER ─ */
 footer{background:var(--n9);color:#fff}
 .ft-in{max-width:1160px;margin:0 auto;padding:36px 40px 20px}
@@ -1332,7 +1347,7 @@ footer{background:var(--n9);color:#fff}
         <div class="audit-item">
           <div class="audit-ico">&#128465;&#65039;</div>
           <div class="audit-body">
-            <div class="audit-title">Garbage overflow near Andheri station</div>
+            <div class="audit-title">Garbage hotspot near Andheri station</div>
             <div class="audit-meta">PIN 400053 &#183; 2 days ago &#183; 5 confirmations</div>
           </div>
           <div class="audit-tag" style="background:var(--gb);color:var(--grn);border-color:#6EE7B7">&#10003; Resolved</div>
@@ -1403,7 +1418,7 @@ footer{background:var(--n9);color:#fff}
           <div class="pending-item overdue">
             <div class="pi-ico">&#128465;&#65039;</div>
             <div class="pi-body">
-              <div class="pi-title">Dharavi garbage overflow &#8212; 9 confirmations</div>
+              <div class="pi-title">Dharavi garbage hotspot &#8212; 9 confirmations</div>
               <div class="pi-meta">PIN 400017 &#183; SLA: 2h overdue &#183; Escalated</div>
             </div>
             <div class="pi-tag" style="background:var(--red)">Overdue</div>
@@ -1445,14 +1460,14 @@ footer{background:var(--n9);color:#fff}
       <!-- CATEGORY + SEVERITY -->
       <div class="fg3">
         <div class="fc3"><label class="flb">Category *</label>
-          <select class="fse" id="fc">
+          <select class="fse" id="fc" onchange="ndShowSubSev(this.value,'rptSubSevGrid','rptSubSev','fsev2')">
             <option value="">Select category</option>
             <option>🚦 Traffic Congestion</option><option>🚧 Road Blockage</option>
             <option>🚶 Footpath Obstruction</option><option>🏗️ Pavement Encroachment</option>
-            <option>🗑️ Garbage Overflow</option><option>🧹 Uncollected Waste</option>
+            <option>🗑️ Garbage Hotspots</option><option>⚡ Cracks</option>
             <option>💧 Open Drain / Waterlogging</option><option>🌊 River / Lake / Water Body Pollution</option>
-            <option>🐟 Aquatic Ecosystem Damage</option><option>✨ Dirty Public Space</option>
-            <option>💡 Broken Streetlight</option><option>🌳 Fallen Tree</option><option>🕳️ Pothole</option>
+            <option>🐟 Aquatic Ecosystem Damage</option><option>🚮 Dirty Public Space</option>
+            <option>💡 Broken / Zero Streetlight</option><option>🌳 Fallen Tree</option><option>🕳️ Pothole</option>
           </select>
         </div>
         <div class="fc3"><label class="flb">Severity *</label>
@@ -1461,6 +1476,15 @@ footer{background:var(--n9);color:#fff}
             <option value="high">🟠 High</option><option value="critical">🔴 Critical</option>
           </select>
         </div>
+      </div>
+
+      <!-- SUB-SEVERITY PICKER (IRC/MoRTH) -->
+      <div class="sub-sev-wrap" id="rptSubSev" style="display:none">
+        <div class="sub-sev-hdr">
+          <span class="sub-sev-lbl-txt">How Severe? *</span>
+          <span class="sub-sev-std" id="rptSubSevStd">IRC Standard</span>
+        </div>
+        <div class="sub-sev-grid" id="rptSubSevGrid"></div>
       </div>
 
       <!-- LOCATION MODE TOGGLE -->
@@ -1530,7 +1554,7 @@ footer{background:var(--n9);color:#fff}
 
 <div class="ovl" id="m-api" onclick="moc(event,'api')"><div class="mbox" style="width:450px"><div class="mhd"><div><div class="mti">API Access</div><div class="mde">Integrate NagarDrishti data into your platform</div></div><button class="mx" onclick="cm('api')">✕</button></div><div class="mbd"><div style="display:flex;flex-direction:column;gap:9px;margin-bottom:18px"><div style="background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r2);padding:13px"><div style="font-size:12.5px;font-weight:700;color:var(--grn);margin-bottom:3px">Free Tier</div><div style="font-size:12px;color:var(--t5);line-height:1.6">1,000 req/day · City-level data · JSON/GeoJSON</div></div><div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r2);padding:13px"><div style="font-size:12.5px;font-weight:700;color:var(--b6);margin-bottom:3px">Pro — ₹4,999/month</div><div style="font-size:12px;color:var(--t5);line-height:1.6">Unlimited · Ward-level · Real-time webhooks · SLA</div></div><div style="background:var(--vb);border:1px solid #DDD6FE;border-radius:var(--r2);padding:13px"><div style="font-size:12.5px;font-weight:700;color:var(--vio);margin-bottom:3px">Municipal — Custom</div><div style="font-size:12px;color:var(--t5);line-height:1.6">White-label · On-prem · 24/7 support</div></div></div><div class="fg3"><div class="fc3"><label class="flb">Name</label><input class="fi2" placeholder="Full name"></div><div class="fc3"><label class="flb">Organisation</label><input class="fi2" placeholder="Company or agency"></div></div><div class="fg3" style="grid-template-columns:1fr;margin-bottom:13px"><div class="fc3 full"><label class="flb">Work Email *</label><input class="fi2" id="apie" placeholder="you@company.com" type="email"></div></div><button class="sub-m" onclick="doApiReq()">Request API Key</button></div></div></div>
 
-<div class="ovl" id="m-mission" onclick="moc(event,'mission')"><div class="mbox" style="width:470px"><div class="mhd"><div><div class="mti">Our Mission</div><div class="mde">Why NagarDrishti exists</div></div><button class="mx" onclick="cm('mission')">✕</button></div><div class="mbd"><p style="font-size:13.5px;color:var(--t7);line-height:1.75;margin-bottom:13px">Transforming civic oversight by empowering community vision to monitor, document, and improve our cities for a better living.</p><p style="font-size:13.5px;color:var(--t7);line-height:1.75;margin-bottom:13px">NagarDrishti was founded on one belief: <strong style="color:var(--n9)">every Indian deserves a city that works.</strong></p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px"><div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:15px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--b6)">2026</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Founded</div></div><div style="background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r3);padding:15px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--grn)">87</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Cities today</div></div></div><button class="sub-m" style="background:var(--g100);color:var(--n9)" onclick="cm('mission')">Close</button></div></div></div>
+<div class="ovl" id="m-mission" onclick="moc(event,'mission')"><div class="mbox" style="width:470px"><div class="mhd"><div><div class="mti">Our Mission</div><div class="mde">Why NagarDrishti exists</div></div><button class="mx" onclick="cm('mission')">✕</button></div><div class="mbd"><p style="font-size:13.5px;color:var(--t7);line-height:1.75;margin-bottom:13px">Transforming civic oversight by empowering community vision to monitor, document, and improve our cities for a better living.</p><p style="font-size:13.5px;color:var(--t7);line-height:1.75;margin-bottom:13px">NagarDrishti was founded by <strong style="background:var(--ga);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800">Rohit Mahato</strong> with one belief: <strong style="color:var(--n9)">every Indian deserves a city that works.</strong></p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px"><div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:15px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--b6)">2026</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Founded</div></div><div style="background:var(--gb);border:1px solid #6EE7B7;border-radius:var(--r3);padding:15px;text-align:center"><div style="font-size:22px;font-weight:800;color:var(--grn)">87</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-top:3px">Cities today</div></div></div><button class="sub-m" style="background:var(--g100);color:var(--n9)" onclick="cm('mission')">Close</button></div></div></div>
 
 <div class="ovl" id="m-muni" onclick="moc(event,'muni')"><div class="mbox" style="width:490px"><div class="mhd"><div><div class="mti">For Municipalities</div><div class="mde">Partner with us to modernise your city</div></div><button class="mx" onclick="cm('muni')">✕</button></div><div class="mbd"><div style="display:flex;flex-direction:column;gap:9px;margin-bottom:17px"><div style="display:flex;gap:11px;padding:13px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r3)"><span style="font-size:19px;flex-shrink:0">📊</span><div><div style="font-size:13px;font-weight:700;color:var(--n9);margin-bottom:2px">Real-time city dashboard</div><div style="font-size:12px;color:var(--t5)">Live command centre with all audits by ward and severity.</div></div></div><div style="display:flex;gap:11px;padding:13px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r3)"><span style="font-size:19px;flex-shrink:0">⚡</span><div><div style="font-size:13px;font-weight:700;color:var(--n9);margin-bottom:2px">Auto-routing to departments</div><div style="font-size:12px;color:var(--t5)">Audits auto-assigned to sanitation, roads, drainage or traffic.</div></div></div><div style="display:flex;gap:11px;padding:13px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r3)"><span style="font-size:19px;flex-shrink:0">📈</span><div><div style="font-size:13px;font-weight:700;color:var(--n9);margin-bottom:2px">Monthly performance reports</div><div style="font-size:12px;color:var(--t5)">Ward-wise resolution rates, SLA compliance, satisfaction scores.</div></div></div></div><div class="fg3"><div class="fc3"><label class="flb">Officer Name *</label><input class="fi2" placeholder="Designated officer"></div><div class="fc3"><label class="flb">Municipality *</label><input class="fi2" placeholder="e.g. MCGM, Pune Municipal"></div></div><div class="fg3" style="grid-template-columns:1fr;margin-bottom:13px"><div class="fc3 full"><label class="flb">Official Email *</label><input class="fi2" placeholder="officer@municipal.gov.in" type="email"></div></div><button class="sub-m" onclick="toast('✅ Demo request sent! We will contact you within 2 business days.','var(--grn)');cm('muni')">Request Partnership Demo</button></div></div></div>
 
@@ -1781,10 +1805,64 @@ function rptPinLookup(pin){
   if(waEl)waEl.value=ward||'Ward identified from pincode';
 }
 
+
+/* ── IRC/MoRTH CATEGORY SEVERITY DATA ── */
+var CAT_SEV_DATA={
+  '\u26a1 Cracks':{std:'IRC 82-2015',subs:['Hairline Crack','Surface Crack','Deep Structural Crack'],sevs:['low','medium','critical'],descs:['<1mm wide, surface only — cosmetic','1\u20136mm wide, affects ride quality','Alligator / >6mm — structural failure'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\uddd1\ufe0f Garbage Hotspots':{std:'SWM Rules 2016',subs:['Scattered Litter','Accumulated Pile','Black Spot / Chronic Dump'],sevs:['low','medium','critical'],descs:['Isolated waste, minor','Bin overflow or roadside pile','Recurring site, disease & hygiene risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udeab Dirty Public Space':{std:'SBM-U 2.0',subs:['Light Littering','Heavy Littering','Hazardous Waste'],sevs:['low','medium','critical'],descs:['Isolated spots, short duration','Area-wide, multiple days uncleared','Medical / sharp / chemical waste'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udeab Dirty Public Space':{std:'SBM-U 2.0',subs:['Light Littering','Heavy Littering','Hazardous Waste'],sevs:['low','medium','critical'],descs:['Isolated spots, short duration','Area-wide, multiple days uncleared','Medical / sharp / chemical waste'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\ude95 Pothole':{std:'IRC 82-2015 \u00b7 Cl.7.5',subs:['Small (<25mm deep)','Medium (25\u201350mm)','Large / Critical (>50mm)'],sevs:['low','high','critical'],descs:['Minor depression, tyre bump risk','Significant dip, vehicle damage risk','Deep cavity \u2014 safety & vehicle hazard'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udeac Traffic Congestion':{std:'MoRTH',subs:['Slow Movement','Heavy Jam','Complete Gridlock'],sevs:['low','high','critical'],descs:['Minor delay <10 min','Significant delay 10\u201330 min','No movement, emergency access blocked'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udea7 Road Blockage':{std:'MoRTH',subs:['Partial Block','Major Obstruction','Full Road Closure'],sevs:['medium','high','critical'],descs:['One lane blocked, traffic diverts','Multiple lanes blocked','Road fully closed, ambulance risk'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udeb6 Footpath Obstruction':{std:'IRC SP:41',subs:['Partial Block','Major Encroachment','Complete Closure'],sevs:['low','medium','critical'],descs:['Walkable with difficulty','Pedestrians forced onto road','Footpath entirely unusable'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83c\udfd7\ufe0f Pavement Encroachment':{std:'MoRTH',subs:['Temporary Setup','Semi-Permanent','Illegal Construction'],sevs:['low','medium','critical'],descs:['Daily vendor / hawker setup','Semi-permanent stall or structure','Permanent illegal build on road'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udca7 Open Drain / Waterlogging':{std:'MoRTH / CPHEEO',subs:['Minor Waterlogging','Moderate Flooding','Severe Submersion'],sevs:['low','high','critical'],descs:['<Ankle depth, localised','Ankle\u2013knee depth, traffic disrupted','Knee+ depth, health emergency'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83c\udf0a River / Lake / Water Body Pollution':{std:'CPCB / NGT',subs:['Litter / Plastic','Sewage Discharge','Severe Contamination'],sevs:['medium','high','critical'],descs:['Surface litter, plastic floating','Visible discolouration or odour','Dead fish, chemical spill'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83c\udf0a River / Lake Pollution':{std:'CPCB / NGT',subs:['Litter / Plastic','Sewage Discharge','Severe Contamination'],sevs:['medium','high','critical'],descs:['Surface litter, plastic floating','Visible discolouration or odour','Dead fish, chemical spill'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udc1f Aquatic Ecosystem Damage':{std:'Wildlife Protection Act',subs:['Encroachment Near Water','Shrinkage / Encroachment','Ecosystem Collapse'],sevs:['medium','high','critical'],descs:['Dumping near water body edges','Lake / river area visibly reduced','Dead aquatic life, loss of vegetation'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83d\udca1 Broken / Zero Streetlight':{std:'IRC SP:30 \u00b7 MNRE',subs:['Flickering / Dim','Single Light Out','Extended Dark Stretch'],sevs:['low','medium','critical'],descs:['Intermittent, reduced visibility','Single pole non-functional','3+ poles out, high accident risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '\ud83c\udf33 Fallen Tree':{std:'MoRTH \u00b7 Emergency',subs:['Branches on Path','Tree on Road','Major Collapse'],sevs:['medium','high','critical'],descs:['Branches blocking footpath only','Tree partially blocking road','Full collapse on road or property'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']}
+};
+
+function ndShowSubSev(catVal, gridId, pickerId, sevId){
+  var d=CAT_SEV_DATA[catVal];
+  var picker=document.getElementById(pickerId);
+  if(!picker)return;
+  if(!d||!catVal){picker.style.display='none';return;}
+  picker.style.display='block';
+  var grid=document.getElementById(gridId);
+  if(!grid)return;
+  grid.innerHTML=d.subs.map(function(sub,i){
+    return '<button type="button" class="sub-sev-btn" '
+      +'style="--ss-c:'+d.cols[i]+';--ss-glow:'+d.glows[i]+'" '
+      +'onclick="ndSelectSubSev(this,\''+d.sevs[i]+'\',\''+sevId+'\')">'
+      +'<span class="sub-sev-dot"></span>'
+      +'<span class="sub-sev-name">'+sub+'</span>'
+      +'<span class="sub-sev-desc">'+d.descs[i]+'</span>'
+      +'</button>';
+  }).join('');
+  // Update IRC standard badge
+  var stdEl=document.getElementById(pickerId+'Std');
+  if(stdEl)stdEl.textContent=d.std;
+}
+function ndSelectSubSev(btn,sev,sevId){
+  var grid=btn.parentElement;
+  grid.querySelectorAll('.sub-sev-btn').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  var sel=document.getElementById(sevId);
+  if(sel)sel.value=sev;
+}
+
 function doReport(){
   var c=(document.getElementById('fc').value||'').trim();
   var de=(document.getElementById('fde').value||'').trim();
   if(!c){toast('⚠ Select a category','var(--red)');return;}
+  var subPicker=document.getElementById('rptSubSev');
+  if(subPicker&&subPicker.style.display!=='none'){
+    var sel=document.querySelector('#rptSubSevGrid .sub-sev-btn.on');
+    if(!sel){toast('⚠ Select severity level for this category','var(--red)');return;}
+  }
   if(!de){toast('⚠ Add a description','var(--red)');return;}
 
   var city='',ward='',locOk=false;
@@ -1822,6 +1900,8 @@ function doReport(){
   var acc=document.getElementById('rptGpsAcc');if(acc)acc.className='gps-acc';
   var res=document.getElementById('rptLocResult');if(res)res.className='gps-loc-result';
   setLocMode('gps');
+  var rsp=document.getElementById('rptSubSev');if(rsp)rsp.style.display='none';
+  var rsg=document.getElementById('rptSubSevGrid');if(rsg)rsg.innerHTML='';
 }
 function doApiReq(){var e=(document.getElementById('apie').value||'').trim();if(!e){toast('⚠ Enter work email','var(--red)');return}cm('api');toast('🔑 API request sent! Check email in 24h.','var(--grn)')}
 
@@ -1905,7 +1985,7 @@ function renderBP(k){
 }
 
 /* ─ TICKER ─ */
-var TK=[{c:'var(--red)',t:'🔴 Garbage overflow — Dharavi, Mumbai · PIN 400017'},{c:'var(--amb)',t:'🟡 Traffic congestion — Connaught Place, Delhi · PIN 110001'},{c:'var(--tel)',t:'🔵 Footpath blocked — MG Road Metro, Bengaluru · PIN 560001'},{c:'var(--grn)',t:'🟢 Resolved: Sabarmati Riverfront, Ahmedabad · PIN 380001'},{c:'var(--red)',t:'🔴 Road closure — Hitech City, Hyderabad · PIN 500081'},{c:'var(--amb)',t:'🟡 Signal failure — DB Mall crossing, Bhopal · PIN 462001'},{c:'var(--grn)',t:'🟢 Sector 17 footpath cleared — Chandigarh · PIN 160017'},{c:'var(--tel)',t:'🔵 Waterlogging monitoring — Patna arterials · PIN 800001'}];
+var TK=[{c:'var(--red)',t:'🔴 Garbage hotspot — Dharavi, Mumbai · PIN 400017'},{c:'var(--amb)',t:'🟡 Traffic congestion — Connaught Place, Delhi · PIN 110001'},{c:'var(--tel)',t:'🔵 Footpath blocked — MG Road Metro, Bengaluru · PIN 560001'},{c:'var(--grn)',t:'🟢 Resolved: Sabarmati Riverfront, Ahmedabad · PIN 380001'},{c:'var(--red)',t:'🔴 Road closure — Hitech City, Hyderabad · PIN 500081'},{c:'var(--amb)',t:'🟡 Signal failure — DB Mall crossing, Bhopal · PIN 462001'},{c:'var(--grn)',t:'🟢 Sector 17 footpath cleared — Chandigarh · PIN 160017'},{c:'var(--tel)',t:'🔵 Waterlogging monitoring — Patna arterials · PIN 800001'}];
 var th='';for(var p=0;p<2;p++)TK.forEach(function(t){th+='<div class="tick-it"><div class="tkd" style="background:'+t.c+'"></div>'+t.t+'</div>'});
 document.getElementById('tktr').innerHTML=th;
 
@@ -1927,7 +2007,7 @@ setInterval(function(){jit('la',3);jit('lr',15)},5000);
 
 /* ─ INCIDENT LIST VIEW DATA & LOGIC ─ */
 var IL_DATA = [
-  {id:'ND-0001',city:'Mumbai',pincode:'400017',category:'garbage',catLabel:'🗑️ Garbage',severity:'critical',status:'open',confirmations:12,issue:'Garbage overflow near Dharavi',created_at:'2025-01-15 09:02',resolved_at:null,resolvedIn:null},
+  {id:'ND-0001',city:'Mumbai',pincode:'400017',category:'garbage',catLabel:'🗑️ Garbage',severity:'critical',status:'open',confirmations:12,issue:'Garbage hotspot near Dharavi',created_at:'2025-01-15 09:02',resolved_at:null,resolvedIn:null},
   {id:'ND-0002',city:'Delhi',pincode:'110001',category:'traffic',catLabel:'🚦 Traffic',severity:'high',status:'active',confirmations:7,issue:'Congestion at Connaught Place',created_at:'2025-01-15 08:45',resolved_at:null,resolvedIn:null},
   {id:'ND-0003',city:'Bengaluru',pincode:'560001',category:'footpath',catLabel:'🚶 Footpath',severity:'medium',status:'resolved',confirmations:5,issue:'Footpath blocked near MG Road metro',created_at:'2025-01-14 14:20',resolved_at:'2025-01-15 08:10',resolvedIn:'17.8h'},
   {id:'ND-0004',city:'Chennai',pincode:'600001',category:'cleanliness',catLabel:'✨ Cleanliness',severity:'low',status:'resolved',confirmations:3,issue:'Marina Beach litter accumulation',created_at:'2025-01-14 11:30',resolved_at:'2025-01-14 21:45',resolvedIn:'10.2h'},
