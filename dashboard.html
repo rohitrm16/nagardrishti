@@ -66,7 +66,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .btn-primary:hover{background:var(--b5);transform:translateY(-1px)}
 .btn-ghost{background:none;border:1.5px solid var(--g200);border-radius:var(--r2);font-size:11.5px;font-weight:600;color:var(--t7);padding:6px 11px;cursor:pointer;transition:all .13s;font-family:var(--ff);white-space:nowrap}
 .btn-ghost:hover{border-color:var(--b6);color:var(--b6)}
-.sidebar-l{background:rgba(10,18,42,0.88);backdrop-filter:blur(20px) saturate(200%);-webkit-backdrop-filter:blur(20px) saturate(200%);border-right:1px solid rgba(255,255,255,0.07);overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:13px;box-shadow:4px 0 24px rgba(0,82,204,.15)}
+.sidebar-l{background:#fff;border-right:1px solid var(--g100);overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--s1)}
 .pan-title{font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .pan-title::after{content:'';flex:1;height:1px;background:var(--g100)}
 .pan-box{background:var(--w);border:1px solid var(--g200);border-radius:var(--r3);padding:11px;box-shadow:var(--s1)}
@@ -167,7 +167,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .pop-btn.d:hover{background:var(--red);color:#fff}
 .pop-drill{width:100%;background:var(--b6);border:none;border-radius:var(--r2);color:#fff;font-family:var(--ff);font-size:11px;font-weight:700;padding:7px;cursor:pointer;transition:all .12s;margin-top:7px}
 .pop-drill:hover{background:var(--b5)}
-.sidebar-r{background:rgba(10,18,42,0.88);backdrop-filter:blur(20px) saturate(200%);-webkit-backdrop-filter:blur(20px) saturate(200%);border-left:1px solid rgba(255,255,255,0.07);overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:13px;box-shadow:-4px 0 24px rgba(0,82,204,.15)}
+.sidebar-r{background:#fff;border-left:1px solid var(--g100);overflow-y:auto;padding:13px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--s1)}
 .ac{display:flex;align-items:flex-start;gap:7px;padding:8px 9px;border-radius:var(--r3);border:1px solid;border-left:3px solid;margin-bottom:5px;cursor:pointer;transition:box-shadow .12s}
 .ac:last-child{margin-bottom:0}.ac:hover{box-shadow:var(--s2)}
 .ac.crit{background:var(--rb);border-color:#FCA5A5;border-left-color:var(--red)}
@@ -223,46 +223,6 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 @media(max-width:900px){.main{grid-template-columns:210px 1fr 0}.sidebar-r{display:none}}
 @media(max-width:600px){.main{grid-template-columns:0 1fr 0}.sidebar-l,.sidebar-r{display:none}
 
-/* ── Glass Sidebar Typography & Component Overrides ── */
-.sidebar-l .pan-title,.sidebar-r .pan-title{color:rgba(255,255,255,0.92);border-bottom-color:rgba(255,255,255,0.1)}
-.sidebar-l .pan-box,.sidebar-r .pan-box{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.10);border-radius:var(--r3)}
-.sidebar-l .ltab,.sidebar-r .ltab{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.72);border:1px solid rgba(255,255,255,0.10)}
-.sidebar-l .ltab:hover,.sidebar-r .ltab:hover{background:rgba(255,255,255,0.14);color:#fff}
-.sidebar-l .ltab.active,.sidebar-r .ltab.active{background:var(--b6);color:#fff;border-color:transparent;box-shadow:0 0 12px rgba(0,82,204,.45)}
-.sidebar-l .ltab-count,.sidebar-r .ltab-count{background:rgba(255,255,255,0.14);color:rgba(255,255,255,0.75)}
-.sidebar-l .ltab.active .ltab-count,.sidebar-r .ltab.active .ltab-count{background:rgba(255,255,255,0.22);color:#fff}
-.sidebar-l .leg-lbl,.sidebar-r .leg-lbl{color:rgba(255,255,255,0.82)}
-.sidebar-l .leg-note,.sidebar-r .leg-note{color:rgba(255,255,255,0.5)}
-.sidebar-l .meter-lbl,.sidebar-r .meter-lbl{color:rgba(255,255,255,0.80)}
-.sidebar-l .meter-val,.sidebar-r .meter-val{font-weight:700}
-.sidebar-l .meter-track,.sidebar-r .meter-track{background:rgba(255,255,255,0.12)}
-.sidebar-l .search-inp,.sidebar-r .search-inp{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.90);border-radius:var(--r2)}
-.sidebar-l .search-inp::placeholder,.sidebar-r .search-inp::placeholder{color:rgba(255,255,255,0.38)}
-.sidebar-l .search-go,.sidebar-r .search-go{background:var(--b6);color:#fff}
-.sidebar-l .hb-city,.sidebar-r .hb-city{color:rgba(255,255,255,0.92)}
-.sidebar-l .hb-sub,.sidebar-r .hb-sub{color:rgba(255,255,255,0.48)}
-.sidebar-l .hb-bar-wrap,.sidebar-r .hb-bar-wrap{background:rgba(255,255,255,0.12)}
-.sidebar-l .zl,.sidebar-r .zl{color:rgba(255,255,255,0.72);border-color:rgba(255,255,255,0.10)}
-.sidebar-l .zl.active,.sidebar-r .zl.active{background:rgba(0,82,204,0.35);border-color:var(--b6);color:#fff}
-.sidebar-l .zl-ico,.sidebar-r .zl-ico{background:rgba(255,255,255,0.10)}
-.sidebar-l .zl-num,.sidebar-r .zl-num{color:rgba(255,255,255,0.45)}
-.sidebar-l .trend-lbl,.sidebar-r .trend-lbl{color:rgba(255,255,255,0.80)}
-.sidebar-l .trend-track,.sidebar-r .trend-track{background:rgba(255,255,255,0.12)}
-.sidebar-l .trend-delta,.sidebar-r .trend-delta{font-weight:700}
-.sidebar-l .ac-title,.sidebar-r .ac-title{color:rgba(255,255,255,0.90)}
-.sidebar-l .ac-body div,.sidebar-r .ac-body div{color:rgba(255,255,255,0.58)!important}
-.sidebar-l .ac,.sidebar-r .ac{border-color:rgba(255,255,255,0.10)!important;background:rgba(255,255,255,0.06)!important}
-.sidebar-l .ac.crit,.sidebar-r .ac.crit{border-left-color:var(--red)!important;background:rgba(220,38,38,.12)!important}
-.sidebar-l .ac.warn,.sidebar-r .ac.warn{border-left-color:var(--amb)!important;background:rgba(217,119,6,.10)!important}
-.sidebar-l .rank-row,.sidebar-r .rank-row{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.10)}
-.sidebar-l .rank-city,.sidebar-r .rank-city{color:rgba(255,255,255,0.88)}
-.sidebar-l .rank-score,.sidebar-r .rank-score{font-weight:700}
-.sidebar-l .rank-sub,.sidebar-r .rank-sub{color:rgba(255,255,255,0.50)}
-.sidebar-l .hb-card,.sidebar-r .hb-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)}
-.sidebar-l .hb-grid .hb-cell,.sidebar-r .hb-grid .hb-cell{background:rgba(255,255,255,0.08)}
-.sidebar-l .hb-v,.sidebar-r .hb-v{color:rgba(255,255,255,0.90)}
-.sidebar-l .hb-l,.sidebar-r .hb-l{color:rgba(255,255,255,0.48)}
-.sidebar-l #pinResults,.sidebar-r #pinResults{color:rgba(255,255,255,0.85)}
 }
 
 /* ── INCIDENT LIST MODAL ── */
@@ -513,7 +473,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
         <div class="ltab" id="lt-water" onclick="setLayer('water')"><div class="ltab-dot" style="background:#7C3AED"></div>💧 Waterlogging<span class="ltab-count">18</span></div>
         <div class="ltab" id="lt-cracks" onclick="setLayer('cracks')"><div class="ltab-dot" style="background:#3B82F6"></div>⚡ Cracks<span class="ltab-count">16</span></div>
         <div class="ltab" id="lt-road" onclick="setLayer('road')"><div class="ltab-dot" style="background:#E11D48"></div>🚧 Road Block<span class="ltab-count">15</span></div>
-        <div class="ltab" id="lt-river" onclick="setLayer('river')"><div class="ltab-dot" style="background:#1D4ED8"></div>🌊 River Poll.<span class="ltab-count">12</span></div>
+        <div class="ltab" id="lt-fire" onclick="setLayer('fire')"><div class="ltab-dot" style="background:#DC2626"></div>🔥 Fire Safety<span class="ltab-count">12</span></div>
         <div class="ltab" id="lt-dogs" onclick="setLayer('dogs')"><div class="ltab-dot" style="background:#B45309"></div>🐕 Stray Dogs<span class="ltab-count">11</span></div>
         <div class="ltab" id="lt-encroachment" onclick="setLayer('encroachment')"><div class="ltab-dot" style="background:#6B7280"></div>🏗️ Encroachment<span class="ltab-count">9</span></div>
         <div class="ltab" id="lt-heat" onclick="setLayer('heat')"><div class="ltab-dot" style="background:#059669"></div>🌿 Urban Heat<span class="ltab-count">8</span></div>
@@ -568,7 +528,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 <option>💧 Open Drain / Waterlogging</option>
 <option>🏗️ Pavement Encroachment</option>
 <option>🕳️ Pothole</option>
-<option>🌊 River / Lake Pollution</option>
+<option>🔥 Fire Safety</option>
 <option>🚧 Road Blockage</option>
 <option>🐕 Stray Dogs</option>
 <option>🚦 Traffic Congestion</option>
@@ -769,7 +729,7 @@ var ASSETS=[
    ]}
 ];
 var PINS={'400017':[19.0426,72.8544,'Dharavi, Mumbai'],'110001':[28.6342,77.2167,'Connaught Place, Delhi'],'560001':[12.9699,77.5678,'MG Road, Bengaluru'],'600001':[13.0804,80.2785,'George Town, Chennai'],'700001':[22.5736,88.3488,'BBD Bagh, Kolkata'],'500001':[17.3688,78.4738,'Abids, Hyderabad'],'411001':[18.5161,73.8567,'Shivajinagar, Pune'],'226001':[26.8507,80.9489,'Hazratganj, Lucknow'],'302001':[26.9166,75.8017,'Pink City, Jaipur'],'380001':[23.0254,72.5952,'Relief Road, Ahmedabad'],'462001':[23.2534,77.4028,'DB Mall Area, Bhopal'],'160017':[30.7374,76.7874,'Sector 17, Chandigarh'],'800001':[25.5941,85.1376,'Patna City Center']};
-var CATC={aquatic:'#0D9488',streetlight:'#CA8A04',cracks:'#3B82F6',dirty:'#16A34A',footpath:'#0284C7',garbage:'#EA580C',gaushala:'#D97706',water:'#7C3AED',encroachment:'#6B7280',pothole:'#DC2626',river:'#1D4ED8',road:'#E11D48',dogs:'#B45309',traffic:'#F59E0B',heat:'#059669',cleanliness:'#16A34A'};
+var CATC={aquatic:'#0D9488',streetlight:'#CA8A04',cracks:'#3B82F6',dirty:'#16A34A',footpath:'#0284C7',garbage:'#EA580C',gaushala:'#D97706',water:'#7C3AED',encroachment:'#6B7280',pothole:'#DC2626',fire:'#DC2626',road:'#E11D48',dogs:'#B45309',traffic:'#F59E0B',heat:'#059669',cleanliness:'#16A34A'};
 var CATBG={garbage:'#FFF7ED',traffic:'#FEFCE8',footpath:'#E0F2FE',cleanliness:'#F0FDF4',water:'#F5F3FF'};
 var CATE={garbage:'🗑️',traffic:'🚦',footpath:'🚶',cleanliness:'✨',water:'🌊'};
 var SEVC={critical:'#DC2626',high:'#D97706',medium:'#0891B2',low:'#059669'};
@@ -777,7 +737,7 @@ var SEVBG={critical:'#FEF2F2',high:'#FFFBEB',medium:'#ECFEFF',low:'#ECFDF5'};
 var SEVBD={critical:'#FCA5A5',high:'#FCD34D',medium:'#67E8F9',low:'#6EE7B7'};
 var SEVSZ={critical:44,high:34,medium:27,low:22};
 var ALERTS=[{t:'crit',ico:'🔴',title:'Garbage hotspot — Dharavi, Mumbai',sub:'400017 · 9 reports · Escalated to BMC',time:'1m'},{t:'crit',ico:'🔴',title:'Water pollution — Visakhapatnam',sub:'530001 · Industrial runoff detected',time:'4m'},{t:'warn',ico:'🟡',title:'Footpath blocked — Lucknow',sub:'226001 · 80m encroachment',time:'9m'},{t:'warn',ico:'🟡',title:'Signal failure — DB Mall, Bhopal',sub:'462001 · Manual control deployed',time:'14m'},{t:'info',ico:'🔵',title:'Waterlogging — Patna arterials',sub:'800001 · Post-rain monitoring',time:'21m'},{t:'good',ico:'🟢',title:'Cleared: Sabarmati Riverfront',sub:'380001 · Municipal action complete ✓',time:'38m'}];
-var TRENDS=[{l:'Garbage',pct:81,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:70,c:'#F59E0B',d:'+12%'},{l:'Dirty Space',pct:67,c:'#16A34A',d:'+5%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'River Poll.',pct:35,c:'#1D4ED8',d:'+18%'},{l:'Cracks',pct:45,c:'#3B82F6',d:'+4%'},{l:'Road Block',pct:44,c:'#E11D48',d:'+11%'},{l:'Stray Dogs',pct:31,c:'#B45309',d:'+15%'},{l:'Aquatic',pct:22,c:'#0D9488',d:'+9%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Gaushala',pct:19,c:'#D97706',d:'+6%'},{l:'Urban Heat',pct:37,c:'#059669',d:'+8%'}];
+var TRENDS=[{l:'Garbage',pct:81,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:70,c:'#F59E0B',d:'+12%'},{l:'Dirty Space',pct:67,c:'#16A34A',d:'+5%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'Fire Safety',pct:28,c:'#DC2626',d:'+14%'},{l:'Cracks',pct:45,c:'#3B82F6',d:'+4%'},{l:'Road Block',pct:44,c:'#E11D48',d:'+11%'},{l:'Stray Dogs',pct:31,c:'#B45309',d:'+15%'},{l:'Aquatic',pct:22,c:'#0D9488',d:'+9%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Gaushala',pct:19,c:'#D97706',d:'+6%'},{l:'Urban Heat',pct:37,c:'#059669',d:'+8%'}];
 var FEED=[{av:'👨‍💼',bg:'#ECFEFF',who:'Amit Sharma',wh:'just now',desc:'Bins overflowing near Andheri West station for 3 days.',tag:'Mumbai · 🗑️'},{av:'👩‍🦱',bg:'#FFFBEB',who:'Priya Nair',wh:'1m',desc:'Complete standstill at Silk Board — 45 min delay.',tag:'Bengaluru · 🚦'},{av:'🏛️',bg:'#ECFDF5',who:'BMC Mumbai',wh:'3m',desc:'Dadar footpath encroachment cleared.',tag:'Mumbai · ✅'},{av:'👨‍🔧',bg:'#FEF2F2',who:'Ramesh Kumar',wh:'5m',desc:'Open drain near school — hazard for children.',tag:'Chennai · 🚶'},{av:'👴',bg:'#F0F5FF',who:'S.Venkatraman',wh:'7m',desc:'Plastic waste dumped on Cooum riverbank.',tag:'Chennai · 🌊'}];
 var CITIES=[{n:'Surat',s:92,lat:21.1702,lng:72.8311,state:'GJ'},{n:'Indore',s:88,lat:22.7196,lng:75.8577,state:'MP'},{n:'Pune',s:84,lat:18.5204,lng:73.8567,state:'MH'},{n:'Navi Mumbai',s:81,lat:19.0330,lng:73.0297,state:'MH'},{n:'Bhopal',s:78,lat:23.2599,lng:77.4126,state:'MP'},{n:'Chandigarh',s:76,lat:30.7333,lng:76.7794,state:'PB'},{n:'Ahmedabad',s:73,lat:23.0225,lng:72.5714,state:'GJ'},{n:'Mysuru',s:70,lat:12.2958,lng:76.6394,state:'KA'}];
 var HB=[{city:'Mumbai',state:'MH',score:71,inc:42,res:18,resp:'3.8h',aud:'1,247'},{city:'Delhi',state:'DL',score:68,inc:38,res:15,resp:'4.1h',aud:'987'},{city:'Bengaluru',state:'KA',score:74,inc:29,res:21,resp:'3.2h',aud:'1,089'},{city:'Chennai',state:'TN',score:72,inc:31,res:19,resp:'3.6h',aud:'876'}];
@@ -1215,7 +1175,7 @@ function renderPanels(){
 }
 function renderTrends(){var n=function(v){return Math.max(10,Math.min(95,v+Math.floor(Math.random()*8-4)));};document.getElementById('trendList').innerHTML=TRENDS.map(function(t){var v=n(t.pct);return '<div class="trend-row"><div class="trend-lbl">'+t.l+'</div><div class="trend-track"><div class="trend-fill" style="width:'+v+'%;background:'+t.c+'"></div></div><div class="trend-delta" style="color:'+t.c+'">'+t.d+'</div></div>';}).join('');}
 function renderFeed(){var extra=[{av:'⚙️',bg:'#F5F3FF',who:'Auto Sensor',wh:'just now',desc:'Bin BIN-401 overflow — Dharavi Ward D.',tag:'Mumbai · 🗑️'},{av:'🌊',bg:'#F0F5FF',who:'Water Monitor',wh:'1m',desc:'Alert near Bellandur lake, Bengaluru.',tag:'Bengaluru · 🌊'}];document.getElementById('feedList').innerHTML=extra.concat(FEED).slice(0,5).map(function(f){return '<div class="fe"><div class="fa" style="background:'+f.bg+'">'+f.av+'</div><div class="fb"><div class="fw"><span class="fw-name">'+f.who+'</span><span class="fw-time">'+f.wh+'</span></div><div class="fd">'+f.desc+'</div><span class="ft">'+f.tag+'</span></div></div>';}).join('');}
-function renderMeters(){var n=function(v){return Math.max(10,Math.min(95,v+Math.floor(Math.random()*6-3)));};document.getElementById('meterList').innerHTML=[{l:'🗑️ Garbage',pct:n(81),c:'#EA580C'},{l:'🚦 Traffic',pct:n(70),c:'#F59E0B'},{l:'🚮 Dirty Space',pct:n(67),c:'#16A34A'},{l:'🕳️ Pothole',pct:n(58),c:'#DC2626'},{l:'💧 Waterlogging',pct:n(55),c:'#7C3AED'},{l:'🚶 Footpath',pct:n(42),c:'#0284C7'},{l:'🚧 Road Block',pct:n(44),c:'#E11D48'},{l:'⚡ Cracks',pct:n(45),c:'#3B82F6'},{l:'🌊 River Poll.',pct:n(35),c:'#1D4ED8'},{l:'🐕 Stray Dogs',pct:n(31),c:'#B45309'},{l:'💡 Streetlight',pct:n(28),c:'#CA8A04'},{l:'🏗️ Encroachment',pct:n(38),c:'#6B7280'},{l:'🌿 Urban Heat',pct:n(37),c:'#059669'},{l:'🐟 Aquatic',pct:n(22),c:'#0D9488'},{l:'🐄 Gaushala',pct:n(19),c:'#D97706'}].map(function(m){return '<div class="meter"><div class="meter-hd"><span class="meter-lbl">'+m.l+'</span><span class="meter-val" style="color:'+m.c+'">'+m.pct+'%</span></div><div class="meter-track"><div class="meter-fill" style="width:'+m.pct+'%;background:'+m.c+'"></div></div></div>';}).join('');}
+function renderMeters(){var n=function(v){return Math.max(10,Math.min(95,v+Math.floor(Math.random()*6-3)));};document.getElementById('meterList').innerHTML=[{l:'🗑️ Garbage',pct:n(81),c:'#EA580C'},{l:'🚦 Traffic',pct:n(70),c:'#F59E0B'},{l:'🚮 Dirty Space',pct:n(67),c:'#16A34A'},{l:'🕳️ Pothole',pct:n(58),c:'#DC2626'},{l:'💧 Waterlogging',pct:n(55),c:'#7C3AED'},{l:'🚶 Footpath',pct:n(42),c:'#0284C7'},{l:'🚧 Road Block',pct:n(44),c:'#E11D48'},{l:'⚡ Cracks',pct:n(45),c:'#3B82F6'},{l:'🔥 Fire Safety',pct:n(28),c:'#DC2626'},{l:'🐕 Stray Dogs',pct:n(31),c:'#B45309'},{l:'💡 Streetlight',pct:n(28),c:'#CA8A04'},{l:'🏗️ Encroachment',pct:n(38),c:'#6B7280'},{l:'🌿 Urban Heat',pct:n(37),c:'#059669'},{l:'🐟 Aquatic',pct:n(22),c:'#0D9488'},{l:'🐄 Gaushala',pct:n(19),c:'#D97706'}].map(function(m){return '<div class="meter"><div class="meter-hd"><span class="meter-lbl">'+m.l+'</span><span class="meter-val" style="color:'+m.c+'">'+m.pct+'%</span></div><div class="meter-track"><div class="meter-fill" style="width:'+m.pct+'%;background:'+m.c+'"></div></div></div>';}).join('');}
 function renderRankings(){if(!document.getElementById('rankList'))return;document.getElementById('rankList').innerHTML=CITIES.map(function(c,i){var sc=c.s>=85?'var(--grn)':c.s>=75?'var(--tel)':'var(--amb)';var cls=i===0?'g':i===1?'s':i===2?'b':'';return '<div class="rrow" onclick="rankClick('+c.lat+','+c.lng+',\''+c.n+'\',\''+c.state+'\')">'+'<div class="rn '+cls+'">'+(i+1)+'</div><div class="rc">'+c.n+'</div><div class="rbw"><div class="rbf" style="width:'+c.s+'%;background:'+sc+'"></div></div><div class="rs" style="color:'+sc+'">'+c.s+'</div></div>';}).join('');}
 function rankClick(lat,lng,city,sid){var s=STATES.find(function(x){return x.id===sid});curState=s||null;setLevel('city',{city:city,lat:lat,lng:lng});dlvl='city';}
 /* ── UTILS ── */
@@ -1337,7 +1297,7 @@ var CAT_SEV_DATA={
   '💧 Open Drain / Waterlogging':{std:'MoRTH / CPHEEO',subs:['Minor Waterlogging','Moderate Flooding','Severe Submersion'],sevs:['low','high','critical'],descs:['<Ankle depth, localised','Ankle–knee depth, traffic disrupted','Knee+ depth, health emergency'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
   '🏗️ Pavement Encroachment':{std:'MoRTH',subs:['Temporary Setup','Semi-Permanent','Illegal Construction'],sevs:['low','medium','critical'],descs:['Daily vendor / hawker setup','Semi-permanent stall or structure','Permanent illegal build on road'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
   '🕳️ Pothole':{std:'IRC 82-2015 · Cl.7.5',subs:['Small (<25mm deep)','Medium (25–50mm)','Large / Critical (>50mm)'],sevs:['low','high','critical'],descs:['Minor depression, tyre bump risk','Significant dip, vehicle damage risk','Deep cavity — safety & vehicle hazard'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🌊 River / Lake Pollution':{std:'CPCB / NGT',subs:['Litter / Plastic','Sewage Discharge','Severe Contamination'],sevs:['medium','high','critical'],descs:['Surface litter, plastic floating','Visible discolouration or odour','Dead fish, chemical spill'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
+  '🔥 Fire Safety':{std:'NBC 2016 / NFPA / State Fire Services Act',subs:['Minor Hazard','Active Fire Risk','Structural Fire Emergency'],sevs:['medium','high','critical'],descs:['Blocked exit/missing extinguisher, no active flame','Uncontrolled fire risk, evacuation needed','Active structural fire, multi-agency response'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
   '🚧 Road Blockage':{std:'MoRTH',subs:['Partial Block','Major Obstruction','Full Road Closure'],sevs:['medium','high','critical'],descs:['One lane blocked, traffic diverts','Multiple lanes blocked','Road fully closed, ambulance risk'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
   '🚦 Traffic Congestion':{std:'MoRTH',subs:['Slow Movement','Heavy Jam','Complete Gridlock'],sevs:['low','high','critical'],descs:['Minor delay <10 min','Significant delay 10–30 min','No movement, emergency access blocked'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
   '🐕 Stray Dogs':{std:'MoEFCC / Animal Welfare Board',subs:['Single Sighting','Pack Activity','Aggressive / Attack Incident'],sevs:['low','high','critical'],descs:['1–2 strays, no immediate hazard','Pack of 5+, traffic & pedestrian risk','Biting incident or imminent attack zone'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
