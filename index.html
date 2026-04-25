@@ -462,7 +462,7 @@ nav.sh{box-shadow:var(--s2)}
 .si-sline{flex:1;height:1px;background:var(--g200);margin:0 8px}
 .si-sline.done{background:var(--grn)}
 
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
+.role-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:8px}
 .role-card{border:2px solid var(--g200);border-radius:var(--r3);padding:22px 16px;text-align:center;cursor:pointer;transition:all .18s;background:var(--w);position:relative;user-select:none}
 .role-card:hover{border-color:var(--b4);background:var(--b0);transform:translateY(-2px);box-shadow:var(--s2)}
 .role-card.sel{border-color:var(--b6);background:var(--b0);box-shadow:0 0 0 3px rgba(0,82,204,.09)}
@@ -584,13 +584,13 @@ nav.sh{box-shadow:var(--s2)}
 /* ─ FOOTER ─ */
 footer{background:var(--n9);color:#fff}
 .ft-in{max-width:1160px;margin:0 auto;padding:36px 40px 20px}
-.ft-tp{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ft-tp{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:40px}
 .ft-nm{font-size:16px;font-weight:800;color:#fff;margin-bottom:3px}
 .ft-sb{font-family:var(--fm);font-size:8px;color:rgba(255,255,255,.26);letter-spacing:.08em;text-transform:uppercase;margin-bottom:11px}
 .ft-de{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;max-width:240px}
-.ft-cti{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.04em;margin-bottom:11px}
-.ft-lk{display:flex;flex-direction:column;gap:9px}
-.ft-lk a{font-size:12px;color:rgba(255,255,255,.38);text-decoration:none;cursor:pointer;transition:color .13s}
+.ft-cti{font-size:11px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.04em;margin-bottom:9px;text-transform:uppercase}
+.ft-lk{display:flex;flex-direction:column;gap:7px}
+.ft-lk a{font-size:11.5px;color:rgba(255,255,255,.38);text-decoration:none;cursor:pointer;transition:color .13s}
 .ft-lk a:hover{color:rgba(255,255,255,.8)}
 .ft-bt{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:9px}
 .ft-cp{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.04em}
@@ -661,13 +661,13 @@ footer{background:var(--n9);color:#fff}
 
 /* ─ RESPONSIVE ─ */
 @media(max-width:1024px){
-  .wrap,.nav-in,.hero-in,.ft-in,.ct-in{padding-left:24px;padding-right:24px}
+  .wrap,.nav-in,.hero-in,.ft-in,.ct-in{padding-left:16px;padding-right:16px}
   .nav-lk{display:none}.ham{display:flex}
   .fg2{grid-template-columns:1fr}.fc2.w{grid-column:1}
   .fc2.w>div[style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:20px !important}
   .sg{grid-template-columns:repeat(2,1fr)}
   .st-in{grid-template-columns:repeat(2,1fr)}
-  .ft-tp{grid-template-columns:1fr 1fr;gap:26px}
+  .ft-tp{grid-template-columns:repeat(4,1fr);gap:14px}
   .ct-in{grid-template-columns:1fr;gap:32px;padding-top:36px;padding-bottom:36px}
   .bg-grid{grid-template-columns:repeat(3,1fr)}
   .surge-st{grid-template-columns:repeat(2,1fr)}
@@ -684,7 +684,7 @@ footer{background:var(--n9);color:#fff}
   .hero-bts{flex-direction:column;align-items:stretch}
   .bh-w,.bh-o{justify-content:center}
   .mock-bd{grid-template-columns:1fr;height:auto}.mock-lt{display:none}.mock-mp{height:170px}
-  .st-in{grid-template-columns:1fr 1fr}.sc{padding:20px 16px}.sc-n{font-size:36px}
+  .ft-tp{grid-template-columns:1fr 1fr;gap:18px}.st-in{grid-template-columns:1fr 1fr}.sc{padding:20px 16px}.sc-n{font-size:36px}
   .sec{padding:40px 0}.sec .wrap{padding:0 16px}
   .sg{grid-template-columns:1fr;gap:11px}
   .surge-st{grid-template-columns:1fr 1fr}
@@ -866,7 +866,7 @@ footer{background:var(--n9);color:#fff}
   <div class="surge rv">
     <div class="surge-hd">
       <div class="surge-ti"><span style="background:var(--rb);border:1px solid #FCA5A5;border-radius:var(--r2);padding:3px 9px;font-family:var(--fm);font-size:8.5px;color:var(--red);letter-spacing:.08em;text-transform:uppercase">Community Surge</span>When citizens confirm the same issue, it auto-escalates</div>
-      <div class="surge-cr"><span style="font-size:13px;color:var(--t5)">Confirmations:</span><span class="surge-cn" id="surgeCnt">12</span><button class="surge-ad" onclick="addSurge()">+ I also see this</button></div>
+      <div class="surge-cr"><span style="font-size:13px;color:var(--t5)">Confirmations:</span><span class="surge-cn" id="surgeCnt">12</span><button class="surge-ad" onclick="addSurge()">+ I vouch with an upload</button></div>
     </div>
     <div class="surge-pr">
       <div class="surge-tk"><div id="surgeBar" style="height:100%;width:80%;border-radius:5px;background:linear-gradient(90deg,var(--grn),var(--amb),var(--b6),var(--red));transition:width .5s cubic-bezier(.22,1,.36,1)"></div><div style="position:absolute;top:0;bottom:0;left:20%;width:1.5px;background:var(--g300)"></div><div style="position:absolute;top:0;bottom:0;left:33%;width:1.5px;background:var(--g300)"></div><div style="position:absolute;top:0;bottom:0;left:67%;width:1.5px;background:var(--g300)"></div></div>
@@ -1137,16 +1137,18 @@ footer{background:var(--n9);color:#fff}
       <div class="ft-cti">Trust Center</div>
       <div class="ft-lk">
         <a onclick="openTrust('antifraud')">Data Integrity &amp; Anti-Fraud</a>
+        <a onclick="openTrust('dpr')">Data Processor Register</a>
         <a onclick="openTrust('privacy')">Data Privacy &amp; Ethics</a>
         <a onclick="openTrust('openpolicy')">Open Data Policy</a>
+        <a onclick="openTrust('status')">System Status</a>
       </div>
     </div>
     <div>
       <div class="ft-cti">Escalation Center</div>
       <div class="ft-lk">
-        <a onclick="openTrust('sla')">SLA &amp; Resolution Matrix</a>
-        <a onclick="openTrust('emergency')">Emergency Hazard Triggers</a>
-        <a onclick="openTrust('audits')">Resolution Audits</a>
+        <a href="escalation.html#sla">SLA Matrix</a>
+        <a href="escalation.html#emergency">Emergency Triggers</a>
+        <a href="escalation.html#audits">Resolution Audits</a>
       </div>
     </div>
     <div>
@@ -1229,6 +1231,12 @@ footer{background:var(--n9);color:#fff}
             <span class="rc-ico">&#127963;</span>
             <div class="rc-title">Municipal Officer</div>
             <div class="rc-desc">View city incidents by ward, manage SLAs &amp; update resolution status</div>
+          </div>
+          <div class="role-card" id="rc-ngo" onclick="siPickRole('ngo')">
+            <div class="rc-check">&#10003;</div>
+            <span class="rc-ico">&#127760;</span>
+            <div class="rc-title">NGO / CSO</div>
+            <div class="rc-desc">Monitor civic trends, access open data, collaborate on campaigns &amp; submit partner reports</div>
           </div>
         </div>
         <div style="font-family:var(--fm);font-size:10px;color:var(--t3);text-align:center;margin-top:10px">Select a role to continue &#8594;</div>
@@ -1368,6 +1376,63 @@ footer{background:var(--n9);color:#fff}
         <div class="si-ft" style="margin-top:10px">Not registered yet? <a onclick="cm('signin');om('muni')">Request partnership &#8594;</a></div>
       </div>
 
+      
+      <!-- ─── STEP 2C: NGO FORM ─── -->
+      <div id="si-p2n" style="display:none">
+        <button class="si-back-btn" onclick="siBack()">&#8592; Back to role</button>
+        <div style="display:flex;align-items:center;gap:10px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:var(--r3);padding:12px 14px;margin-bottom:18px">
+          <span style="font-size:20px">&#127760;</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--n9)">NGO / CSO Partner Portal</div>
+            <div style="font-family:var(--fm);font-size:10px;color:var(--t5)">Open data access · Campaign collaboration · Partner reporting</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Organisation Name *</label>
+            <input class="fi2" id="ngo-name" placeholder="e.g. Janaagraha Centre" style="padding:8px 11px"/>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Type *</label>
+            <select class="fi2" id="ngo-type" style="padding:8px 11px">
+              <option value="">Select</option>
+              <option>NGO — Registered Society</option>
+              <option>NGO — Section 8 Company</option>
+              <option>CSO — Community Group</option>
+              <option>Research / Academic</option>
+              <option>Media / Journalism</option>
+              <option>Other Civil Society</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px">
+          <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">Official Email *</label>
+          <input class="fi2" id="ngo-email" type="email" placeholder="yourname@organisation.org" style="padding:8px 11px"/>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">
+          <label style="font-family:var(--fm);font-size:8.5px;color:var(--t3);letter-spacing:.10em;text-transform:uppercase">City / Focus Area</label>
+          <input class="fi2" id="ngo-city" placeholder="e.g. Bengaluru — Urban Mobility" style="padding:8px 11px"/>
+        </div>
+        <button class="si-btn" onclick="siNGOContinue()">Request Partner Access &rarr;</button>
+      </div>
+
+      <!-- ─── STEP 3C: NGO DASHBOARD ─── -->
+      <div id="si-p3n" style="display:none">
+        <div style="text-align:center;padding:10px 0 18px">
+          <div style="font-size:36px;margin-bottom:10px">&#127760;</div>
+          <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:5px">Partner Access Requested</div>
+          <div style="font-family:var(--fm);font-size:10px;color:var(--t5)">NGO / CSO · Pending Verification</div>
+        </div>
+        <div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r3);padding:16px;margin-bottom:14px;font-size:13px;color:var(--n9);line-height:1.6">
+          Your organisation's request has been received. Our team will verify your registration details and email you an API key and partner dashboard access within <strong>2 business days</strong>.
+        </div>
+        <div class="auth-list">
+          <div class="auth-b" style="cursor:default">&#127760; NGO / CSO Partner</div>
+        </div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--t3);text-align:center;line-height:1.5">
+          Partner access includes: Open Data API · Campaign co-reporting · Trend analysis exports
+        </div>
+      </div>
       <!-- ─── STEP 3A: CITIZEN PROFILE ─── -->
       <div id="si-p3c" style="display:none">
         <!-- Profile card -->
@@ -1618,22 +1683,7 @@ footer{background:var(--n9);color:#fff}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
   function openTrust(section){
-    // Trust Center sub-pages — scroll to or open trust panel
-    var sections = {
-      antifraud: 'Data Integrity & Anti-Fraud',
-      privacy: 'Data Privacy & Ethics',
-      openpolicy: 'Open Data Policy',
-      sla: 'SLA & Resolution Matrix',
-      emergency: 'Emergency Hazard Triggers',
-      audits: 'Resolution Audits'
-    };
-    var title = sections[section] || 'Trust Center';
-    // For now, show as alert — replace with modal or subpage link
-    var el = document.getElementById('trustModal');
-    if(el){ 
-      document.getElementById('trustTitle').textContent = title;
-      el.style.display = 'flex';
-    }
+    window.location.href = 'trust.html#' + (section||'antifraud');
   }
 </script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ─ HELPERS ─ */
@@ -1689,13 +1739,15 @@ function siReset(){
 
 function siPickRole(role){
   siRole=role;
-  ['rc-citizen','rc-officer'].forEach(function(id){document.getElementById(id).classList.remove('sel');});
+  ['rc-citizen','rc-officer','rc-ngo'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('sel');});
   document.getElementById('rc-'+role).classList.add('sel');
   setTimeout(function(){
-    siShow(role==='citizen'?'si-p2c':'si-p2o');
+    var pageMap={citizen:'si-p2c',officer:'si-p2o',ngo:'si-p2n'};
+    siShow(pageMap[role]||'si-p2c');
     siSetStep(2);
-    if(role==='citizen')siSetHeader('Citizen Auditor Sign In','Choose how you want to sign in');
-    else siSetHeader('Municipal Officer Sign In','Secure government portal');
+    var hdMap={citizen:['Citizen Auditor Sign In','Choose how you want to sign in'],officer:['Municipal Officer Sign In','Secure government portal'],ngo:['NGO / CSO Partner Access','Request open data &amp; partner access']};
+    var hd=hdMap[role]||hdMap.citizen;
+    siSetHeader(hd[0],hd[1]);
   },160);
 }
 
@@ -1774,6 +1826,18 @@ function siOfficerSubmit(){
 function siShowCitizenDash(){
   siShow('si-p3c');siSetStep(3);
   siSetHeader('Welcome back!','Signed in as Citizen Auditor');
+}
+
+function siNGOContinue(){
+  var nm=document.getElementById('ngo-name'),em=document.getElementById('ngo-email');
+  if(!nm||!nm.value.trim()){toast('Please enter your organisation name','var(--red)');return;}
+  if(!em||!em.value.trim()||em.value.indexOf('@')<0){toast('Please enter a valid email','var(--red)');return;}
+  siShow('si-p3n');siSetStep(3);
+  siSetHeader('Partner Access Requested','Pending verification');
+}
+function siShowNGODash(){
+  siShow('si-p3n');siSetStep(3);
+  siSetHeader('Partner Dashboard','NGO / CSO');
 }
 function siShowOfficerDash(pending){
   siShow('si-p3o');siSetStep(3);
