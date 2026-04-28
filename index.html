@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230052CC%27/%3E%3Ctext y=%2722%27 x=%275%27 font-size=%2717%27 font-family=%27Arial%27 font-weight=%27bold%27 fill=%27white%27%3EN%3C/text%3E%3C/svg%3E"/>
 <meta charset="UTF-8">
+<meta name="referrer" content="no-referrer-when-downgrade">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NagarDrishti — India Civic Audit Platform</title>
+
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -647,7 +651,7 @@ footer{background:var(--n9);color:#fff}
 .ft-de{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;max-width:240px}
 .ft-cti{font-size:11px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.04em;margin-bottom:9px;text-transform:uppercase}
 .ft-lk{display:flex;flex-direction:column;gap:7px}
-.ft-lk a{font-size:11.5px;color:rgba(255,255,255,.38);text-decoration:none;cursor:pointer;transition:color .13s}
+.ft-lk a{font-size:11.5px;color:rgba(255,255,255,.62);text-decoration:none;cursor:pointer;transition:color .13s}
 .ft-lk a:hover{color:rgba(255,255,255,.8)}
 .ft-bt{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:9px}
 .ft-cp{font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.04em}
@@ -987,32 +991,6 @@ footer{background:var(--n9);color:#fff}
   </div>
   <!-- incident list + lifecycle -->
   <div class="ig rvs">
-    <div class="ip">
-      <div class="ipt">Incidents List View <span class="live-sm" id="liveBadge">LIVE · Last 24h</span></div>
-      <div class="fbar" style="flex-wrap:wrap;gap:5px">
-        <span style="font-family:var(--fm);font-size:9.5px;color:var(--t3);flex-shrink:0">Filter:</span>
-        <button class="fbt on" id="fb-all" onclick="toggleF('all')">🌐 All</button>
-        <button class="fbt" id="fb-aquatic" onclick="toggleF('aquatic')">🐟 Aquatic</button>
-        <button class="fbt" id="fb-streetlight" onclick="toggleF('streetlight')">💡 Streetlight</button>
-        <button class="fbt" id="fb-cracks" onclick="toggleF('cracks')">⚡ Cracks</button>
-        <button class="fbt" id="fb-dirty" onclick="toggleF('dirty')">🚮 Dirty Space</button>
-        <button class="fbt" id="fb-footpath" onclick="toggleF('footpath')">🚶 Footpath</button>
-        <button class="fbt" id="fb-fire" onclick="toggleF('fire')">🔥 Fire Safety</button>
-        <button class="fbt" id="fb-gaushala" onclick="toggleF('gaushala')">🐄 Gaushala</button>
-        <button class="fbt" id="fb-garbage" onclick="toggleF('garbage')">🗑️ Garbage</button>
-        <button class="fbt" id="fb-water" onclick="toggleF('water')">💧 Waterlogging</button>
-        <button class="fbt" id="fb-encroachment" onclick="toggleF('encroachment')">🏗️ Encroachment</button>
-        <button class="fbt" id="fb-pothole" onclick="toggleF('pothole')">🕳️ Pothole</button>
-        <button class="fbt" id="fb-road" onclick="toggleF('road')">🚧 Road Block</button>
-        <button class="fbt" id="fb-dogs" onclick="toggleF('dogs')">🐕 Stray Dogs</button>
-        <button class="fbt" id="fb-traffic" onclick="toggleF('traffic')">🚦 Traffic</button>
-        <button class="fbt" id="fb-heat" onclick="toggleF('heat')">🌿 Urban Heat</button>
-      </div>
-      <div class="dtg"><button class="dtb on" id="dt-24h" onclick="setDR('24h','Last 24h',38)">24h</button><button class="dtb" id="dt-7d" onclick="setDR('7d','Last 7 days',247)">7 days</button><button class="dtb" id="dt-15d" onclick="setDR('15d','Last 15 days',519)">15 days</button><button class="dtb" id="dt-30d" onclick="setDR('30d','Last 30 days',1104)">30 days</button></div>
-      <div class="i-sum">📊 Showing <strong id="iCnt">38</strong> incidents · Last 24 hours</div>
-      <div class="az"><span style="font-size:14px">📍</span><div style="flex:1"><div class="az-l">Alert Zone</div><div class="az-v">Dharavi, Mumbai · 400017</div></div><div class="az-r">5 km radius</div></div>
-
-    </div>
     <div class="ip alt">
       <div class="ipt">Incident Lifecycle</div>
       <div class="lc"><div class="lc-sp"><div class="lc-nd" style="background:var(--rb);border-color:var(--red);color:var(--red)">📍</div><div class="lc-ln" style="background:linear-gradient(var(--red),var(--amb))"></div></div><div class="lc-ct"><div class="lc-ti">Reported</div><div class="lc-de">Citizen submits with photo/video, GPS, pincode and severity. Goes live on map within seconds.</div></div></div>
@@ -1263,9 +1241,9 @@ footer{background:var(--n9);color:#fff}
       <div class="ft-cti">Platform</div>
       <div class="ft-lk">
         <a href="dashboard.html">Live Dashboard</a>
-        <a onclick="om('report')">Start an Audit</a>
-        <a onclick="gs('cities')">City Rankings</a>
-        <a onclick="om('api')">API Access</a>
+        <a href="#" onclick="om('report');return false;">Start an Audit</a>
+        <a href="#cities" onclick="gs('cities')">City Rankings</a>
+        <a href="#" onclick="om('api');return false;">API Access</a>
       </div>
     </div>
     <div>
@@ -1289,9 +1267,9 @@ footer{background:var(--n9);color:#fff}
     <div>
       <div class="ft-cti">About</div>
       <div class="ft-lk">
-        <a onclick="om('mission')">Mission</a>
-        <a onclick="om('muni')">For Municipalities</a>
-        <a onclick="gs('contact')">Press / Media</a>
+        <a href="#impact" onclick="gs('impact')">Mission</a>
+        <a href="#cities" onclick="gs('cities')">For Municipalities</a>
+        <a href="mailto:press@nagardrishti.in">Press / Media</a>
       </div>
     </div>
     <div class="ft-bt"><div class="ft-cp">© 2026 NagarDrishti · Made with ❤️ in India</div><div class="ft-bg"><span class="fbg">Smart Cities Mission</span><span class="fbg">SWACHH Bharat</span><span class="fbg">Digital India</span></div></div>
@@ -2349,8 +2327,8 @@ function setBP(k){
   Object.keys(BPD).forEach(function(t){var b=document.getElementById('bpt-'+t);if(b)b.className=t===k?'bpt on':'bpt'});
   renderBP(k)
 }
-var PX_BEFORE={'g':'https://cdn.pixabay.com/photo/2018/05/31/07/25/garbage-3443651_640.jpg','pt':'https://cdn.pixabay.com/photo/2015/11/07/15/05/asphalt-1032698_640.jpg','t':'https://cdn.pixabay.com/photo/2016/11/19/15/50/traffic-1840619_640.jpg','f':'https://cdn.pixabay.com/photo/2016/03/09/09/22/street-1246219_640.jpg','c':'https://cdn.pixabay.com/photo/2015/09/09/11/09/dirt-931726_640.jpg','wd':'https://cdn.pixabay.com/photo/2020/08/29/07/30/street-5526378_640.jpg','fs':'https://cdn.pixabay.com/photo/2016/11/18/17/46/fire-1836426_640.jpg','k':'https://cdn.pixabay.com/photo/2016/11/29/02/11/road-1867398_640.jpg','sl':'https://cdn.pixabay.com/photo/2018/03/12/20/26/light-3220508_640.jpg','en':'https://cdn.pixabay.com/photo/2018/07/04/12/58/india-3516096_640.jpg','aq':'https://cdn.pixabay.com/photo/2015/09/09/18/25/lake-932145_640.jpg','rv':'https://cdn.pixabay.com/photo/2017/07/13/08/57/river-2499760_640.jpg','sd':'https://cdn.pixabay.com/photo/2018/07/06/11/52/india-3520825_640.jpg','gu':'https://cdn.pixabay.com/photo/2018/07/06/02/52/cow-3519690_640.jpg','uh':'https://cdn.pixabay.com/photo/2018/08/22/08/40/industry-3623037_640.jpg'};
-var PX_AFTER={'g':'https://cdn.pixabay.com/photo/2018/01/22/08/56/trash-3099366_640.jpg','pt':'https://cdn.pixabay.com/photo/2016/11/23/14/45/asphalt-1853616_640.jpg','t':'https://cdn.pixabay.com/photo/2017/07/21/23/57/traffic-2527917_640.jpg','f':'https://cdn.pixabay.com/photo/2016/11/22/19/25/street-1850085_640.jpg','c':'https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924_640.jpg','wd':'https://cdn.pixabay.com/photo/2016/07/22/17/56/water-1535358_640.jpg','fs':'https://cdn.pixabay.com/photo/2017/08/07/14/02/fire-extinguisher-2603461_640.jpg','k':'https://cdn.pixabay.com/photo/2017/01/16/15/52/road-1984499_640.jpg','sl':'https://cdn.pixabay.com/photo/2016/08/09/14/16/lamp-1581915_640.jpg','en':'https://cdn.pixabay.com/photo/2019/08/19/14/05/path-4416615_640.jpg','aq':'https://cdn.pixabay.com/photo/2016/05/11/05/39/lake-1385829_640.jpg','rv':'https://cdn.pixabay.com/photo/2018/09/30/13/59/lake-3712021_640.jpg','sd':'https://cdn.pixabay.com/photo/2019/01/30/05/48/animal-3964760_640.jpg','gu':'https://cdn.pixabay.com/photo/2017/09/25/13/12/farm-2784973_640.jpg','uh':'https://cdn.pixabay.com/photo/2016/03/28/09/34/beach-1283872_640.jpg'};
+var PX_BEFORE={'g':'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80&auto=format','pt':'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?w=640&q=80&auto=format','t':'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=640&q=80&auto=format','f':'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=640&q=80&auto=format','c':'https://images.unsplash.com/photo-1591189824344-9f7f8d2ccbe5?w=640&q=80&auto=format','wd':'https://images.unsplash.com/photo-1547683905-f686c993aae5?w=640&q=80&auto=format','fs':'https://images.unsplash.com/photo-1599568604451-69174c7a0ea5?w=640&q=80&auto=format','k':'https://images.unsplash.com/photo-1577414614481-1b59cfb36ebd?w=640&q=80&auto=format','sl':'https://images.unsplash.com/photo-1519056820505-fbf31a97cf24?w=640&q=80&auto=format','en':'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=640&q=80&auto=format','aq':'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=640&q=80&auto=format','rv':'https://images.unsplash.com/photo-1568526381923-caf3fd520382?w=640&q=80&auto=format','sd':'https://images.unsplash.com/photo-1615361200141-f45040f367be?w=640&q=80&auto=format','gu':'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=640&q=80&auto=format','uh':'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=640&q=80&auto=format'};
+var PX_AFTER={'g':'https://images.unsplash.com/photo-1558618047-f9e09b0d0e34?w=640&q=80&auto=format','pt':'https://images.unsplash.com/photo-1566618340723-c4a3f3723a01?w=640&q=80&auto=format','t':'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=640&q=80&auto=format','f':'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=640&q=80&auto=format','c':'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=640&q=80&auto=format','wd':'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=640&q=80&auto=format','fs':'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=640&q=80&auto=format','k':'https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=640&q=80&auto=format','sl':'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=640&q=80&auto=format','en':'https://images.unsplash.com/photo-1465310477141-251f2d48cab3?w=640&q=80&auto=format','aq':'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=640&q=80&auto=format','rv':'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=640&q=80&auto=format','sd':'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=640&q=80&auto=format','gu':'https://images.unsplash.com/photo-1557400401-b3df2cc78f77?w=640&q=80&auto=format','uh':'https://images.unsplash.com/photo-1448375240586-882707db888b?w=640&q=80&auto=format'};
 
 function bpImgFail(el, emoji, label, bg){
   var p = el.parentNode;
