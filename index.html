@@ -1148,7 +1148,6 @@ footer{background:var(--n9);color:#fff}
             <th onclick="ilSort('status')">Status <span class="sort-arrow">↕</span></th>
             <th onclick="ilSort('confirmations')">Confirms <span class="sort-arrow">↕</span></th>
             <th onclick="ilSort('created_at')">Submitted <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('resolved_at')">Resolved In <span class="sort-arrow">↕</span></th>
             <th>Action</th>
           </tr>
         </thead>
@@ -1263,7 +1262,7 @@ footer{background:var(--n9);color:#fff}
     <div>
       <div class="ft-cti">Platform</div>
       <div class="ft-lk">
-        <a onclick="goDash()">Live Dashboard</a>
+        <a href="dashboard.html">Live Dashboard</a>
         <a onclick="om('report')">Start an Audit</a>
         <a onclick="gs('cities')">City Rankings</a>
         <a onclick="om('api')">API Access</a>
@@ -1272,11 +1271,11 @@ footer{background:var(--n9);color:#fff}
     <div>
       <div class="ft-cti">Trust Center</div>
       <div class="ft-lk">
-        <a onclick="openTrust('antifraud')">Data Integrity &amp; Anti-Fraud</a>
-        <a onclick="openTrust('dpr')">Data Processor Register</a>
-        <a onclick="openTrust('privacy')">Data Privacy &amp; Ethics</a>
-        <a onclick="openTrust('openpolicy')">Open Data Policy</a>
-        <a onclick="openTrust('status')">System Status</a>
+        <a href="trust.html#antifraud">Data Integrity &amp; Anti-Fraud</a>
+        <a href="trust.html#dpr">Data Processor Register</a>
+        <a href="trust.html#privacy">Data Privacy &amp; Ethics</a>
+        <a href="trust.html#openpolicy">Open Data Policy</a>
+        <a href="trust.html#status">System Status</a>
       </div>
     </div>
     <div>
@@ -2352,9 +2351,15 @@ function setBP(k){
 }
 var PX_BEFORE={'g':'https://cdn.pixabay.com/photo/2018/05/31/07/25/garbage-3443651_640.jpg','pt':'https://cdn.pixabay.com/photo/2015/11/07/15/05/asphalt-1032698_640.jpg','t':'https://cdn.pixabay.com/photo/2016/11/19/15/50/traffic-1840619_640.jpg','f':'https://cdn.pixabay.com/photo/2016/03/09/09/22/street-1246219_640.jpg','c':'https://cdn.pixabay.com/photo/2015/09/09/11/09/dirt-931726_640.jpg','wd':'https://cdn.pixabay.com/photo/2020/08/29/07/30/street-5526378_640.jpg','fs':'https://cdn.pixabay.com/photo/2016/11/18/17/46/fire-1836426_640.jpg','k':'https://cdn.pixabay.com/photo/2016/11/29/02/11/road-1867398_640.jpg','sl':'https://cdn.pixabay.com/photo/2018/03/12/20/26/light-3220508_640.jpg','en':'https://cdn.pixabay.com/photo/2018/07/04/12/58/india-3516096_640.jpg','aq':'https://cdn.pixabay.com/photo/2015/09/09/18/25/lake-932145_640.jpg','rv':'https://cdn.pixabay.com/photo/2017/07/13/08/57/river-2499760_640.jpg','sd':'https://cdn.pixabay.com/photo/2018/07/06/11/52/india-3520825_640.jpg','gu':'https://cdn.pixabay.com/photo/2018/07/06/02/52/cow-3519690_640.jpg','uh':'https://cdn.pixabay.com/photo/2018/08/22/08/40/industry-3623037_640.jpg'};
 var PX_AFTER={'g':'https://cdn.pixabay.com/photo/2018/01/22/08/56/trash-3099366_640.jpg','pt':'https://cdn.pixabay.com/photo/2016/11/23/14/45/asphalt-1853616_640.jpg','t':'https://cdn.pixabay.com/photo/2017/07/21/23/57/traffic-2527917_640.jpg','f':'https://cdn.pixabay.com/photo/2016/11/22/19/25/street-1850085_640.jpg','c':'https://cdn.pixabay.com/photo/2017/01/31/13/14/animal-2023924_640.jpg','wd':'https://cdn.pixabay.com/photo/2016/07/22/17/56/water-1535358_640.jpg','fs':'https://cdn.pixabay.com/photo/2017/08/07/14/02/fire-extinguisher-2603461_640.jpg','k':'https://cdn.pixabay.com/photo/2017/01/16/15/52/road-1984499_640.jpg','sl':'https://cdn.pixabay.com/photo/2016/08/09/14/16/lamp-1581915_640.jpg','en':'https://cdn.pixabay.com/photo/2019/08/19/14/05/path-4416615_640.jpg','aq':'https://cdn.pixabay.com/photo/2016/05/11/05/39/lake-1385829_640.jpg','rv':'https://cdn.pixabay.com/photo/2018/09/30/13/59/lake-3712021_640.jpg','sd':'https://cdn.pixabay.com/photo/2019/01/30/05/48/animal-3964760_640.jpg','gu':'https://cdn.pixabay.com/photo/2017/09/25/13/12/farm-2784973_640.jpg','uh':'https://cdn.pixabay.com/photo/2016/03/28/09/34/beach-1283872_640.jpg'};
+
+function bpImgFail(el, emoji, label, bg){
+  var p = el.parentNode;
+  if(p) p.innerHTML = '<div style="height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:'+bg+'"><div style="font-size:48px;margin-bottom:8px">'+emoji+'</div><div style="font-size:11px;font-weight:600;color:#555">'+label+'</div></div>';
+}
+
 function renderBP(k){
   var d=BPD[k];if(!d)return;var p=document.getElementById('bpPanel');if(!p)return;
-  var gradB='linear-gradient(135deg,#FEE2E2 0%,#FECACA 100%)';var imgB=PX_BEFORE[k]?('<img src="'+PX_BEFORE[k]+'" alt="before" loading="lazy" style="width:100%;height:160px;object-fit:cover;display:block;border-radius:0" onerror="this.style.display=\'none\';this.parentNode.style.background=\''+gradB+'\';this.parentNode.style.height=\'80px\'"/>'):'';  var gradA='linear-gradient(135deg,#DCFCE7 0%,#BBF7D0 100%)';var imgA=PX_AFTER[k]?('<img src="'+PX_AFTER[k]+'" alt="after" loading="lazy" style="width:100%;height:160px;object-fit:cover;display:block;border-radius:0" onerror="this.style.display=\'none\';this.parentNode.style.background=\''+gradA+'\';this.parentNode.style.height=\'80px\'"/>'):'';
+  var gradB='linear-gradient(135deg,#FEE2E2 0%,#FECACA 100%)';var imgB=PX_BEFORE[k]?('<img src="'+PX_BEFORE[k]+'" alt="before" loading="lazy" style="width:100%;height:160px;object-fit:cover;display:block" onerror="bpImgFail(this,\''+d.b.em+'\',\'BEFORE\',\'#FEE2E2\')"/>'):'';  var gradA='linear-gradient(135deg,#DCFCE7 0%,#BBF7D0 100%)';var imgA=PX_AFTER[k]?('<img src="'+PX_AFTER[k]+'" alt="after" loading="lazy" style="width:100%;height:160px;object-fit:cover;display:block" onerror="bpImgFail(this,\'✅\',\'RESOLVED\',\'#DCFCE7\')"/>'):'';
   var tB=d.b.tags.map(function(t){return '<span class="bp-tg" style="background:'+d.b.bb+';border-color:'+d.b.bc+'44;color:'+d.b.bc+'">'+t+'</span>'}).join('');
   var tA=d.a.tags.map(function(t){return '<span class="bp-tg" style="background:'+d.a.bb+';border-color:'+d.a.bc+'44;color:'+d.a.bc+'">'+t+'</span>'}).join('');
   var tips=d.tips.map(function(t){return '<div class="bp-tip"><span class="bp-arr">→</span><span class="bp-td">'+t+'</span></div>'}).join('');
@@ -2499,7 +2504,7 @@ function renderTable(){
   if(!tbody)return;
 
   if(slice.length===0){
-    tbody.innerHTML='<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters. <button onclick="clearFilters()" style="background:none;border:none;color:var(--b6);cursor:pointer;font-family:var(--fm);font-size:11px;text-decoration:underline">Clear filters</button></td></tr>';
+    tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters. <button onclick="clearFilters()" style="background:none;border:none;color:var(--b6);cursor:pointer;font-family:var(--fm);font-size:11px;text-decoration:underline">Clear filters</button></td></tr>';
   } else {
     tbody.innerHTML = slice.map(function(r){
       var sevStyle = SEV_STYLE[r.severity]||'';
@@ -2515,119 +2520,28 @@ function renderTable(){
         +'<td data-label="Status"><span class="il-status '+statusClass+'">'+r.status.toUpperCase()+'</span></td>'
         +'<td data-label="Confirms" style="font-family:var(--fm);font-size:11px;text-align:center">'+r.confirmations+'</td>'
         +'<td data-label="Submitted"><span style="font-family:var(--fm);font-size:10.5px;color:var(--t5)">'+r.created_at+'</span></td>'
-        +'<td data-label="Resolved In"><span style="font-family:var(--fm);font-size:10.5px;color:'+(r.resolvedIn?'var(--grn)':'var(--t3)')+'">'+( r.resolvedIn||'—')+'</span></td>'
-        +'<td data-label="Action"><button class="il-action" onclick="ilEscRow(this)" data-issue="'+r.issue.replace(/"/g,'&quot;')+'" data-city="'+r.city+'">'+(r.status==='resolved'?'View':'🚩 Escalate')+'</button></td>'
+        +'<td data-label="Action"><button class="il-act-view" onclick="viewIncident(this)" data-id="'+r.id+'" data-city="'+r.city+'" data-cat="'+r.catLabel+'" data-sev="'+r.severity+'" data-sts="'+r.status+'">View</button>'
+        +'<button class="il-act-esc" data-city="'+r.city+'" onclick="ilEscBtn(this)">🚩 Esc</button></td>'
         +'</tr>';
-    }).join('');
-  }
-
-  // Update count
-  var el = document.getElementById('ilCount');
-  if(el) el.textContent = 'Showing '+(start+1)+'-'+Math.min(start+ilPageSize,total)+' of '+total+' incident'+(total===1?'':'s');
-
-  // Update pagination
-  var pi = document.getElementById('ilPageInfo');
-  if(pi) pi.textContent = 'Page '+ilCurrentPage+' of '+pages;
-  var pn = document.getElementById('ilPageNums');
-  if(pn){
-    var nums='', lo=Math.max(1,ilCurrentPage-2), hi=Math.min(pages,ilCurrentPage+2);
-    if(lo>1) nums+='<button class="il-page-btn" onclick="ilGoPage(1)">1</button>'+(lo>2?'<span style="padding:0 3px;color:var(--t3)">…</span>':'');
-    for(var p=lo;p<=hi;p++) nums+='<button class="il-page-btn'+(p===ilCurrentPage?' active':'')+'" onclick="ilGoPage('+p+')">'+p+'</button>';
-    if(hi<pages) nums+=(hi<pages-1?'<span style="padding:0 3px;color:var(--t3)">…</span>':'')+'<button class="il-page-btn" onclick="ilGoPage('+pages+')">'+pages+'</button>';
-    pn.innerHTML = nums;
-  }
-  var prev=document.getElementById('ilPrev'),next=document.getElementById('ilNext');
-  if(prev)prev.disabled=(ilCurrentPage<=1);
-  if(next)next.disabled=(ilCurrentPage>=pages);
-}
-
-function ilPage(d){ ilCurrentPage+=d; renderTable(); }
-function ilEscRow(btn){
-  var issue = btn.getAttribute('data-issue');
-  var city  = btn.getAttribute('data-city');
-  showEsc(issue, city, 'Municipal Dept.');
-}
-function ilGoPage(p){ ilCurrentPage=p; renderTable(); }
-function ilChangePageSize(){ ilPageSize=+document.getElementById('ilPageSize').value; ilCurrentPage=1; renderTable(); }
-
-/* ─ EXPORT FUNCTIONS ─ */
-function toggleExpMenu(){
-  var m=document.getElementById('expMenu');
-  if(m)m.classList.toggle('open');
-}
-// Close export menu when clicking outside
-document.addEventListener('click',function(e){
-  var dd=document.getElementById('expDropdown');
-  if(dd&&!dd.contains(e.target)){
-    var m=document.getElementById('expMenu');
-    if(m)m.classList.remove('open');
-  }
-});
-
-function exportData(type){
-  var m=document.getElementById('expMenu');
-  if(m)m.classList.remove('open');
-
-  var data = type==='filtered' ? ilFiltered : IL_DATA;
-  var filename = 'NagarDrishti_Incidents_'+new Date().toISOString().slice(0,10);
-
-  if(type==='csv' || type==='filtered'){
-    var headers = ['ID','City','Pincode','Category','Severity','Status','Confirmations','Issue','Submitted','Resolved In'];
-    var rows = data.map(function(r){
-      return [r.id,r.city,r.pincode,r.category,r.severity,r.status,r.confirmations,'"'+r.issue+'"',r.created_at,r.resolvedIn||''].join(',');
-    });
-    var csv = [headers.join(',')].concat(rows).join('\n');
-    downloadFile(csv, filename+'.csv', 'text/csv');
-    toast('✅ CSV downloaded — '+data.length+' incidents exported','var(--grn)');
-  }
-  else if(type==='json'){
-    var json = JSON.stringify(data, null, 2);
-    downloadFile(json, filename+'.json', 'application/json');
-    toast('✅ JSON downloaded — '+data.length+' incidents exported','var(--grn)');
-  }
-  else if(type==='pdf'){
-    // PDF: open a print-friendly window
-    var printHtml = buildPrintHTML(data);
-    var w = window.open('','_blank','width=900,height=600');
-    w.document.write(printHtml);
-    w.document.close();
-    w.focus();
-    setTimeout(function(){ w.print(); }, 500);
-    toast('📑 PDF report opened — use browser Print → Save as PDF','var(--b6)');
-  }
-}
-
-function downloadFile(content, filename, mime){
-  var blob = new Blob([content], {type: mime});
-  var url  = URL.createObjectURL(blob);
-  var a    = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function buildPrintHTML(data){
-  var rows = data.map(function(r,i){
-    var bg = r.status==='resolved'?'#f0fdf4': r.severity==='critical'?'#fef2f2': r.severity==='high'?'#fffbeb':'#fff';
-    return '<tr style="background:'+bg+';border-bottom:1px solid #e5e7eb">'
-      +'<td style="padding:7px 10px;font-size:11px;color:#6b7280;font-family:monospace">'+r.id+'</td>'
-      +'<td style="padding:7px 10px;font-size:12px;font-weight:600">'+r.city+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;font-family:monospace">'+r.pincode+'</td>'
-      +'<td style="padding:7px 10px;font-size:11.5px">'+r.catLabel+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;font-weight:700;text-transform:uppercase;color:'+(r.severity==='critical'?'#dc2626':r.severity==='high'?'#d97706':r.severity==='medium'?'#b45309':'#059669')+'">'+r.severity+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;font-weight:600;text-transform:uppercase;color:'+(r.status==='resolved'?'#059669':r.status==='active'?'#1d4ed8':'#92400e')+'">'+r.status+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;text-align:center">'+r.confirmations+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;font-family:monospace">'+r.created_at+'</td>'
-      +'<td style="padding:7px 10px;font-size:11px;color:'+(r.resolvedIn?'#059669':'#9ca3af')+'">'+( r.resolvedIn||'Pending')+'</td>'
-      +'</tr>';
   }).join('');
+  }
+  /* Pagination */
+  var pages = Math.ceil(ilFiltered.length / ilPageSize)||1;
+  document.getElementById('ilPageInfo') && (document.getElementById('ilPageInfo').textContent = 'Page '+ilCurrentPage+' of '+pages);
+  document.getElementById('ilPrev') && (document.getElementById('ilPrev').disabled = ilCurrentPage<=1);
+  document.getElementById('ilNext') && (document.getElementById('ilNext').disabled = ilCurrentPage>=pages);
+  var nums='';
+  for(var p=1;p<=pages;p++){nums+='<button class="il-pg-num'+(p===ilCurrentPage?' active':'')+'" onclick="ilGoPage('+p+')">'+p+'</button>';}
+  document.getElementById('ilPageNums') && (document.getElementById('ilPageNums').innerHTML=nums);
+}
+
+function ilPrint(data){
   return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>NagarDrishti — Incident Report</title>'
     +'<style>body{font-family:Arial,sans-serif;padding:30px;color:#111827}h1{font-size:20px;margin-bottom:4px}p{font-size:12px;color:#6b7280;margin-bottom:20px}table{width:100%;border-collapse:collapse}th{background:#f3f4f6;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;text-align:left;color:#6b7280;border-bottom:2px solid #e5e7eb}@media print{@page{size:A4 landscape;margin:15mm}}</style>'
     +'</head><body>'
     +'<h1>NagarDrishti — Incident Report</h1>'
     +'<p>Generated: '+new Date().toLocaleString('en-IN')+' · Total incidents: '+data.length+'</p>'
-    +'<table><thead><tr><th>ID</th><th>City</th><th>PIN</th><th>Category</th><th>Severity</th><th>Status</th><th>Confirms</th><th>Submitted</th><th>Resolved In</th></tr></thead>'
+    +'<table><thead><tr><th>ID</th><th>City</th><th>PIN</th><th>Category</th><th>Severity</th><th>Status</th><th>Confirms</th><th>Submitted</th></tr></thead>'
     +'<tbody>'+rows+'</tbody></table>'
     +'</body></html>';
 }
@@ -2925,5 +2839,6 @@ function closeAIP() {
 }
 
 </script>
+</div>
 </body>
 </html>
