@@ -465,11 +465,15 @@ nav.sh{box-shadow:var(--s2)}
 .il-pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--g100);flex-wrap:wrap;gap:8px}
 .il-page-info{font-family:var(--fm);font-size:10px;color:var(--t3)}
 .il-page-btns{display:flex;gap:5px}
-.il-act-map{display:inline-flex;align-items:center;gap:4px;background:var(--b0);border:1.5px solid var(--b1);border-radius:20px;padding:4px 11px;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--b6);font-family:var(--ff);white-space:nowrap;transition:all .15s}
+.il-act-map{display:inline-flex;align-items:center;gap:5px;background:var(--b0);border:1.5px solid #BFDBFE;border-radius:20px;padding:4px 12px;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--b6);font-family:var(--ff);white-space:nowrap;transition:all .18s;box-shadow:0 1px 3px rgba(0,82,204,.08);letter-spacing:.01em}
+.il-act-map:hover{background:var(--b1);border-color:var(--b6);box-shadow:0 2px 8px rgba(0,82,204,.18);transform:translateY(-1px)}
 .il-act-map:hover{border-color:var(--b5);background:var(--b1);transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,82,204,.18)}
-.il-act-esc{display:inline-flex;align-items:center;gap:4px;background:var(--rb);border:1.5px solid #FECACA;border-radius:20px;padding:4px 11px;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--red);font-family:var(--ff);white-space:nowrap;transition:all .15s}
+.il-act-esc{display:inline-flex;align-items:center;gap:5px;background:var(--rb);border:1.5px solid #FECACA;border-radius:20px;padding:4px 12px;font-size:10.5px;font-weight:700;cursor:pointer;color:var(--red);font-family:var(--ff);white-space:nowrap;transition:all .18s;box-shadow:0 1px 3px rgba(220,38,38,.08);letter-spacing:.01em}
+.il-act-esc:hover{background:#FEE2E2;border-color:var(--red);box-shadow:0 2px 8px rgba(220,38,38,.15);transform:translateY(-1px)}
 .il-act-esc:hover{border-color:var(--red);background:#FECACA;transform:translateY(-1px);box-shadow:0 2px 8px rgba(220,38,38,.18)}
-.il-page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;border:1.5px solid var(--g200);border-radius:20px;background:var(--w);font-family:var(--fm);font-size:11px;font-weight:600;color:var(--t7);cursor:pointer;transition:all .15s}
+.il-page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 9px;border:1.5px solid var(--g200);border-radius:20px;background:var(--w);font-family:var(--fm);font-size:11px;font-weight:700;color:var(--t7);cursor:pointer;transition:all .18s;box-shadow:0 1px 2px rgba(15,28,63,.06);}
+.il-page-btn:hover{border-color:var(--b4);color:var(--b6);background:var(--b0);box-shadow:0 2px 6px rgba(0,82,204,.12)}
+.il-page-btn.on{background:var(--b6);border-color:var(--b6);color:#fff;box-shadow:0 2px 8px rgba(0,82,204,.25)}
 .il-page-btn:hover{border-color:var(--b6);color:var(--b6)}
 .il-page-btn.active{background:var(--b6);border-color:var(--b6);color:#fff;box-shadow:0 2px 8px rgba(0,82,204,.25)}
 .il-page-btn:disabled{opacity:.35;cursor:not-allowed}
@@ -1103,6 +1107,57 @@ footer{background:var(--n9);color:#fff}
           <div class="esc-tt"><strong>🌿 Urban Heat</strong><span style="color:var(--grn)">→ Forest / Tree Officer</span></div>
         </div>
         <div class="crit-bx"><div class="crit-ti">⚡ CRITICAL Override</div><p class="crit-de">Critical severity or 10+ confirmations → skips ward level → goes directly to <strong>Municipal Commissioner + State Dept.</strong> SLA: 2 hours.</p></div>
+      </div>
+    
+      <!-- Community Surge Indicator — Research: civic platforms show this adjacent to lifecycle -->
+      <div style="margin-top:22px;padding-top:20px;border-top:1px solid var(--g100);">
+        <div style="font-size:10px;font-weight:700;font-family:var(--fm);color:var(--t5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">⚡ Community Surge Indicator</div>
+        <div style="font-size:12px;color:var(--t5);line-height:1.6;margin-bottom:12px;">When multiple citizens confirm the same incident, NagarDrishti auto-escalates it — no manual intervention needed.</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r2);">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--gb);border:1.5px solid #86EFAC;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">👤</div>
+            <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:var(--t7);">1–2 confirmations</div><div style="font-size:9.5px;color:var(--t5);font-family:var(--fm);">Standard routing · original SLA</div></div>
+            <span style="background:var(--gb);border:1px solid #86EFAC;color:var(--grn);font-family:var(--fm);font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">Normal</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--ab);border:1px solid #FDE68A;border-radius:var(--r2);">
+            <div style="width:30px;height:30px;border-radius:50%;background:#FEF3C7;border:1.5px solid #FDE68A;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">👥</div>
+            <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:var(--t7);">3–4 confirmations</div><div style="font-size:9.5px;color:var(--t5);font-family:var(--fm);">Priority bump · officer re-alerted</div></div>
+            <span style="background:var(--ab);border:1px solid #FDE68A;color:var(--amb);font-family:var(--fm);font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">Surge ↑</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--rb);border:1px solid #FECACA;border-radius:var(--r2);">
+            <div style="width:30px;height:30px;border-radius:50%;background:#FEE2E2;border:1.5px solid #FECACA;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🔥</div>
+            <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:var(--t7);">5+ confirmations</div><div style="font-size:9.5px;color:var(--t5);font-family:var(--fm);">Auto-Critical · SLA tightened · Dept. Head CC'd</div></div>
+            <span style="background:var(--rb);border:1px solid #FECACA;color:var(--red);font-family:var(--fm);font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">Critical 🚨</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Severity Notification Radius — how far alerts propagate -->
+      <div style="margin-top:18px;">
+        <div style="font-size:10px;font-weight:700;font-family:var(--fm);color:var(--t5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">📡 Severity Notification Radius</div>
+        <div style="font-size:12px;color:var(--t5);line-height:1.6;margin-bottom:12px;">Nearby citizens are alerted within this radius and invited to confirm — building community consensus.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+          <div style="background:var(--rb);border:1px solid #FECACA;border-radius:var(--r2);padding:10px 12px;text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--red);line-height:1;">5 km</div>
+            <div style="font-size:10px;font-family:var(--fm);font-weight:700;color:var(--red);letter-spacing:.06em;margin-top:3px;">CRITICAL</div>
+            <div style="font-size:9px;color:var(--t5);font-family:var(--fm);margin-top:2px;">City-wide alert</div>
+          </div>
+          <div style="background:var(--ab);border:1px solid #FDE68A;border-radius:var(--r2);padding:10px 12px;text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--amb);line-height:1;">2 km</div>
+            <div style="font-size:10px;font-family:var(--fm);font-weight:700;color:var(--amb);letter-spacing:.06em;margin-top:3px;">HIGH</div>
+            <div style="font-size:9px;color:var(--t5);font-family:var(--fm);margin-top:2px;">Neighbourhood alert</div>
+          </div>
+          <div style="background:var(--b0);border:1px solid var(--b1);border-radius:var(--r2);padding:10px 12px;text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--b6);line-height:1;">500 m</div>
+            <div style="font-size:10px;font-family:var(--fm);font-weight:700;color:var(--b6);letter-spacing:.06em;margin-top:3px;">MEDIUM</div>
+            <div style="font-size:9px;color:var(--t5);font-family:var(--fm);margin-top:2px;">Street-level alert</div>
+          </div>
+          <div style="background:var(--gb);border:1px solid #BBF7D0;border-radius:var(--r2);padding:10px 12px;text-align:center;">
+            <div style="font-size:22px;font-weight:800;color:var(--grn);line-height:1;">Ward</div>
+            <div style="font-size:10px;font-family:var(--fm);font-weight:700;color:var(--grn);letter-spacing:.06em;margin-top:3px;">LOW</div>
+            <div style="font-size:9px;color:var(--t5);font-family:var(--fm);margin-top:2px;">Officer only</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
