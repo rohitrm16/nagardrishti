@@ -1150,7 +1150,7 @@ footer{background:var(--n9);color:#fff}
       <table class="il-table">
         <thead>
           <tr>
-            <th onclick="ilSort('id')">Incident ID<span class="sort-arrow">↕</span></th>
+            <th onclick="ilSort('id')">Audit ID<span class="sort-arrow">↕</span></th>
             <th onclick="ilSort('city')">City <span class="sort-arrow">↕</span></th>
             <th onclick="ilSort('pincode')">PIN<span class="sort-arrow">↕</span></th>
             <th onclick="ilSort('category')">Category <span class="sort-arrow">↕</span></th>
@@ -2516,7 +2516,7 @@ function renderTable(){
       var statusClass = r.status;
       var rowClass = r.status==='resolved'?'resolved':'';
       return '<tr class="'+rowClass+'">'
-        +'<td data-label="ID"><span style="font-family:var(--fm);font-size:10px;color:var(--t3)">'+r.id+'</span></td>'
+        +'<td data-label="Audit ID"><span style="font-family:var(--fm);font-size:10.5px;font-weight:600;color:var(--b6)">'+r.id+'</span></td>'
         +'<td data-label="City"><strong>'+r.city+'</strong></td>'
         +'<td data-label="Pincode"><span style="font-family:var(--fm);font-size:11px;color:var(--t5)">'+r.pincode+'</span></td>'
         +'<td data-label="Category"><span class="il-cat-pill" style="background:var(--g50);border:1px solid var(--g200)">'+r.catLabel+'</span></td>'
