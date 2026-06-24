@@ -1795,7 +1795,7 @@ footer{background:var(--n9);color:#fff}
       </div>
 
       <!-- EVIDENCE -->
-      <label class="flb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--t3);font-weight:400;letter-spacing:0">(optional — but boosts resolution 3×)</span></label>
+      <label class="flb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--red);font-weight:600;letter-spacing:0">* Mandatory</span></label>
       <div class="ev-tabs"><button class="ev-tab on" id="etP" onclick="evTab('photo')">📷 Photo</button><button class="ev-tab off" id="etV" onclick="evTab('video')">🎥 Video</button></div>
       <div id="ezP" class="upz" onclick="document.getElementById('ffi').click()">
         <div style="font-size:22px;margin-bottom:5px" id="upi">📷</div>
@@ -1875,6 +1875,12 @@ footer{background:var(--n9);color:#fff}
       <div class="aip-pr"><span class="aip-pr-k">⏱ SLA</span><span class="aip-pr-v" id="aipSLA">—</span></div>
       <div class="aip-pr"><span class="aip-pr-k">📍 SOP</span><span class="aip-pr-v" id="aipSOP">—</span></div>
       <div class="aip-pr"><span class="aip-pr-k">⚖️ Law</span><span class="aip-pr-v" id="aipLaw">—</span></div>
+    </div>
+    <div class="aip-whatsapp" id="aipWhatsapp">
+      <div style="font-size:11.5px;font-weight:700;color:var(--n9);margin-bottom:6px">📋 Your Audit ID: <span id="aipRefDisplay" style="color:var(--b6)"></span></div>
+      <a id="aipWaBtn" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:7px;background:#25D366;color:#fff;border-radius:var(--r2);padding:9px 14px;font-size:12.5px;font-weight:700;text-decoration:none;width:100%;box-sizing:border-box">
+        <span style="font-size:16px">💬</span> Confirm via WhatsApp
+      </a>
     </div>
     <button class="aip-close" id="aipClose" onclick="closeAIP()">View on Map →</button>
   </div>
@@ -2203,6 +2209,9 @@ function doReport(){
     if(!sel){toast('⚠ Select severity level for this category','var(--red)');return;}
   }
   if(!de){toast('⚠ Add a description','var(--red)');return;}
+  var photoUploaded=document.getElementById('ffi')&&document.getElementById('ffi').files.length>0;
+  var videoUploaded=document.getElementById('ffv')&&document.getElementById('ffv').files.length>0;
+  if(!photoUploaded&&!videoUploaded){toast('⚠ Evidence is mandatory — upload a photo or video','var(--red)');return;}
 
   var city='',ward='',locOk=false;
   if(rptMode==='gps'){
@@ -2225,6 +2234,10 @@ function doReport(){
   rl.ts.push(now);localStorage.setItem('nd_rl',JSON.stringify(rl));
 
   var ref='ND'+(Math.floor(Math.random()*90000)+10000);
+  /* Save audit ID to localStorage for tracking */
+  var nd_audits=JSON.parse(localStorage.getItem('nd_audits')||'[]');
+  nd_audits.push({id:ref,cat:c,city:city,ward:ward,ts:Date.now()});
+  localStorage.setItem('nd_audits',JSON.stringify(nd_audits));
   cm('report');
   runAIProgress(c, ref, city, ward, rptGpsLa||null, rptGpsLo||null);
 
@@ -2808,6 +2821,7 @@ function runAIProgress(cat, refId, city, ward, lat, lng) {
   var live = ge('aipLive'); if(live) live.className = 'aip-live';
   var promise = ge('aipPromise'); if(promise) promise.className = 'aip-promise';
   var closeBtn = ge('aipClose'); if(closeBtn) closeBtn.className = 'aip-close';
+  var waBox = ge('aipWhatsapp'); if(waBox) waBox.style.display = 'none';
 
   /* Open overlay */
   var overlay = ge('aipOverlay'); if(overlay) overlay.className = 'aip-overlay open';
@@ -2831,12 +2845,19 @@ function runAIProgress(cat, refId, city, ward, lat, lng) {
     }, delay);
   });
 
-  /* Final step: show live badge + promise + close */
+  /* Final step: show live badge + promise + close + WhatsApp */
   setTimeout(function() {
     var s4 = ge('aip-s4'); if(s4) s4.className = 'aip-step done';
     var l = ge('aipLive'); if(l) l.className = 'aip-live show';
     var p = ge('aipPromise'); if(p) p.className = 'aip-promise show';
     var c = ge('aipClose'); if(c) c.className = 'aip-close show';
+    var refEl = ge('aipRefDisplay'); if(refEl) refEl.textContent = '#' + refId;
+    var waBtn = ge('aipWaBtn');
+    if(waBtn) {
+      var msg = 'I just submitted a civic audit on NagarDrishti!\nAudit ID: #' + refId + '\nCategory: ' + cat + (city ? '\nCity: ' + city : '') + '\nTrack it at: https://nagardrishti.in';
+      waBtn.href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+    }
+    var waBox = ge('aipWhatsapp'); if(waBox) waBox.style.display = 'block';
   }, 6000);
 }
 
