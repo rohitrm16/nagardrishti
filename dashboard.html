@@ -821,7 +821,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 
       <!-- EVIDENCE -->
       <div style="margin-bottom:14px">
-        <label class="mlb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--t3);font-weight:400">(optional — boosts resolution 3×)</span></label>
+        <label class="mlb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--red);font-weight:700">★ Mandatory</span><span style="color:var(--t3);font-weight:400;font-size:11px;margin-left:5px">— timestamp visible preferred</span></label>
         <div class="ev-tabs-row">
           <button class="ev-tab-btn on" id="evTabP" onclick="switchEvTab('photo')">📷 Photo</button>
           <button class="ev-tab-btn" id="evTabV" onclick="switchEvTab('video')">🎥 Video</button>
@@ -829,7 +829,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
         <div id="evZoneP" class="ev-upzone" onclick="document.getElementById('fimg').click()">
           <div class="ev-up-ico">📷</div>
           <div class="ev-up-lbl" id="evLblP">Tap to upload photo evidence</div>
-          <div class="ev-up-hint">JPG · PNG · WEBP · max 10 MB</div>
+          <div class="ev-up-hint">Timestamp visible preferred · JPG · PNG · WEBP · max 10 MB</div>
           <input type="file" id="fimg" accept="image/*" style="display:none" onchange="onEvFile(this,'photo')">
         </div>
         <div id="evZoneV" class="ev-upzone" style="display:none" onclick="document.getElementById('fvid').click()">
@@ -1504,7 +1504,8 @@ function openModal(){
     },function(){},{enableHighAccuracy:true,timeout:6000});
   }
 }
-function closeModal(){document.getElementById('overlay').classList.remove('open');}
+function closeModal(){document.getElementById('overlay').classList.remove('open');resetEvFields();}
+function resetEvFields(){var fi=document.getElementById('fimg');if(fi)fi.value='';var fv=document.getElementById('fvid');if(fv)fv.value='';['evZoneP','evZoneV'].forEach(function(id){var z=document.getElementById(id);if(z){z.classList.remove('has-file');z.style.borderColor='';z.style.background='';}});var lp=document.getElementById('evLblP');if(lp)lp.textContent='Tap to upload photo evidence';var lv=document.getElementById('evLblV');if(lv)lv.textContent='Tap to upload video evidence';}
 
 function dSetLocMode(mode){
   dRptMode=mode;
@@ -1657,6 +1658,9 @@ function doSubmit(){
     if(!dsel){showToast('⚠ Select severity level for this category',true);return;}
   }
   if(!desc){showToast('⚠ Add a description',true);return;}
+  var imgUploaded=document.getElementById('fimg')&&document.getElementById('fimg').files.length>0;
+  var vidUploaded=document.getElementById('fvid')&&document.getElementById('fvid').files.length>0;
+  if(!imgUploaded&&!vidUploaded){showToast('📷 Evidence is mandatory — upload a photo or video (timestamp preferred)',true);var ez=document.getElementById('evZoneP');if(ez){ez.style.borderColor='var(--red)';ez.style.background='rgba(220,38,38,.06)';setTimeout(function(){ez.style.borderColor='';ez.style.background='';},3000);}return;}
 
   var city='',wardLabel='',locOk=false;
   if(dRptMode==='gps'){
@@ -1690,9 +1694,7 @@ function doSubmit(){
   var btn=document.getElementById('dGpsBtn');if(btn){btn.className='gps-detect-btn';btn.textContent='📍 Detect GPS';}
   var acc=document.getElementById('dGpsAcc');if(acc)acc.className='gps-acc';
   var res=document.getElementById('dLocResult');if(res)res.className='gps-loc-result';
-  ['evZoneP','evZoneV'].forEach(function(id){var z=document.getElementById(id);if(z)z.classList.remove('has-file');});
-  var lp=document.getElementById('evLblP');if(lp)lp.textContent='Tap to upload photo evidence';
-  var lv=document.getElementById('evLblV');if(lv)lv.textContent='Tap to upload video evidence';
+  resetEvFields();
   dSetLocMode('gps');
   var dSubP=document.getElementById('dSubSev');if(dSubP)dSubP.style.display='none';
   var dSubG=document.getElementById('dSubSevGrid');if(dSubG)dSubG.innerHTML='';

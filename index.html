@@ -1795,12 +1795,12 @@ footer{background:var(--n9);color:#fff}
       </div>
 
       <!-- EVIDENCE -->
-      <label class="flb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--red);font-weight:600;letter-spacing:0">* Mandatory</span></label>
+      <label class="flb" style="display:block;margin-bottom:7px">Evidence <span style="color:var(--red);font-weight:700;letter-spacing:0">★ Mandatory</span><span style="color:var(--t3);font-weight:400;font-size:11px;margin-left:5px">— timestamp visible preferred</span></label>
       <div class="ev-tabs"><button class="ev-tab on" id="etP" onclick="evTab('photo')">📷 Photo</button><button class="ev-tab off" id="etV" onclick="evTab('video')">🎥 Video</button></div>
       <div id="ezP" class="upz" onclick="document.getElementById('ffi').click()">
         <div style="font-size:22px;margin-bottom:5px" id="upi">📷</div>
-        <div style="font-size:12.5px;color:var(--t5);font-weight:500" id="upt">Click to upload photo evidence</div>
-        <div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:3px">JPG · PNG · WEBP · max 10 MB</div>
+        <div style="font-size:12.5px;color:var(--t5);font-weight:500" id="upt">Tap to upload photo evidence</div>
+        <div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:3px">Timestamp visible preferred · JPG · PNG · WEBP · max 10 MB</div>
         <input type="file" id="ffi" accept="image/*" style="display:none" onchange="onFile(this,'photo')">
       </div>
       <div id="ezV" class="upz" style="display:none" onclick="document.getElementById('ffv').click()">
@@ -1908,7 +1908,8 @@ function gsD(id){closeD();setTimeout(function(){gs(id)},200)}
 
 /* ─ MODALS ─ */
 function om(n){var e=document.getElementById('m-'+n);if(e)e.classList.add('open')}
-function cm(n){var e=document.getElementById('m-'+n);if(e)e.classList.remove('open')}
+function cm(n){var e=document.getElementById('m-'+n);if(e)e.classList.remove('open');if(n==='report')resetEvidForm();}
+function resetEvidForm(){var fi=document.getElementById('ffi');if(fi)fi.value='';var fv=document.getElementById('ffv');if(fv)fv.value='';var pi=document.getElementById('upi');if(pi)pi.textContent='📷';var pt=document.getElementById('upt');if(pt)pt.textContent='Tap to upload photo evidence';var vi=document.getElementById('uvi');if(vi)vi.textContent='🎥';var vt=document.getElementById('uvt');if(vt)vt.textContent='Tap to upload video evidence';var ez=document.getElementById('ezP');if(ez){ez.style.borderColor='';ez.style.background='';}}
 function moc(ev,n){if(ev.target===document.getElementById('m-'+n))cm(n)}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){['signin','report','api','mission','muni'].forEach(cm);siReset();}})
 
@@ -2211,7 +2212,7 @@ function doReport(){
   if(!de){toast('⚠ Add a description','var(--red)');return;}
   var photoUploaded=document.getElementById('ffi')&&document.getElementById('ffi').files.length>0;
   var videoUploaded=document.getElementById('ffv')&&document.getElementById('ffv').files.length>0;
-  if(!photoUploaded&&!videoUploaded){toast('⚠ Evidence is mandatory — upload a photo or video','var(--red)');return;}
+  if(!photoUploaded&&!videoUploaded){toast('📷 Evidence is mandatory — upload a photo or video (timestamp preferred)','var(--red)');var ez=document.getElementById('ezP');if(ez){ez.style.borderColor='var(--red)';ez.style.background='rgba(220,38,38,.06)';setTimeout(function(){ez.style.borderColor='';ez.style.background='';},3000);}return;}
 
   var city='',ward='',locOk=false;
   if(rptMode==='gps'){
@@ -2243,8 +2244,7 @@ function doReport(){
 
   /* Reset form */
   ['fc','fci','fpi','fla','fco','fde','fwa'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('upi').textContent='📷';document.getElementById('upt').textContent='Click to upload photo evidence';
-  document.getElementById('uvi').textContent='🎥';document.getElementById('uvt').textContent='Click to upload video evidence';
+  resetEvidForm();
   document.querySelectorAll('#sevGrid .sopt').forEach(function(b){b.className='sopt';b.style.cssText=''});
   evTab('photo');
   rptGpsLat=null;rptGpsLng=null;rptGpsWard='';rptGpsCity='';
