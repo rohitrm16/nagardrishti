@@ -2237,10 +2237,10 @@ function doReport(){
   var ref='ND'+(Math.floor(Math.random()*90000)+10000);
   /* Save audit ID to localStorage for tracking */
   var nd_audits=JSON.parse(localStorage.getItem('nd_audits')||'[]');
-  nd_audits.push({id:ref,cat:c,city:city,ward:ward,ts:Date.now()});
+  nd_audits.push({id:ref,cat:c,city:city,ward:ward,ts:Date.now(),lat:rptGpsLat||null,lng:rptGpsLng||null});
   localStorage.setItem('nd_audits',JSON.stringify(nd_audits));
   cm('report');
-  runAIProgress(c, ref, city, ward, rptGpsLa||null, rptGpsLo||null);
+  runAIProgress(c, ref, city, ward, rptGpsLat||null, rptGpsLng||null);
 
   /* Reset form */
   ['fc','fci','fpi','fla','fco','fde','fwa'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});

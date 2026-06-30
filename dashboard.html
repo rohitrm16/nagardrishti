@@ -1236,6 +1236,50 @@ function openSpotlight(id){
   gMap.flyTo([a.lat,a.lng],18,{duration:0.6});
 }
 function closeSpotlight(){var _sp=ge('spotlight');if(_sp)_sp.classList.remove('open');}
+
+function openAuditSpotlight(a){
+  setText('sp-type','CITIZEN AUDIT · '+a.id);
+  setText('sp-name',(a.cat||'Civic Report'));
+  var ts=new Date(a.ts||Date.now());
+  var tstr=ts.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+' · '+ts.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  setHTML('sp-body',
+    '<div class="loc-strip" style="margin-bottom:11px">'
+    +'<div class="loc-row"><span class="loc-pin-ico">📍</span><div>'
+    +'<div class="loc-ward">'+(a.ward||'—')+'</div>'
+    +'<div class="loc-street">'+(a.city||'')+'</div>'
+    +(a.lat?'<div class="loc-coords">'+a.lat.toFixed(5)+', '+a.lng.toFixed(5)+'</div>':'<div class="loc-coords" style="color:var(--t3)">No GPS — manual entry</div>')
+    +'</div></div></div>'
+    +'<div class="sp-stats">'
+    +'<div class="sp-stat"><div class="sp-stat-v" style="color:var(--b6);font-size:12px">OPEN</div><div class="sp-stat-l">Status</div></div>'
+    +'<div class="sp-stat" style="flex:2"><div class="sp-stat-v" style="color:var(--t5);font-size:10px;font-weight:600">'+tstr+'</div><div class="sp-stat-l">Submitted</div></div>'
+    +'</div>'
+    +'<div class="sp-sec">Audit Record</div>'
+    +'<div style="background:var(--b0);border:1px solid #C7D9FF;border-radius:var(--r2);padding:10px 12px;margin-bottom:13px">'
+    +'<div style="font-family:var(--fm);font-size:9.5px;color:var(--b6);font-weight:700;margin-bottom:4px;letter-spacing:.04em">'+a.id+'</div>'
+    +'<div style="font-size:12px;color:var(--t7);line-height:1.55">'+(a.cat||'Civic issue')+' — '+(a.ward||a.city||'')+'</div>'
+    +'</div>'
+    +'<div class="sp-sec">Evidence</div>'
+    +'<div style="background:var(--g50);border:1.5px dashed var(--g200);border-radius:var(--r2);padding:14px 12px;text-align:center;margin-bottom:13px">'
+    +'<div style="font-size:22px;margin-bottom:5px">📷</div>'
+    +'<div style="font-size:12px;color:var(--t7);font-weight:600">Evidence attached at submission</div>'
+    +'<div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:3px;line-height:1.5">File queued for server sync · Timestamp preserved in EXIF</div>'
+    +'</div>'
+    +'<div class="sp-actions" style="margin-top:4px">'
+    +'<div class="sp-btn" onclick="showToast(\'📋 Audit '+a.id+' — Status: Open · Ward notified\')">📋 Track Status</div>'
+    +'<div class="sp-btn d" onclick="showToast(\'🚩 Escalated: '+a.id+' to Ward Officer\')">🚩 Escalate</div>'
+    +'</div>'
+  );
+  var _sp=ge('spotlight');if(_sp)_sp.classList.add('open');
+  if(a.lat&&a.lng&&typeof gMap!=='undefined'){
+    gMap.flyTo([a.lat,a.lng],17,{duration:1.2});
+    setTimeout(function(){
+      L.popup().setLatLng([a.lat,a.lng])
+        .setContent('<div class="pop"><div class="pop-tag">Your Audit · '+a.id+'</div><div class="pop-city">'+(a.cat||'').replace(/^[^\s]+\s/,'')+'</div><div class="pop-issue">'+(a.ward||a.city||'')+'</div></div>')
+        .openOn(gMap);
+    },1300);
+  }
+}
+
 /* ── LIGHTBOX ── */
 function openLightbox(idx){lbIdx=idx;var lb=document.getElementById('evLightbox');if(!lb)return;renderLightbox();lb.classList.add('open');}
 function closeLightbox(){var lb=document.getElementById('evLightbox');if(lb)lb.classList.remove('open');}
@@ -1434,7 +1478,13 @@ function doSearch(){
   if(st){clickState(st.id);showToast('📍 Drilling into '+st.name);return;}
   var inc=INC.find(function(d){return d.city.toLowerCase().includes(v.toLowerCase())||d.pin.includes(v)});
   if(inc){gMap.flyTo([inc.lat,inc.lng],13,{duration:1.4});showToast('📍 Zoomed to '+inc.city);return;}
-  showToast('⚠ Not found — try a pincode, city, state or asset ID');
+  var auditId=v.replace(/^#/,'').toUpperCase();
+  if(/^ND\d+$/.test(auditId)){
+    var myAudits=JSON.parse(localStorage.getItem('nd_audits')||'[]');
+    var myAudit=myAudits.find(function(a){return a.id.toUpperCase()===auditId;});
+    if(myAudit){openAuditSpotlight(myAudit);showToast('🔍 Found your audit: '+myAudit.id);return;}
+  }
+  showToast('⚠ Not found — try a pincode, city, state, asset ID or your audit ID (e.g. ND4154564)');
 }
 /* ── PANELS ── */
 function renderPanels(){
@@ -1679,6 +1729,10 @@ function doSubmit(){
 
   closeModal();
   var ref='ND'+(Math.floor(Math.random()*9000000)+1000000);
+  /* Save to localStorage for search/tracking */
+  var nd_audits=JSON.parse(localStorage.getItem('nd_audits')||'[]');
+  nd_audits.push({id:ref,cat:cat,city:city,ward:wardLabel,ts:Date.now(),lat:dRptMode==='gps'?dGpsLat:null,lng:dRptMode==='gps'?dGpsLng:null});
+  localStorage.setItem('nd_audits',JSON.stringify(nd_audits));
   /* Run AI progress flow */
   runAIProgress(cat, ref, city, wardLabel,
     dRptMode==='gps'?dGpsLat:null,
