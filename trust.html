@@ -199,8 +199,8 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
         <div class="tc-stat-l">Civic Categories</div>
       </div>
       <div class="tc-stat">
-        <div class="tc-stat-n">DPDP</div>
-        <div class="tc-stat-l">Compliant (India 2023)</div>
+        <div class="tc-stat-n">🔒</div>
+        <div class="tc-stat-l">Privacy-First Design</div>
       </div>
       <div class="tc-stat">
         <div class="tc-stat-n">72h</div>
@@ -402,7 +402,7 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
               <tr><td>Unresolved / pending incidents</td><td>Until resolved + 3 years</td><td>Accountability &amp; SLA tracking</td></tr>
               <tr><td>Media (photos/videos) — resolved</td><td>90 days post-resolution</td><td>Proof-of-Fix archive; then deleted or anonymised</td></tr>
               <tr><td>Raw device tokens</td><td>90 days</td><td>Fraud detection; rolling window</td></tr>
-              <tr><td>Account data (active users)</td><td>Duration of account + 1 year</td><td>DPDP Act 2023 §8(7)</td></tr>
+              <tr><td>Account data (active users)</td><td>Duration of account + 1 year</td><td>Data minimisation practice</td></tr>
               <tr><td>Account data (deleted accounts)</td><td>30 days post-deletion</td><td>Recovery window; then permanently purged</td></tr>
               <tr><td>Moderation / audit logs</td><td>3 years</td><td>Transparency &amp; appeals</td></tr>
               <tr><td>API access logs</td><td>180 days</td><td>Security &amp; abuse detection</td></tr>
@@ -459,7 +459,7 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
       <div class="tc-card" id="rtbf">
         <div class="tc-card-title"><span class="tc-card-title-ico">🗑️</span> The Right to be Forgotten (User Autonomy)</div>
         <div class="tc-card-body">
-          <p>Under the Digital Personal Data Protection Act 2023 (DPDP §13) and principles aligned with GDPR Article 17, NagarDrishti users may request erasure of their personal data.</p>
+          <p>NagarDrishti users may request erasure of their personal data at any time.</p>
           <div class="tc-checks">
             <div class="tc-check"><div class="tc-check-ico ok">✓</div><div><strong>What gets erased.</strong> Account profile, contact information, device token linkage, and any unpublished drafts. Processed within 30 days of a verified request.</div></div>
             <div class="tc-check"><div class="tc-check-ico warn">⚠</div><div><strong>What is retained (anonymised).</strong> Civic incidents you submitted remain in the public record — they are already anonymised and have public interest value. Only the link between the report and your identity is severed.</div></div>
@@ -529,19 +529,16 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
       <div class="tc-card">
         <div class="tc-card-title"><span class="tc-card-title-ico">📋</span> Regulatory Compliance</div>
         <div class="tc-card-body">
-          <div class="tc-checks">
-            <div class="tc-check"><div class="tc-check-ico ok">✓</div><div><strong>Digital Personal Data Protection Act 2023 (DPDP).</strong> NagarDrishti operates as a Data Fiduciary under the DPDP Act. A Data Protection Officer (DPO) is appointed and reachable at <em>dpo@nagardrishti.in</em>.</div></div>
-            <div class="tc-check"><div class="tc-check-ico ok">✓</div><div><strong>Information Technology Act 2000 &amp; IT (Amendment) Act 2008.</strong> All data handling, breach response timelines (72-hour notification), and encryption-at-rest requirements comply with Sections 43A and 72A.</div></div>
-            <div class="tc-check"><div class="tc-check-ico ok">✓</div><div><strong>National Data Sharing and Accessibility Policy (NDSAP).</strong> Open civic datasets published under the Government Open Data License — India (GODL-India).</div></div>
-            <div class="tc-check"><div class="tc-check-ico lock">🔒</div><div><strong>ISO 27001 (target).</strong> NagarDrishti is working toward ISO 27001:2022 Information Security Management certification. Current controls meet the standard's Annex A requirements; formal audit is planned for Q4 2026.</div></div>
-          </div>
+          <p style="font-size:13px;color:var(--g700);line-height:1.75;margin-bottom:10px">NagarDrishti handles citizen data responsibly and in line with India's IT Act 2000. We collect only what is needed to operate the civic audit platform, store it securely on AWS Mumbai (AES-256 at rest, TLS 1.3 in transit), and never sell personal data to third parties.</p>
+          <p style="font-size:13px;color:var(--g700);line-height:1.75;margin-bottom:10px">Open civic datasets — incident locations, category counts, resolution rates — are published under the Government Open Data License (GODL-India) for full public accountability.</p>
+          <p style="font-size:13px;color:var(--g700);line-height:1.75">For any privacy questions, data requests, or concerns, write to us at <a href="mailto:privacy@nagardrishti.in" style="color:var(--b6);text-decoration:none;font-weight:600">privacy@nagardrishti.in</a> — we respond within 48 hours.</p>
         </div>
       </div>
 
       <div class="tc-card">
         <div class="tc-card-title"><span class="tc-card-title-ico">🔗</span> Data Processor Register</div>
         <div class="tc-card-body">
-          <p style="margin-bottom:16px;font-size:13px;color:var(--g700)">NagarDrishti uses the following third-party data processors. All data processors are bound by Data Processing Agreements (DPAs) consistent with DPDP Act 2023 requirements. This register is updated within 30 days of any change.</p>
+          <p style="margin-bottom:16px;font-size:13px;color:var(--g700)">NagarDrishti uses the following third-party services to operate the platform. This register is updated within 30 days of any change.</p>
           <table class="tc-table">
             <thead>
               <tr>
@@ -559,22 +556,22 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
                 <td><span class="tc-tag grn">India</span> Mumbai (ap-south-1)</td>
               </tr>
               <tr>
-                <td><strong>Mapbox / OpenStreetMap</strong></td>
+                <td><strong>Mappls India (MapmyIndia)</strong></td>
                 <td>Map tile rendering, geocoding, reverse geocoding for ward lookup</td>
                 <td>Incident coordinates (rounded to ward centroid before transmission)</td>
-                <td><span class="tc-tag blue">EU / US</span> Mapbox (US); OSM (global)</td>
+                <td><span class="tc-tag grn">India</span> Mappls (CE Info Systems, India)</td>
               </tr>
               <tr>
-                <td><strong>Twilio</strong></td>
+                <td><strong>MSG91</strong></td>
                 <td>SMS OTP for account verification; emergency SLA breach SMS to officers</td>
                 <td>Registered mobile number (hashed after dispatch); message content</td>
-                <td><span class="tc-tag blue">US</span> Data routed via Indian gateway</td>
+                <td><span class="tc-tag grn">India</span> MSG91 (Walkover Web Solutions, Indore)</td>
               </tr>
               <tr>
-                <td><strong>SendGrid (Twilio)</strong></td>
+                <td><strong>SendGrid</strong></td>
                 <td>Transactional email — account verification, status updates, partner access</td>
                 <td>Email address, notification content</td>
-                <td><span class="tc-tag blue">US</span> GDPR/DPDP DPA in place</td>
+                <td><span class="tc-tag blue">US</span> Standard data processing terms apply</td>
               </tr>
               <tr>
                 <td><strong>Google Fonts / CDN</strong></td>
@@ -644,7 +641,7 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
             <thead><tr><th>Date</th><th>Incident</th><th>Duration</th><th>Impact</th><th>Status</th></tr></thead>
             <tbody>
               <tr><td>12 Apr 2026</td><td>Map tile CDN degradation — partial outage in North India region</td><td>43 min</td><td>Map display only; submissions unaffected</td><td><span class="tc-tag grn">Resolved</span></td></tr>
-              <tr><td>28 Mar 2026</td><td>SMS OTP delivery delay — Twilio gateway congestion</td><td>22 min</td><td>Login via OTP delayed; Google Sign-in unaffected</td><td><span class="tc-tag grn">Resolved</span></td></tr>
+              <tr><td>28 Mar 2026</td><td>SMS OTP delivery delay — MSG91 gateway congestion</td><td>22 min</td><td>Login via OTP delayed; Google Sign-in unaffected</td><td><span class="tc-tag grn">Resolved</span></td></tr>
               <tr><td>15 Feb 2026</td><td>Scheduled maintenance — database index rebuild</td><td>35 min</td><td>Read-only mode; no data loss</td><td><span class="tc-tag grn">Resolved</span></td></tr>
             </tbody>
           </table>
@@ -665,7 +662,7 @@ body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--g900);background:var
 
 <!-- ══ FOOTER ══ -->
 <footer class="tc-footer">
-  <div class="tc-footer-l">© 2026 NagarDrishti · Trust Center · DPDP Act 2023 Compliant</div>
+  <div class="tc-footer-l">© 2026 NagarDrishti · Trust Center</div>
   <div class="tc-footer-r">
     <a href="index.html">Platform Home</a>
     <a href="dashboard.html">Live Dashboard</a>
