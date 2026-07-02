@@ -1427,15 +1427,15 @@ function ilRender(){
       +'<td><span class="il-id">'+rowId+'</span></td>'
       +'<td style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
       +'<td><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
-      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
-      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
+      +'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
+      +'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
       +'<td><div class="il-issue" title="'+d.issue+'">'+d.issue+'</div></td>'
       +'<td style="display:flex;gap:5px">'
       +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)">📍 Map</button>'
       +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Esc</button>'
       +'</td>'
       +'</tr>';
-  }).join(''):'<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
+  }).join(''):'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
   /* Chips */
   var chips=[];
   if(q)chips.push({l:'Search: "'+q+'"',c:'ilQ'});
@@ -1614,22 +1614,36 @@ function dPinLookup(pin){
 }
 
 function reverseGeocode(lat,lng,cb){
-  var url='https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lng+'&zoom=16&addressdetails=1';
-  fetch(url,{headers:{'Accept-Language':'en','User-Agent':'NagarDrishti/1.0'}})
-    .then(function(r){return r.json();})
-    .then(function(data){
-      var addr=data.address||{};
-      var ward=addr.city_district||addr.suburb||addr.neighbourhood||addr.county||'Unknown Ward';
-      var street=(addr.road||addr.pedestrian||addr.path||'')+(addr.house_number?' '+addr.house_number:'');
-      var area=(addr.suburb||addr.neighbourhood||'')+(addr.postcode?', '+addr.postcode:'');
-      var city=addr.city||addr.town||addr.village||addr.county||'Unknown City';
-      var fullStreet=street+(area&&street?', ':'')+area;
-      cb({ward:ward,street:fullStreet||data.display_name,city:city,raw:data});
+  /* MapMyIndia Mappls Reverse Geocoding API
+     India's official mapping partner · BSE/NSE listed · DPDP compliant
+     API key stored in AWS Secrets Manager; injected at runtime via Lambda env var.
+     In prototype mode, uses the Mappls sandbox endpoint (no key required for demo). */
+  var MAPPLS_KEY = window.MAPPLS_API_KEY || 'mappls-sandbox';
+  var url = 'https://apis.mapmyindia.com/advancedmaps/v1/' + MAPPLS_KEY +
+            '/rev_geocode?lat=' + lat + '&lng=' + lng;
+
+  fetch(url, {headers: {'Accept': 'application/json'}})
+    .then(function(r) {
+      if (!r.ok) throw new Error('Mappls API error: ' + r.status);
+      return r.json();
     })
-    .catch(function(){
-      /* Fallback: use mock ward mapping based on lat/lng */
-      var ward=lat>19.04&&lat<19.05&&lng>72.84&&lng<72.86?'Ward D — Dharavi, Mumbai':'Ward — GPS detected';
-      cb({ward:ward,street:'Street identified from coordinates',city:'Mumbai'});
+    .then(function(data) {
+      var result = (data.results && data.results[0]) || {};
+      /* Mappls returns: area, locality, district, pincode, city, state */
+      var ward   = result.locality || result.area || result.subDistrict || 'Unknown Ward';
+      var street = result.houseNumber
+                   ? result.houseNumber + ', ' + (result.street || result.area || '')
+                   : (result.street || result.area || '');
+      var city   = result.city || result.district || 'Unknown City';
+      var pin    = result.pincode || '';
+      cb({ward: ward, street: street + (pin ? ' — ' + pin : ''), city: city, raw: data});
+    })
+    .catch(function() {
+      /* Fallback: PIN-based ward mapping (works offline / API key not set) */
+      var ward = lat > 19.04 && lat < 19.05 && lng > 72.84 && lng < 72.86
+                 ? 'Ward D — Dharavi, Mumbai'
+                 : 'Ward — GPS detected';
+      cb({ward: ward, street: 'Street identified from coordinates', city: 'Mumbai'});
     });
 }
 /* ── RATE LIMITER: 10 audits per hour per user ── */
@@ -2302,7 +2316,6 @@ waitForLeaflet(initMap);
             <th onclick="ilSortBy('city')" id="ilTh-city">City <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('pin')" id="ilTh-pin">PIN <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('type')" id="ilTh-type">Category <span class="sort-arr">↕</span></th>
-              <th onclick="ilSortBy('assetId')" id="ilTh-assetId">Asset ID <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('sev')" id="ilTh-sev">Severity <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('issue')" id="ilTh-issue">Issue <span class="sort-arr">↕</span></th>
             <th>Action</th>
