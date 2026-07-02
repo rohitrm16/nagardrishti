@@ -963,6 +963,21 @@ var ASSETS=[
      {type:'video',thumb:'https://picsum.photos/seed/pot601v/400/300',caption:'Vehicle damage incident on video · 6d ago',reporter:'Traffic Police'}
    ]}
 ];
+var WARD_STAKEHOLDERS={
+  'Ward D — Dharavi':{
+    l2:{name:'Deepak Khanvilkar',role:'Dy. Municipal Commissioner',zone:'Zone II · MCGM'},
+    l3:{name:'Pramod Ambure',role:'Assistant Commissioner',zone:'E Ward · MCGM'},
+    mp:{name:'Rahul Shewale',role:'MP · Lok Sabha',zone:'Mumbai South Central'},
+    mla:{name:'Varsha Gaikwad',role:'MLA · Maharashtra Vidhan Sabha',zone:'Dharavi Constituency'}
+  }
+};
+var _stk_default={
+  l2:{name:'Zone Officer',role:'Dy. Municipal Commissioner',zone:'L2 · Municipal Zone'},
+  l3:{name:'Ward Officer',role:'Assistant Commissioner',zone:'L3 · Ward Office'},
+  mp:{name:'Constituency MP',role:'MP · Lok Sabha',zone:'Parliamentary Constituency'},
+  mla:{name:'Constituency MLA',role:'MLA · State Assembly',zone:'Vidhan Sabha Constituency'}
+};
+function _stkCards(ward){var stk=WARD_STAKEHOLDERS[ward]||_stk_default;return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px">'+[{b:'L2',c:'#7C3AED',bg:'#F5F3FF',bd:'#DDD6FE',d:stk.l2},{b:'L3',c:'#0052CC',bg:'#EFF6FF',bd:'#BFDBFE',d:stk.l3},{b:'MP',c:'#C2410C',bg:'#FFF7ED',bd:'#FDBA74',d:stk.mp},{b:'MLA',c:'#0D9488',bg:'#F0FDFA',bd:'#99F6E4',d:stk.mla}].map(function(c){return '<div style="background:'+c.bg+';border:1px solid '+c.bd+';border-radius:var(--r2);padding:9px 10px"><div style="font-family:var(--fm);font-size:8px;font-weight:700;color:'+c.c+';letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">'+c.b+'</div><div style="font-size:11.5px;font-weight:700;color:var(--n9);line-height:1.3;margin-bottom:2px">'+c.d.name+'</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t5);line-height:1.4">'+c.d.role+'</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);margin-top:1px">'+c.d.zone+'</div></div>';}).join('')+'</div>';}
 var PINS={'400017':[19.0426,72.8544,'Dharavi, Mumbai'],'110001':[28.6342,77.2167,'Connaught Place, Delhi'],'560001':[12.9699,77.5678,'MG Road, Bengaluru'],'600001':[13.0804,80.2785,'George Town, Chennai'],'700001':[22.5736,88.3488,'BBD Bagh, Kolkata'],'500001':[17.3688,78.4738,'Abids, Hyderabad'],'411001':[18.5161,73.8567,'Shivajinagar, Pune'],'226001':[26.8507,80.9489,'Hazratganj, Lucknow'],'302001':[26.9166,75.8017,'Pink City, Jaipur'],'380001':[23.0254,72.5952,'Relief Road, Ahmedabad'],'462001':[23.2534,77.4028,'DB Mall Area, Bhopal'],'160017':[30.7374,76.7874,'Sector 17, Chandigarh'],'800001':[25.5941,85.1376,'Patna City Center']};
 var CATC={aquatic:'#0D9488',streetlight:'#CA8A04',cracks:'#3B82F6',dirty:'#16A34A',footpath:'#0284C7',garbage:'#EA580C',gaushala:'#D97706',water:'#7C3AED',encroachment:'#6B7280',pothole:'#DC2626',fire:'#DC2626',road:'#E11D48',dogs:'#B45309',traffic:'#F59E0B',heat:'#059669',cleanliness:'#16A34A'};
 var CATBG={garbage:'#FFF7ED',traffic:'#FEFCE8',footpath:'#E0F2FE',cleanliness:'#F0FDF4',water:'#F5F3FF'};
@@ -1217,15 +1232,9 @@ function openSpotlight(id){
     +evHTML
     /* TIMELINE */
     +tlHTML
-    /* NEARBY */
-    +'<div class="sp-sec">Nearby Assets</div>'
-    +ASSETS.filter(function(x){return x.id!==id}).slice(0,3).map(function(x){
-      var xc=stColors(x.status);
-      return '<div class="sp-arow" onclick="openSpotlight(\''+x.id+'\')"><div class="sp-aico">'+x.ico+'</div>'
-        +'<div class="sp-albl" style="font-size:11px"><div style="font-weight:600;color:var(--n9)">'+x.name+'</div>'
-        +'<div style="font-family:var(--fm);font-size:8.5px;color:var(--t3)">'+(x.street||x.area||'')+'</div></div>'
-        +'<div class="sp-ast" style="background:'+xc.bg+';color:'+xc.sc+';border-color:'+xc.bd+'">'+x.status+'</div></div>';
-    }).join('')
+    /* STAKEHOLDERS */
+    +'<div class="sp-sec">Stakeholders</div>'
+    +_stkCards(a.ward)
     /* ACTIONS */
     +'<div class="sp-actions" style="margin-top:12px">'
     +'<div class="sp-btn" onclick="showToast(\'✅ Service request raised for '+a.id+'\')">🔧 Service Request</div>'
@@ -1264,6 +1273,8 @@ function openAuditSpotlight(a){
     +'<div style="font-size:12px;color:var(--t7);font-weight:600">Evidence attached at submission</div>'
     +'<div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-top:3px;line-height:1.5">File queued for server sync · Timestamp preserved in EXIF</div>'
     +'</div>'
+    +'<div class="sp-sec">Stakeholders</div>'
+    +_stkCards(a.ward)
     +'<div class="sp-actions" style="margin-top:4px">'
     +'<div class="sp-btn" onclick="showToast(\'📋 Audit '+a.id+' — Status: Open · Ward notified\')">📋 Track Status</div>'
     +'<div class="sp-btn d" onclick="showToast(\'🚩 Escalated: '+a.id+' to Ward Officer\')">🚩 Escalate</div>'
