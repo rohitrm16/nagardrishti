@@ -695,21 +695,16 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       <div>
         <div class="pan-title">Category Filter</div>
         <div class="ltab active" id="lt-all" onclick="setLayer('all')"><div class="ltab-dot" style="background:linear-gradient(135deg,var(--red),var(--amb))"></div>All<span class="ltab-count">247</span></div>
-        <div class="ltab" id="lt-garbage" onclick="setLayer('garbage')"><div class="ltab-dot" style="background:#EA580C"></div>🗑️ Garbage<span class="ltab-count">38</span></div>
-        <div class="ltab" id="lt-traffic" onclick="setLayer('traffic')"><div class="ltab-dot" style="background:#F59E0B"></div>🚦 Traffic<span class="ltab-count">29</span></div>
+        <div class="ltab" id="lt-garbage" onclick="setLayer('garbage')"><div class="ltab-dot" style="background:#EA580C"></div>🗑️ Garbage / Dirty Space<span class="ltab-count">60</span></div>
+        <div class="ltab" id="lt-traffic" onclick="setLayer('traffic')"><div class="ltab-dot" style="background:#F59E0B"></div>🚦 Traffic<span class="ltab-count">44</span></div>
         <div class="ltab" id="lt-pothole" onclick="setLayer('pothole')"><div class="ltab-dot" style="background:#DC2626"></div>🕳️ Pothole<span class="ltab-count">24</span></div>
-        <div class="ltab" id="lt-dirty" onclick="setLayer('dirty')"><div class="ltab-dot" style="background:#16A34A"></div>🚮 Dirty Space<span class="ltab-count">22</span></div>
-        <div class="ltab" id="lt-footpath" onclick="setLayer('footpath')"><div class="ltab-dot" style="background:#0284C7"></div>🚶 Footpath<span class="ltab-count">19</span></div>
         <div class="ltab" id="lt-water" onclick="setLayer('water')"><div class="ltab-dot" style="background:#7C3AED"></div>💧 Waterlogging<span class="ltab-count">18</span></div>
-        <div class="ltab" id="lt-cracks" onclick="setLayer('cracks')"><div class="ltab-dot" style="background:#3B82F6"></div>⚡ Cracks<span class="ltab-count">16</span></div>
-        <div class="ltab" id="lt-road" onclick="setLayer('road')"><div class="ltab-dot" style="background:#E11D48"></div>🚧 Road Block<span class="ltab-count">15</span></div>
+        <div class="ltab" id="lt-footpath" onclick="setLayer('footpath')"><div class="ltab-dot" style="background:#0284C7"></div>🚶 Footpath<span class="ltab-count">19</span></div>
         <div class="ltab" id="lt-fire" onclick="setLayer('fire')"><div class="ltab-dot" style="background:#DC2626"></div>🔥 Fire Safety<span class="ltab-count">12</span></div>
-        <div class="ltab" id="lt-dogs" onclick="setLayer('dogs')"><div class="ltab-dot" style="background:#B45309"></div>🐕 Stray Dogs<span class="ltab-count">11</span></div>
-        <div class="ltab" id="lt-encroachment" onclick="setLayer('encroachment')"><div class="ltab-dot" style="background:#6B7280"></div>🏗️ Encroachment<span class="ltab-count">9</span></div>
-        <div class="ltab" id="lt-heat" onclick="setLayer('heat')"><div class="ltab-dot" style="background:#059669"></div>🌿 Urban Heat<span class="ltab-count">8</span></div>
         <div class="ltab" id="lt-streetlight" onclick="setLayer('streetlight')"><div class="ltab-dot" style="background:#CA8A04"></div>💡 Streetlight<span class="ltab-count">7</span></div>
-        <div class="ltab" id="lt-aquatic" onclick="setLayer('aquatic')"><div class="ltab-dot" style="background:#0D9488"></div>🐟 Aquatic<span class="ltab-count">6</span></div>
-        <div class="ltab" id="lt-gaushala" onclick="setLayer('gaushala')"><div class="ltab-dot" style="background:#D97706"></div>🐄 Gaushala<span class="ltab-count">5</span></div>
+        <div class="ltab" id="lt-encroachment" onclick="setLayer('encroachment')"><div class="ltab-dot" style="background:#6B7280"></div>🏗️ Encroachment<span class="ltab-count">9</span></div>
+        <div class="ltab" id="lt-stray" onclick="setLayer('stray')"><div class="ltab-dot" style="background:#B45309"></div>🐕 Stray Animals<span class="ltab-count">16</span></div>
+        <div class="ltab" id="lt-aquatic" onclick="setLayer('aquatic')"><div class="ltab-dot" style="background:#0D9488"></div>🌊 Water Body Pollution<span class="ltab-count">6</span></div>
       </div>
     </div>
     <div class="map-wrap">
@@ -744,21 +739,16 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       <div class="mfg">
         <div class="mfc"><label class="mlb">Category *</label>
           <select class="msel" id="fcat" onchange="ndShowSubSev(this.value,'dSubSevGrid','dSubSev','fsev')"><option>Select category</option>
-<option>🐟 Aquatic Ecosystem Damage</option>
-<option>💡 Broken / Zero Streetlight</option>
-<option>⚡ Cracks</option>
-<option>🚮 Dirty Public Space</option>
-<option>🚶 Footpath Obstruction</option>
-<option>🗑️ Garbage Hotspots</option>
-<option>🐄 Need Gaushala Corridor</option>
-<option>💧 Open Drain / Waterlogging</option>
-<option>🏗️ Pavement Encroachment</option>
+<option>🗑️ Garbage / Dirty Space</option>
 <option>🕳️ Pothole</option>
+<option>💧 Open Drain / Waterlogging</option>
+<option>💡 Broken / Zero Streetlight</option>
 <option>🔥 Fire Safety</option>
-<option>🚧 Road Blockage</option>
-<option>🐕 Stray Dogs</option>
 <option>🚦 Traffic Congestion</option>
-<option>🌿 Urban Heat &amp; Canopy</option></select>
+<option>🚶 Footpath Obstruction</option>
+<option>🏗️ Encroachment</option>
+<option>🐕 Stray Animals (Dog · Cattle)</option>
+<option>🌊 Water Body Pollution</option></select>
         </div>
         <div class="mfc"><label class="mlb">Severity *</label>
           <select class="msel" id="fsev">
@@ -979,15 +969,15 @@ var _stk_default={
 };
 function _stkCards(ward){var stk=WARD_STAKEHOLDERS[ward]||_stk_default;return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px">'+[{b:'L2',c:'#7C3AED',bg:'#F5F3FF',bd:'#DDD6FE',d:stk.l2},{b:'L3',c:'#0052CC',bg:'#EFF6FF',bd:'#BFDBFE',d:stk.l3},{b:'MP',c:'#C2410C',bg:'#FFF7ED',bd:'#FDBA74',d:stk.mp},{b:'MLA',c:'#0D9488',bg:'#F0FDFA',bd:'#99F6E4',d:stk.mla}].map(function(c){return '<div style="background:'+c.bg+';border:1px solid '+c.bd+';border-radius:var(--r2);padding:9px 10px"><div style="font-family:var(--fm);font-size:8px;font-weight:700;color:'+c.c+';letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">'+c.b+'</div><div style="font-size:11.5px;font-weight:700;color:var(--n9);line-height:1.3;margin-bottom:2px">'+c.d.name+'</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t5);line-height:1.4">'+c.d.role+'</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);margin-top:1px">'+c.d.zone+'</div></div>';}).join('')+'</div>';}
 var PINS={'400017':[19.0426,72.8544,'Dharavi, Mumbai'],'110001':[28.6342,77.2167,'Connaught Place, Delhi'],'560001':[12.9699,77.5678,'MG Road, Bengaluru'],'600001':[13.0804,80.2785,'George Town, Chennai'],'700001':[22.5736,88.3488,'BBD Bagh, Kolkata'],'500001':[17.3688,78.4738,'Abids, Hyderabad'],'411001':[18.5161,73.8567,'Shivajinagar, Pune'],'226001':[26.8507,80.9489,'Hazratganj, Lucknow'],'302001':[26.9166,75.8017,'Pink City, Jaipur'],'380001':[23.0254,72.5952,'Relief Road, Ahmedabad'],'462001':[23.2534,77.4028,'DB Mall Area, Bhopal'],'160017':[30.7374,76.7874,'Sector 17, Chandigarh'],'800001':[25.5941,85.1376,'Patna City Center']};
-var CATC={aquatic:'#0D9488',streetlight:'#CA8A04',cracks:'#3B82F6',dirty:'#16A34A',footpath:'#0284C7',garbage:'#EA580C',gaushala:'#D97706',water:'#7C3AED',encroachment:'#6B7280',pothole:'#DC2626',fire:'#DC2626',road:'#E11D48',dogs:'#B45309',traffic:'#F59E0B',heat:'#059669',cleanliness:'#16A34A'};
-var CATBG={garbage:'#FFF7ED',traffic:'#FEFCE8',footpath:'#E0F2FE',cleanliness:'#F0FDF4',water:'#F5F3FF'};
-var CATE={garbage:'🗑️',traffic:'🚦',footpath:'🚶',cleanliness:'✨',water:'🌊'};
+var CATC={garbage:'#EA580C',pothole:'#DC2626',water:'#7C3AED',streetlight:'#CA8A04',fire:'#DC2626',traffic:'#F59E0B',footpath:'#0284C7',encroachment:'#6B7280',stray:'#B45309',aquatic:'#0D9488'};
+var CATBG={garbage:'#FFF7ED',pothole:'#FEF2F2',water:'#F5F3FF',streetlight:'#FEFCE8',fire:'#FEF3C7',traffic:'#FEFCE8',footpath:'#E0F2FE',encroachment:'#F9FAFB',stray:'#FFFBEB',aquatic:'#F0FDFA'};
+var CATE={garbage:'🗑️',pothole:'🕳️',water:'💧',streetlight:'💡',fire:'🔥',traffic:'🚦',footpath:'🚶',encroachment:'🏗️',stray:'🐕',aquatic:'🌊'};
 var SEVC={critical:'#DC2626',high:'#D97706',medium:'#0891B2',low:'#059669'};
 var SEVBG={critical:'#FEF2F2',high:'#FFFBEB',medium:'#ECFEFF',low:'#ECFDF5'};
 var SEVBD={critical:'#FCA5A5',high:'#FCD34D',medium:'#67E8F9',low:'#6EE7B7'};
 var SEVSZ={critical:44,high:34,medium:27,low:22};
 var ALERTS=[{t:'crit',ico:'🔴',title:'Garbage hotspot — Dharavi, Mumbai',sub:'400017 · 9 reports · Escalated to BMC',time:'1m'},{t:'crit',ico:'🔴',title:'Water pollution — Visakhapatnam',sub:'530001 · Industrial runoff detected',time:'4m'},{t:'warn',ico:'🟡',title:'Footpath blocked — Lucknow',sub:'226001 · 80m encroachment',time:'9m'},{t:'warn',ico:'🟡',title:'Signal failure — DB Mall, Bhopal',sub:'462001 · Manual control deployed',time:'14m'},{t:'info',ico:'🔵',title:'Waterlogging — Patna arterials',sub:'800001 · Post-rain monitoring',time:'21m'},{t:'good',ico:'🟢',title:'Cleared: Sabarmati Riverfront',sub:'380001 · Municipal action complete ✓',time:'38m'}];
-var TRENDS=[{l:'Garbage',pct:81,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:70,c:'#F59E0B',d:'+12%'},{l:'Dirty Space',pct:67,c:'#16A34A',d:'+5%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'Fire Safety',pct:28,c:'#DC2626',d:'+14%'},{l:'Cracks',pct:45,c:'#3B82F6',d:'+4%'},{l:'Road Block',pct:44,c:'#E11D48',d:'+11%'},{l:'Stray Dogs',pct:31,c:'#B45309',d:'+15%'},{l:'Aquatic',pct:22,c:'#0D9488',d:'+9%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Gaushala',pct:19,c:'#D97706',d:'+6%'},{l:'Urban Heat',pct:37,c:'#059669',d:'+8%'}];
+var TRENDS=[{l:'Garbage / Dirty Space',pct:81,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:70,c:'#F59E0B',d:'+12%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Fire Safety',pct:28,c:'#DC2626',d:'+14%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Stray Animals',pct:31,c:'#B45309',d:'+15%'},{l:'Water Body Pollution',pct:22,c:'#0D9488',d:'+9%'}];
 var FEED=[
   {av:'🗑️',bg:'#FFF7ED',who:'BIN-801',wh:'2m',desc:'Critical garbage overflow confirmed — Dharavi Ward D. GPS: 19.0425°N 72.8531°E',tag:'Mumbai · 🗑️ Garbage'},
   {av:'🚦',bg:'#FFFBEB',who:'TRF-201',wh:'4m',desc:'Silk Board junction — 4km queue. Signal cycle failed at peak hour.',tag:'Bengaluru · 🚦 Traffic'},
