@@ -2031,14 +2031,12 @@ function openMobDrawer(tab, btnEl) {
 
   } else if(tab === 'layers'){
     var cats=[
-      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage',ico:'🗑️'},
-      {k:'pothole',l:'Pothole',ico:'🕳️'},{k:'traffic',l:'Traffic',ico:'🚦'},
-      {k:'water',l:'Waterlogging',ico:'💧'},{k:'fire',l:'Fire Safety',ico:'🔥'},
-      {k:'footpath',l:'Footpath',ico:'🚶'},{k:'dogs',l:'Stray Dogs',ico:'🐕'},
-      {k:'road',l:'Road Block',ico:'🚧'},{k:'heat',l:'Urban Heat',ico:'🌿'},
-      {k:'cracks',l:'Cracks',ico:'⚡'},{k:'dirty',l:'Dirty Space',ico:'🚮'},
-      {k:'encroachment',l:'Encroachment',ico:'🏗️'},{k:'gaushala',l:'Gaushala',ico:'🐄'},
-      {k:'aquatic',l:'Aquatic',ico:'🐟'},{k:'streetlight',l:'Streetlight',ico:'💡'}
+      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage / Dirty Space',ico:'🗑️'},
+      {k:'pothole',l:'Pothole',ico:'🕳️'},{k:'water',l:'Waterlogging',ico:'💧'},
+      {k:'streetlight',l:'Streetlight',ico:'💡'},{k:'fire',l:'Fire Safety',ico:'🔥'},
+      {k:'traffic',l:'Traffic',ico:'🚦'},{k:'footpath',l:'Footpath',ico:'🚶'},
+      {k:'encroachment',l:'Encroachment',ico:'🏗️'},{k:'stray',l:'Stray Animals',ico:'🐕'},
+      {k:'aquatic',l:'Water Body Pollution',ico:'🌊'}
     ];
     body.innerHTML=
       '<div style="font-family:var(--fm);font-size:9px;color:#94A3B8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">FILTER BY CATEGORY</div>'+
