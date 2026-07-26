@@ -694,17 +694,17 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       </div>
       <div>
         <div class="pan-title">Category Filter</div>
-        <div class="ltab active" id="lt-all" onclick="setLayer('all')"><div class="ltab-dot" style="background:linear-gradient(135deg,var(--red),var(--amb))"></div>All<span class="ltab-count">247</span></div>
-        <div class="ltab" id="lt-garbage" onclick="setLayer('garbage')"><div class="ltab-dot" style="background:#EA580C"></div>🗑️ Garbage / Dirty Space<span class="ltab-count">60</span></div>
+        <div class="ltab active" id="lt-all" onclick="setLayer('all')"><div class="ltab-dot" style="background:linear-gradient(135deg,var(--red),var(--amb))"></div>All<span class="ltab-count">235</span></div>
+        <div class="ltab" id="lt-garbage" onclick="setLayer('garbage')"><div class="ltab-dot" style="background:#EA580C"></div>🗑️ Garbage<span class="ltab-count">60</span></div>
         <div class="ltab" id="lt-traffic" onclick="setLayer('traffic')"><div class="ltab-dot" style="background:#F59E0B"></div>🚦 Traffic<span class="ltab-count">44</span></div>
         <div class="ltab" id="lt-pothole" onclick="setLayer('pothole')"><div class="ltab-dot" style="background:#DC2626"></div>🕳️ Pothole<span class="ltab-count">24</span></div>
-        <div class="ltab" id="lt-water" onclick="setLayer('water')"><div class="ltab-dot" style="background:#7C3AED"></div>💧 Waterlogging<span class="ltab-count">18</span></div>
         <div class="ltab" id="lt-footpath" onclick="setLayer('footpath')"><div class="ltab-dot" style="background:#0284C7"></div>🚶 Footpath<span class="ltab-count">19</span></div>
+        <div class="ltab" id="lt-water" onclick="setLayer('water')"><div class="ltab-dot" style="background:#7C3AED"></div>💧 Waterlogging<span class="ltab-count">18</span></div>
         <div class="ltab" id="lt-fire" onclick="setLayer('fire')"><div class="ltab-dot" style="background:#DC2626"></div>🔥 Fire Safety<span class="ltab-count">12</span></div>
-        <div class="ltab" id="lt-streetlight" onclick="setLayer('streetlight')"><div class="ltab-dot" style="background:#CA8A04"></div>💡 Streetlight<span class="ltab-count">7</span></div>
         <div class="ltab" id="lt-encroachment" onclick="setLayer('encroachment')"><div class="ltab-dot" style="background:#6B7280"></div>🏗️ Encroachment<span class="ltab-count">9</span></div>
-        <div class="ltab" id="lt-stray" onclick="setLayer('stray')"><div class="ltab-dot" style="background:#B45309"></div>🐕 Stray Animals<span class="ltab-count">16</span></div>
+        <div class="ltab" id="lt-streetlight" onclick="setLayer('streetlight')"><div class="ltab-dot" style="background:#CA8A04"></div>💡 Streetlight<span class="ltab-count">7</span></div>
         <div class="ltab" id="lt-aquatic" onclick="setLayer('aquatic')"><div class="ltab-dot" style="background:#0D9488"></div>🌊 Water Body Pollution<span class="ltab-count">6</span></div>
+        <div class="ltab" id="lt-stray" onclick="setLayer('stray')"><div class="ltab-dot" style="background:#B45309"></div>🐕 Stray Animals<span class="ltab-count">16</span></div>
       </div>
     </div>
     <div class="map-wrap">
@@ -883,22 +883,22 @@ var INC=[
   {lat:19.0760,lng:72.8777,city:'Mumbai',state:'MH',type:'garbage',assetId:'BIN-017',sev:'critical',issue:'Garbage pile-up near Dharavi — overflow onto road',pin:'400017'},
   {lat:28.6139,lng:77.2090,city:'Delhi',state:'DL',type:'traffic',assetId:'TRF-001',sev:'high',issue:'Heavy congestion at Connaught Place roundabout',pin:'110001'},
   {lat:12.9716,lng:77.5946,city:'Bengaluru',state:'KA',type:'footpath',assetId:'PTH-001',sev:'medium',issue:'Footpath blocked by vendors near MG Road metro',pin:'560001'},
-  {lat:13.0827,lng:80.2707,city:'Chennai',state:'TN',type:'cleanliness',assetId:'CLN-001',sev:'low',issue:'Marina Beach promenade — exemplary cleanliness',pin:'600001'},
+  {lat:13.0827,lng:80.2707,city:'Chennai',state:'TN',type:'garbage',assetId:'CLN-001',sev:'low',issue:'Marina Beach promenade — exemplary cleanliness',pin:'600001'},
   {lat:22.5726,lng:88.3639,city:'Kolkata',state:'WB',type:'garbage',assetId:'BIN-001',sev:'high',issue:'Overflowing bins near Howrah Bridge approach',pin:'700001'},
   {lat:17.3850,lng:78.4867,city:'Hyderabad',state:'TS',type:'traffic',assetId:'TRF-081',sev:'critical',issue:'Road closure — Hitech City flyover repair',pin:'500081'},
   {lat:26.9124,lng:75.7873,city:'Jaipur',state:'RJ',type:'footpath',assetId:'PTH-001',sev:'medium',issue:'Uneven pavement near Amber Fort road',pin:'302001'},
-  {lat:23.0225,lng:72.5714,city:'Ahmedabad',state:'GJ',type:'cleanliness',assetId:'CLN-001',sev:'low',issue:'Sabarmati Riverfront — model zone maintained',pin:'380001'},
+  {lat:23.0225,lng:72.5714,city:'Ahmedabad',state:'GJ',type:'garbage',assetId:'CLN-001',sev:'low',issue:'Sabarmati Riverfront — model zone maintained',pin:'380001'},
   {lat:18.5204,lng:73.8567,city:'Pune',state:'MH',type:'garbage',assetId:'BIN-001',sev:'medium',issue:'Waste dumping on FC Road sidewalk — 3 days',pin:'411001'},
-  {lat:21.1702,lng:72.8311,city:'Surat',state:'GJ',type:'cleanliness',assetId:'CLN-001',sev:'low',issue:'SSCDL riverfront — zero litter this week',pin:'395001'},
+  {lat:21.1702,lng:72.8311,city:'Surat',state:'GJ',type:'garbage',assetId:'CLN-001',sev:'low',issue:'SSCDL riverfront — zero litter this week',pin:'395001'},
   {lat:25.5941,lng:85.1376,city:'Patna',state:'BR',type:'traffic',assetId:'TRF-001',sev:'high',issue:'Waterlogging blocking main arterials',pin:'800001'},
   {lat:26.8467,lng:80.9462,city:'Lucknow',state:'UP',type:'footpath',assetId:'PTH-001',sev:'high',issue:'Hazratganj footpath encroachment — 80m blocked',pin:'226001'},
   {lat:11.0168,lng:76.9558,city:'Coimbatore',state:'TN',type:'garbage',assetId:'BIN-001',sev:'medium',issue:'RS Puram market bins need clearing',pin:'641001'},
-  {lat:30.7333,lng:76.7794,city:'Chandigarh',state:'PB',type:'cleanliness',assetId:'CLN-017',sev:'low',issue:'Sector 17 Plaza — community benchmark zone',pin:'160017'},
+  {lat:30.7333,lng:76.7794,city:'Chandigarh',state:'PB',type:'garbage',assetId:'CLN-017',sev:'low',issue:'Sector 17 Plaza — community benchmark zone',pin:'160017'},
   {lat:23.2599,lng:77.4126,city:'Bhopal',state:'MP',type:'traffic',assetId:'TRF-001',sev:'medium',issue:'Signal failure at DB Mall crossing',pin:'462001'},
   {lat:19.2183,lng:72.9781,city:'Thane',state:'MH',type:'garbage',assetId:'BIN-601',sev:'critical',issue:'Debris near Thane lake — water body risk',pin:'400601'},
   {lat:28.4595,lng:77.0266,city:'Gurgaon',state:'HR',type:'footpath',assetId:'PTH-001',sev:'high',issue:'Cyber Hub pedestrian crossing dangerous',pin:'122001'},
   {lat:22.3072,lng:73.1812,city:'Vadodara',state:'GJ',type:'water',assetId:'DRN-001',sev:'high',issue:'Vishwamitri river — sewage discharge',pin:'390001'},
-  {lat:12.2958,lng:76.6394,city:'Mysuru',state:'KA',type:'cleanliness',assetId:'CLN-001',sev:'low',issue:'Chamundi Hill road maintained beautifully',pin:'570001'},
+  {lat:12.2958,lng:76.6394,city:'Mysuru',state:'KA',type:'garbage',assetId:'CLN-001',sev:'low',issue:'Chamundi Hill road maintained beautifully',pin:'570001'},
   {lat:17.6868,lng:83.2185,city:'Visakhapatnam',state:'AP',type:'water',assetId:'DRN-001',sev:'critical',issue:'RK Beach — industrial runoff detected',pin:'530001'},
 ];
 var WARDS=[
@@ -970,14 +970,14 @@ var _stk_default={
 function _stkCards(ward){var stk=WARD_STAKEHOLDERS[ward]||_stk_default;return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px">'+[{b:'L2',c:'#7C3AED',bg:'#F5F3FF',bd:'#DDD6FE',d:stk.l2},{b:'L3',c:'#0052CC',bg:'#EFF6FF',bd:'#BFDBFE',d:stk.l3},{b:'MP',c:'#C2410C',bg:'#FFF7ED',bd:'#FDBA74',d:stk.mp},{b:'MLA',c:'#0D9488',bg:'#F0FDFA',bd:'#99F6E4',d:stk.mla}].map(function(c){return '<div style="background:'+c.bg+';border:1px solid '+c.bd+';border-radius:var(--r2);padding:9px 10px"><div style="font-family:var(--fm);font-size:8px;font-weight:700;color:'+c.c+';letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">'+c.b+'</div><div style="font-size:11.5px;font-weight:700;color:var(--n9);line-height:1.3;margin-bottom:2px">'+c.d.name+'</div><div style="font-family:var(--fm);font-size:8.5px;color:var(--t5);line-height:1.4">'+c.d.role+'</div><div style="font-family:var(--fm);font-size:8px;color:var(--t3);margin-top:1px">'+c.d.zone+'</div></div>';}).join('')+'</div>';}
 var PINS={'400017':[19.0426,72.8544,'Dharavi, Mumbai'],'110001':[28.6342,77.2167,'Connaught Place, Delhi'],'560001':[12.9699,77.5678,'MG Road, Bengaluru'],'600001':[13.0804,80.2785,'George Town, Chennai'],'700001':[22.5736,88.3488,'BBD Bagh, Kolkata'],'500001':[17.3688,78.4738,'Abids, Hyderabad'],'411001':[18.5161,73.8567,'Shivajinagar, Pune'],'226001':[26.8507,80.9489,'Hazratganj, Lucknow'],'302001':[26.9166,75.8017,'Pink City, Jaipur'],'380001':[23.0254,72.5952,'Relief Road, Ahmedabad'],'462001':[23.2534,77.4028,'DB Mall Area, Bhopal'],'160017':[30.7374,76.7874,'Sector 17, Chandigarh'],'800001':[25.5941,85.1376,'Patna City Center']};
 var CATC={garbage:'#EA580C',pothole:'#DC2626',water:'#7C3AED',streetlight:'#CA8A04',fire:'#DC2626',traffic:'#F59E0B',footpath:'#0284C7',encroachment:'#6B7280',stray:'#B45309',aquatic:'#0D9488'};
-var CATBG={garbage:'#FFF7ED',pothole:'#FEF2F2',water:'#F5F3FF',streetlight:'#FEFCE8',fire:'#FEF3C7',traffic:'#FEFCE8',footpath:'#E0F2FE',encroachment:'#F9FAFB',stray:'#FFFBEB',aquatic:'#F0FDFA'};
+var CATBG={garbage:'#FFF7ED',pothole:'#FEF2F2',water:'#F5F3FF',streetlight:'#FEFCE8',fire:'#FEF2F2',traffic:'#FEFCE8',footpath:'#E0F2FE',encroachment:'#F9FAFB',stray:'#FFF7ED',aquatic:'#F0FDFA'};
 var CATE={garbage:'🗑️',pothole:'🕳️',water:'💧',streetlight:'💡',fire:'🔥',traffic:'🚦',footpath:'🚶',encroachment:'🏗️',stray:'🐕',aquatic:'🌊'};
 var SEVC={critical:'#DC2626',high:'#D97706',medium:'#0891B2',low:'#059669'};
 var SEVBG={critical:'#FEF2F2',high:'#FFFBEB',medium:'#ECFEFF',low:'#ECFDF5'};
 var SEVBD={critical:'#FCA5A5',high:'#FCD34D',medium:'#67E8F9',low:'#6EE7B7'};
 var SEVSZ={critical:44,high:34,medium:27,low:22};
 var ALERTS=[{t:'crit',ico:'🔴',title:'Garbage hotspot — Dharavi, Mumbai',sub:'400017 · 9 reports · Escalated to BMC',time:'1m'},{t:'crit',ico:'🔴',title:'Water pollution — Visakhapatnam',sub:'530001 · Industrial runoff detected',time:'4m'},{t:'warn',ico:'🟡',title:'Footpath blocked — Lucknow',sub:'226001 · 80m encroachment',time:'9m'},{t:'warn',ico:'🟡',title:'Signal failure — DB Mall, Bhopal',sub:'462001 · Manual control deployed',time:'14m'},{t:'info',ico:'🔵',title:'Waterlogging — Patna arterials',sub:'800001 · Post-rain monitoring',time:'21m'},{t:'good',ico:'🟢',title:'Cleared: Sabarmati Riverfront',sub:'380001 · Municipal action complete ✓',time:'38m'}];
-var TRENDS=[{l:'Garbage / Dirty Space',pct:81,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:70,c:'#F59E0B',d:'+12%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Fire Safety',pct:28,c:'#DC2626',d:'+14%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Stray Animals',pct:31,c:'#B45309',d:'+15%'},{l:'Water Body Pollution',pct:22,c:'#0D9488',d:'+9%'}];
+var TRENDS=[{l:'Garbage / Dirty Space',pct:84,c:'#EA580C',d:'+8%'},{l:'Traffic',pct:72,c:'#F59E0B',d:'+12%'},{l:'Pothole',pct:58,c:'#DC2626',d:'+7%'},{l:'Waterlogging',pct:63,c:'#7C3AED',d:'+3%'},{l:'Footpath',pct:56,c:'#0284C7',d:'−5%'},{l:'Fire Safety',pct:28,c:'#DC2626',d:'+14%'},{l:'Encroachment',pct:38,c:'#6B7280',d:'+2%'},{l:'Streetlight',pct:28,c:'#CA8A04',d:'−3%'},{l:'Stray Animals',pct:35,c:'#B45309',d:'+15%'},{l:'Water Body Pollution',pct:22,c:'#0D9488',d:'+9%'}];
 var FEED=[
   {av:'🗑️',bg:'#FFF7ED',who:'BIN-801',wh:'2m',desc:'Critical garbage overflow confirmed — Dharavi Ward D. GPS: 19.0425°N 72.8531°E',tag:'Mumbai · 🗑️ Garbage'},
   {av:'🚦',bg:'#FFFBEB',who:'TRF-201',wh:'4m',desc:'Silk Board junction — 4km queue. Signal cycle failed at peak hour.',tag:'Bengaluru · 🚦 Traffic'},
@@ -1417,15 +1417,15 @@ function ilRender(){
       +'<td><span class="il-id">'+rowId+'</span></td>'
       +'<td style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
       +'<td><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
-      +'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
-      +'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
+      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
+      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
       +'<td><div class="il-issue" title="'+d.issue+'">'+d.issue+'</div></td>'
       +'<td style="display:flex;gap:5px">'
       +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)">📍 Map</button>'
       +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Esc</button>'
       +'</td>'
       +'</tr>';
-  }).join(''):'<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
+  }).join(''):'<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
   /* Chips */
   var chips=[];
   if(q)chips.push({l:'Search: "'+q+'"',c:'ilQ'});
@@ -1604,36 +1604,22 @@ function dPinLookup(pin){
 }
 
 function reverseGeocode(lat,lng,cb){
-  /* MapMyIndia Mappls Reverse Geocoding API
-     India's official mapping partner · BSE/NSE listed · DPDP compliant
-     API key stored in AWS Secrets Manager; injected at runtime via Lambda env var.
-     In prototype mode, uses the Mappls sandbox endpoint (no key required for demo). */
-  var MAPPLS_KEY = window.MAPPLS_API_KEY || 'mappls-sandbox';
-  var url = 'https://apis.mapmyindia.com/advancedmaps/v1/' + MAPPLS_KEY +
-            '/rev_geocode?lat=' + lat + '&lng=' + lng;
-
-  fetch(url, {headers: {'Accept': 'application/json'}})
-    .then(function(r) {
-      if (!r.ok) throw new Error('Mappls API error: ' + r.status);
-      return r.json();
+  var url='https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lng+'&zoom=16&addressdetails=1';
+  fetch(url,{headers:{'Accept-Language':'en','User-Agent':'NagarDrishti/1.0'}})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var addr=data.address||{};
+      var ward=addr.city_district||addr.suburb||addr.neighbourhood||addr.county||'Unknown Ward';
+      var street=(addr.road||addr.pedestrian||addr.path||'')+(addr.house_number?' '+addr.house_number:'');
+      var area=(addr.suburb||addr.neighbourhood||'')+(addr.postcode?', '+addr.postcode:'');
+      var city=addr.city||addr.town||addr.village||addr.county||'Unknown City';
+      var fullStreet=street+(area&&street?', ':'')+area;
+      cb({ward:ward,street:fullStreet||data.display_name,city:city,raw:data});
     })
-    .then(function(data) {
-      var result = (data.results && data.results[0]) || {};
-      /* Mappls returns: area, locality, district, pincode, city, state */
-      var ward   = result.locality || result.area || result.subDistrict || 'Unknown Ward';
-      var street = result.houseNumber
-                   ? result.houseNumber + ', ' + (result.street || result.area || '')
-                   : (result.street || result.area || '');
-      var city   = result.city || result.district || 'Unknown City';
-      var pin    = result.pincode || '';
-      cb({ward: ward, street: street + (pin ? ' — ' + pin : ''), city: city, raw: data});
-    })
-    .catch(function() {
-      /* Fallback: PIN-based ward mapping (works offline / API key not set) */
-      var ward = lat > 19.04 && lat < 19.05 && lng > 72.84 && lng < 72.86
-                 ? 'Ward D — Dharavi, Mumbai'
-                 : 'Ward — GPS detected';
-      cb({ward: ward, street: 'Street identified from coordinates', city: 'Mumbai'});
+    .catch(function(){
+      /* Fallback: use mock ward mapping based on lat/lng */
+      var ward=lat>19.04&&lat<19.05&&lng>72.84&&lng<72.86?'Ward D — Dharavi, Mumbai':'Ward — GPS detected';
+      cb({ward:ward,street:'Street identified from coordinates',city:'Mumbai'});
     });
 }
 /* ── RATE LIMITER: 10 audits per hour per user ── */
@@ -1654,21 +1640,16 @@ function checkRateLimit(){
 
 /* ── IRC/MoRTH CATEGORY SEVERITY DATA ── */
 var CAT_SEV_DATA={
-  '🐟 Aquatic Ecosystem Damage':{std:'Wildlife Protection Act',subs:['Encroachment Near Water','Shrinkage / Encroachment','Ecosystem Collapse'],sevs:['medium','high','critical'],descs:['Dumping near water body edges','Lake / river area visibly reduced','Dead aquatic life, loss of vegetation'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
-  '💡 Broken / Zero Streetlight':{std:'IRC SP:30 · MNRE',subs:['Flickering / Dim','Single Light Out','Extended Dark Stretch'],sevs:['low','medium','critical'],descs:['Intermittent, reduced visibility','Single pole non-functional','3+ poles out, high accident risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '⚡ Cracks':{std:'IRC 82-2015',subs:['Hairline Crack','Surface Crack','Deep Structural Crack'],sevs:['low','medium','critical'],descs:['<1mm wide, surface only — cosmetic','1–6mm wide, affects ride quality','Alligator / >6mm — structural failure'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🚮 Dirty Public Space':{std:'SBM-U 2.0',subs:['Light Littering','Heavy Littering','Hazardous Waste'],sevs:['low','medium','critical'],descs:['Isolated spots, short duration','Area-wide, multiple days uncleared','Medical / sharp / chemical waste'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🌿 Urban Heat & Canopy':{std:'Climate Dept / FSI / MoEFCC',subs:['Reduced Green Cover','Severe Heat Island','Urban Forest Loss'],sevs:['low','high','critical'],descs:['<5% canopy reduction, moderate heat stress','Heat island effect, 15%+ canopy loss, NDVI alert','Critical deforestation, health emergency'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🚶 Footpath Obstruction':{std:'IRC SP:41',subs:['Partial Block','Major Encroachment','Complete Closure'],sevs:['low','medium','critical'],descs:['Walkable with difficulty','Pedestrians forced onto road','Footpath entirely unusable'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🗑️ Garbage Hotspots':{std:'SWM Rules 2016',subs:['Scattered Litter','Accumulated Pile','Black Spot / Chronic Dump'],sevs:['low','medium','critical'],descs:['Isolated waste, minor','Bin overflow or roadside pile','Recurring site, disease & hygiene risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '💧 Open Drain / Waterlogging':{std:'MoRTH / CPHEEO',subs:['Minor Waterlogging','Moderate Flooding','Severe Submersion'],sevs:['low','high','critical'],descs:['<Ankle depth, localised','Ankle–knee depth, traffic disrupted','Knee+ depth, health emergency'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🏗️ Pavement Encroachment':{std:'MoRTH',subs:['Temporary Setup','Semi-Permanent','Illegal Construction'],sevs:['low','medium','critical'],descs:['Daily vendor / hawker setup','Semi-permanent stall or structure','Permanent illegal build on road'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '🗑️ Garbage / Dirty Space':{std:'SWM Rules 2016 · SBM-U 2.0',subs:['Scattered Litter','Accumulated Pile','Black Spot / Chronic Dump'],sevs:['low','medium','critical'],descs:['Isolated waste, minor','Bin overflow or roadside pile','Recurring site, disease & hygiene risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
   '🕳️ Pothole':{std:'IRC 82-2015 · Cl.7.5',subs:['Small (<25mm deep)','Medium (25–50mm)','Large / Critical (>50mm)'],sevs:['low','high','critical'],descs:['Minor depression, tyre bump risk','Significant dip, vehicle damage risk','Deep cavity — safety & vehicle hazard'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '💧 Open Drain / Waterlogging':{std:'MoRTH / CPHEEO',subs:['Minor Waterlogging','Moderate Flooding','Severe Submersion'],sevs:['low','high','critical'],descs:['<Ankle depth, localised','Ankle–knee depth, traffic disrupted','Knee+ depth, health emergency'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '💡 Broken / Zero Streetlight':{std:'IRC SP:30 · MNRE',subs:['Flickering / Dim','Single Light Out','Extended Dark Stretch'],sevs:['low','medium','critical'],descs:['Intermittent, reduced visibility','Single pole non-functional','3+ poles out, high accident risk'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
   '🔥 Fire Safety':{std:'NBC 2016 / NFPA / State Fire Services Act',subs:['Minor Hazard','Active Fire Risk','Structural Fire Emergency'],sevs:['medium','high','critical'],descs:['Blocked exit/missing extinguisher, no active flame','Uncontrolled fire risk, evacuation needed','Active structural fire, multi-agency response'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
-  '🚧 Road Blockage':{std:'MoRTH',subs:['Partial Block','Major Obstruction','Full Road Closure'],sevs:['medium','high','critical'],descs:['One lane blocked, traffic diverts','Multiple lanes blocked','Road fully closed, ambulance risk'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']},
-  '🚦 Traffic Congestion':{std:'MoRTH',subs:['Slow Movement','Heavy Jam','Complete Gridlock'],sevs:['low','high','critical'],descs:['Minor delay <10 min','Significant delay 10–30 min','No movement, emergency access blocked'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🐕 Stray Dogs':{std:'MoEFCC / Animal Welfare Board',subs:['Single Sighting','Pack Activity','Aggressive / Attack Incident'],sevs:['low','high','critical'],descs:['1–2 strays, no immediate hazard','Pack of 5+, traffic & pedestrian risk','Biting incident or imminent attack zone'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
-  '🐄 Need Gaushala Corridor':{std:'MoA / Municipal Bye-laws',subs:['Stray Cattle on Road','Cattle on Highway','Accident-Prone Herd Zone'],sevs:['medium','high','critical'],descs:['Small herd, minor obstruction','Cattle on highway, accident risk','Repeated incidents, no corridor allocated'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']}
+  '🚦 Traffic Congestion':{std:'MoRTH',subs:['Slow Movement','Heavy Jam / Road Block','Complete Gridlock'],sevs:['low','high','critical'],descs:['Minor delay <10 min','Significant delay or blocked lane','No movement, emergency access blocked'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '🚶 Footpath Obstruction':{std:'IRC SP:41',subs:['Partial Block','Major Encroachment','Complete Closure'],sevs:['low','medium','critical'],descs:['Walkable with difficulty','Pedestrians forced onto road','Footpath entirely unusable'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '🏗️ Encroachment':{std:'MoRTH · Municipal Act',subs:['Temporary Setup','Semi-Permanent','Illegal Construction'],sevs:['low','medium','critical'],descs:['Daily vendor / hawker setup','Semi-permanent stall or structure','Permanent illegal build on road / public land'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '🐕 Stray Animals (Dog · Cattle)':{std:'MoEFCC / AWB · ABC Rules 2023',subs:['Single Sighting','Pack / Herd Activity','Aggressive / Accident Incident'],sevs:['low','high','critical'],descs:['1–2 animals, no immediate hazard','Pack of dogs or cattle herd, road risk','Biting / accident incident or imminent zone'],cols:['#059669','#D97706','#DC2626'],glows:['rgba(5,150,105,.12)','rgba(217,119,6,.12)','rgba(220,38,38,.12)']},
+  '🌊 Water Body Pollution':{std:'NGT / CPCB / SPCB',subs:['Dumping Near Water','Visible Contamination','Ecosystem Collapse'],sevs:['medium','high','critical'],descs:['Waste dumping near river / lake edges','Discolouration, odour, dead fish visible','Dead aquatic life, loss of vegetation'],cols:['#D97706','#EA580C','#DC2626'],glows:['rgba(217,119,6,.12)','rgba(234,88,6,.12)','rgba(220,38,38,.12)']}
 };
 
 function ndShowSubSev(catVal, gridId, pickerId, sevId){
@@ -2263,21 +2244,16 @@ waitForLeaflet(initMap);
       <input class="il-inp" id="ilQ" placeholder="🔍 Search issue, city, PIN..." style="width:200px" oninput="ilRender()">
       <select class="il-sel" id="ilCat" onchange="ilRender()">
         <option value="">All Categories</option>
-        <option value="aquatic">🐟 Aquatic Ecosystem</option>
-        <option value="streetlight">💡 Streetlight</option>
-        <option value="cracks">⚡ Cracks</option>
-        <option value="dirty">🚮 Dirty Space</option>
-        <option value="footpath">🚶 Footpath</option>
-        <option value="fire">🔥 Fire Safety</option>
-        <option value="gaushala">🐄 Gaushala Corridor</option>
-        <option value="garbage">🗑️ Garbage</option>
-        <option value="water">💧 Waterlogging</option>
-        <option value="encroachment">🏗️ Encroachment</option>
+        <option value="garbage">🗑️ Garbage / Dirty Space</option>
         <option value="pothole">🕳️ Pothole</option>
-        <option value="road">🚧 Road Block</option>
-        <option value="dogs">🐕 Stray Dogs</option>
+        <option value="water">💧 Waterlogging</option>
+        <option value="streetlight">💡 Streetlight</option>
+        <option value="fire">🔥 Fire Safety</option>
         <option value="traffic">🚦 Traffic</option>
-        <option value="heat">🌿 Urban Heat</option>
+        <option value="footpath">🚶 Footpath</option>
+        <option value="encroachment">🏗️ Encroachment</option>
+        <option value="stray">🐕 Stray Animals</option>
+        <option value="aquatic">🌊 Water Body Pollution</option>
       </select>
       <select class="il-sel" id="ilSev" onchange="ilRender()">
         <option value="">All Severities</option>
@@ -2304,6 +2280,7 @@ waitForLeaflet(initMap);
             <th onclick="ilSortBy('city')" id="ilTh-city">City <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('pin')" id="ilTh-pin">PIN <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('type')" id="ilTh-type">Category <span class="sort-arr">↕</span></th>
+              <th onclick="ilSortBy('assetId')" id="ilTh-assetId">Asset ID <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('sev')" id="ilTh-sev">Severity <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('issue')" id="ilTh-issue">Issue <span class="sort-arr">↕</span></th>
             <th>Action</th>
