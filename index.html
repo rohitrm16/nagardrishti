@@ -22,7 +22,12 @@
   --s1:0 1px 3px rgba(15,28,63,.08);--s2:0 4px 16px rgba(15,28,63,.10);--s3:0 10px 40px rgba(15,28,63,.12);--s4:0 24px 64px rgba(15,28,63,.15);
   --ff:'Plus Jakarta Sans',sans-serif;--fm:'IBM Plex Mono',monospace;
   --r1:4px;--r2:8px;--r3:12px;--r4:16px;
+  /* ── Grid design tokens ── */
+  --nd-grid-gap:16px;--nd-grid-padding:16px;--nd-grid-cols:1;
 }
+@media(min-width:640px){:root{--nd-grid-gap:20px;--nd-grid-padding:20px;--nd-grid-cols:2}}
+@media(min-width:1024px){:root{--nd-grid-gap:24px;--nd-grid-padding:32px;--nd-grid-cols:3}}
+@media(min-width:1440px){:root{--nd-grid-cols:4}}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--w);color:var(--t9);font-family:var(--ff);overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -127,7 +132,7 @@ nav.sh{box-shadow:var(--s2)}
 
 /* ─ STATS ROW ─ */
 .st-row{background:var(--w);border-bottom:1px solid var(--g100)}
-.st-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr}
+.st-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .sc{padding:24px 26px;border-right:1px solid var(--g100);position:relative;transition:background .13s;cursor:default}
 .sc:last-child{border-right:none}
 .sc:hover{background:var(--g50)}
@@ -371,7 +376,7 @@ nav.sh{box-shadow:var(--s2)}
 }
 
 /* ─ CITIES ─ */
-.cg{display:grid;grid-template-columns:1fr;gap:13px;margin-top:24px}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:13px;margin-top:24px}
 .cc{background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:20px 18px;cursor:pointer;transition:all .17s;box-shadow:var(--s1);position:relative;overflow:hidden}
 .cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ga);transform:scaleX(0);transform-origin:left;transition:transform .24s}
 .cc:hover{box-shadow:var(--s3);transform:translateY(-3px);border-color:var(--b4)}
@@ -774,31 +779,15 @@ footer{background:var(--n9);color:#fff}
   .role-grid{grid-template-columns:1fr}
 }
 
-/* ── ND CARDS GRID — mobile-first reflow ── */
-.nd-cards-grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:640px){
-  .nd-cards-grid{grid-template-columns:repeat(2,1fr);gap:20px}
-  .cg{grid-template-columns:repeat(2,1fr)}
-  .bg-grid{grid-template-columns:repeat(2,1fr)}
-  .st-in{grid-template-columns:repeat(2,1fr)}
-  /* In 2-col stat row, 2nd cell per row loses border-right */
-  .st-in .sc:nth-child(2n){border-right:none}
-}
-@media(min-width:1024px){
-  .nd-cards-grid{grid-template-columns:repeat(3,1fr);gap:24px}
-  .cg{grid-template-columns:repeat(3,1fr)}
-  .bg-grid{grid-template-columns:repeat(3,1fr)}
-  .st-in{grid-template-columns:repeat(4,1fr)}
-  /* 4-col stat row: all but last get border-right again */
-  .st-in .sc:nth-child(2n){border-right:1px solid var(--g100)}
-  .st-in .sc:last-child{border-right:none}
-}
-@media(min-width:1280px){
-  .nd-cards-grid{grid-template-columns:repeat(4,1fr)}
-  .nd-cards-grid.cols-5{grid-template-columns:repeat(5,1fr)}
-  .cg{grid-template-columns:repeat(4,1fr)}
-  .bg-grid{grid-template-columns:repeat(5,1fr)}
-}
+/* ── ND CARDS GRID — explicit breakpoints via CSS variables ── */
+.nd-cards-grid{display:grid;grid-template-columns:repeat(var(--nd-grid-cols),1fr);gap:var(--nd-grid-gap);padding:var(--nd-grid-padding)}
+.nd-cards-grid.cols-5{grid-template-columns:repeat(5,1fr)} /* always 5 col for category cards */
+/* ── ND STATS GRID — auto-fitting, no media queries needed ── */
+.nd-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+/* ── BG-GRID explicit breakpoints (5-badge layout, not auto-fit) ── */
+@media(min-width:640px){.bg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.bg-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1280px){.bg-grid{grid-template-columns:repeat(5,1fr)}}
 
 /* ══ AI AUDIT PROGRESS MODAL ══ */
 .aip-overlay{display:none;position:fixed;inset:0;background:rgba(10,18,42,.82);backdrop-filter:blur(8px);z-index:9900;align-items:center;justify-content:center}
