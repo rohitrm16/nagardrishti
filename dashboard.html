@@ -49,6 +49,40 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 .kpi-v{font-family:var(--fm);font-size:13px;font-weight:600;line-height:1}
 .kpi-l{font-family:var(--fm);font-size:7.5px;color:var(--t3);letter-spacing:.07em;text-transform:uppercase;margin-top:2px}
 .freshness{display:flex;align-items:center;gap:5px;background:var(--g50);border:1px solid var(--g200);border-radius:20px;padding:4px 10px;flex-shrink:0;cursor:pointer;transition:all .13s}
+/* ── TIME FILTER ── */
+.tf-row{display:flex;align-items:center;gap:2px;flex-shrink:0;background:var(--g50);border:1px solid var(--g200);border-radius:20px;padding:3px 4px}
+.tf-tab{font-family:var(--fm);font-size:10px;color:var(--t5);padding:3px 8px;border-radius:16px;cursor:pointer;transition:all .15s;white-space:nowrap;background:transparent;border:none;letter-spacing:.02em}
+.tf-tab:hover{background:var(--g100);color:var(--n9)}
+.tf-tab.active{background:var(--b6);color:#fff;font-weight:700}
+/* ── MAP LEGEND ── */
+.map-legend{position:absolute;bottom:70px;right:56px;z-index:500;background:rgba(255,255,255,.95);border:1px solid var(--g200);border-radius:var(--r3);padding:10px 12px;backdrop-filter:blur(10px);box-shadow:var(--s2);min-width:118px;max-width:150px}
+.legend-title{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.legend-bubble-row{display:flex;align-items:flex-end;gap:6px;margin-bottom:6px}
+.legend-bubble{border-radius:50%;background:rgba(234,88,12,.18);border:2px solid rgba(234,88,12,.5);flex-shrink:0}
+.legend-cat-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.legend-cat-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.legend-cat-lbl{font-size:10px;color:var(--n9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* ── ZERO DATA ── */
+.no-data-marker{width:40px;height:40px;border-radius:50%;background:repeating-linear-gradient(45deg,#E2E8F0 0px,#E2E8F0 2px,#F8FAFC 2px,#F8FAFC 8px);border:2px dashed #CBD5E1;display:flex;align-items:center;justify-content:center;font-size:13px;color:#94A3B8;cursor:default;position:relative}
+/* ── NATIONAL SNAPSHOT (right sidebar) ── */
+.natl-snapshot{display:flex;flex-direction:column;gap:8px}
+.natl-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:4px}
+.natl-stat{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r2);padding:8px 10px}
+.natl-stat-v{font-family:var(--fm);font-size:15px;font-weight:700;line-height:1;margin-bottom:2px}
+.natl-stat-l{font-family:var(--fm);font-size:8px;color:var(--t5);text-transform:uppercase;letter-spacing:.07em}
+.natl-label{font-family:var(--fm);font-size:8px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin:6px 0 5px}
+.natl-label::after{content:'';display:inline-block;width:60px;height:1px;background:var(--g100);vertical-align:middle;margin-left:6px}
+.natl-top5-row{display:flex;align-items:center;gap:7px;padding:4px 0;border-bottom:1px solid var(--g50)}
+.natl-top5-row:last-child{border-bottom:none}
+.natl-rank{font-family:var(--fm);font-size:10px;font-weight:700;color:var(--t3);width:14px;flex-shrink:0}
+.natl-sname{font-size:11px;font-weight:600;color:var(--n9);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.natl-sbar-wrap{width:44px;background:var(--g100);border-radius:2px;height:4px;flex-shrink:0}
+.natl-sbar{height:100%;border-radius:2px;transition:width .4s}
+.natl-scnt{font-family:var(--fm);font-size:10px;color:var(--t5);width:22px;text-align:right;flex-shrink:0}
+.natl-fast-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--g50)}
+.natl-fast-row:last-child{border-bottom:none}
+.natl-fast-city{font-size:11px;font-weight:600;color:var(--n9);flex:1}
+.natl-fast-score{font-family:var(--fm);font-size:10px;color:var(--grn);font-weight:700}
 .freshness:hover{border-color:var(--b6)}
 .fresh-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);flex-shrink:0;transition:background .3s}
 .fresh-dot.stale{background:var(--amb);animation:bl2 1s ease-in-out infinite}
@@ -433,11 +467,13 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
   .topbar{height:52px;padding:0 12px;gap:8px}
   .tb-name{font-size:13px;font-weight:800}
   .tb-sub,.tb-kpi,.tb-clock{display:none}
+  .tf-row{display:none}
   .tb-actions .btn-audit{font-size:11px;padding:5px 10px;border-radius:6px}
 
   /* Main grid → single column, map fills all */
   .main{display:block;position:relative;height:100%}
   .sidebar-l,.sidebar-r{display:none}
+  .map-legend{display:none}
 
   /* Map: fill entire main area including bottom-bar overlap */
   #map-wrap{position:absolute;inset:0;z-index:1}
@@ -621,6 +657,14 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
     <div class="breadcrumb" id="breadcrumb"><span class="bc-item active" onclick="drillTo('india')">India</span></div>
     <button class="bc-up" id="drillUpBtn" onclick="drillUp()">← Back</button>
     <div class="tb-sep"></div>
+    <div class="tf-row" id="timeFilters">
+      <button class="tf-tab active" onclick="setTime('24h')">24h</button>
+      <button class="tf-tab" onclick="setTime('48h')">48h</button>
+      <button class="tf-tab" onclick="setTime('7d')">7 days</button>
+      <button class="tf-tab" onclick="setTime('1m')">Month</button>
+      <button class="tf-tab" onclick="setTime('3m')">3 Mo</button>
+    </div>
+    <div class="tb-sep"></div>
     <div class="kpi-row">
       <div class="kpi"><div class="kpi-v" style="color:var(--red)" id="kAlerts">247</div><div class="kpi-l">Active</div></div>
       <div class="kpi"><div class="kpi-v" style="color:var(--grn)" id="kResolved">624</div><div class="kpi-l">Resolved</div></div>
@@ -665,12 +709,12 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       </div>
       </div>
       <div>
-        <div class="pan-title">City Heartbeat</div>
+        <div class="pan-title" id="hbPanTitle">National Heartbeat</div>
         <div class="hb-card" id="hbCard">
           <div class="hb-pulse" id="hbPulse"></div>
-          <div class="hb-city" id="hbCity">Mumbai, Maharashtra</div>
-          <div class="hb-score-row"><div class="hb-score" id="hbScore" style="color:var(--amb)">71</div><div><div class="hb-sub">Health Score</div><div class="hb-sub">/ 100</div></div></div>
-          <div class="hb-bar-wrap"><div class="hb-bar" id="hbBar" style="width:71%;background:var(--amb)"></div></div>
+          <div class="hb-city" id="hbCity">India — All States</div>
+          <div class="hb-score-row"><div class="hb-score" id="hbScore" style="color:var(--amb)">70</div><div><div class="hb-sub">Health Score</div><div class="hb-sub">/ 100</div></div></div>
+          <div class="hb-bar-wrap"><div class="hb-bar" id="hbBar" style="width:70%;background:var(--amb)"></div></div>
           <div class="hb-grid">
             <div class="hb-cell"><div class="hb-v" style="color:var(--red)" id="hbAlerts">42</div><div class="hb-l">Incidents</div></div>
             <div class="hb-cell"><div class="hb-v" style="color:var(--grn)" id="hbRes">18</div><div class="hb-l">Resolved</div></div>
@@ -684,10 +728,12 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
         <div class="pan-box" style="padding:10px">
           <div style="font-family:var(--fm);font-size:10px;color:var(--t5);margin-bottom:8px">Viewing: <span id="levelLabel" style="color:var(--b6);font-weight:600">All India</span></div>
           <div class="zoom-levels">
-            <div class="zl active" id="zl-india" onclick="drillTo('india')"><span class="zl-ico">🌍</span>City Level<span class="zl-num">Overview</span></div>
-            <div class="zl" id="zl-state" onclick="drillTo('state')"><span class="zl-ico">📍</span>Zone Level<span class="zl-num">District</span></div>
-            <div class="zl" id="zl-city" onclick="drillTo('city')"><span class="zl-ico">🏙</span>Ward Level<span class="zl-num">Cluster</span></div>
-            <div class="zl" id="zl-ward" onclick="tryWard()"><span class="zl-ico">🛣</span>Street Level<span class="zl-num">Road/Lane</span></div>
+            <div class="zl active" id="zl-india" onclick="drillTo('india')"><span class="zl-ico">🌍</span>National Level<span class="zl-num">All India</span></div>
+            <div class="zl" id="zl-state" onclick="drillTo('state')"><span class="zl-ico">📍</span>State Level<span class="zl-num">State Map</span></div>
+            <div class="zl" id="zl-city" onclick="drillTo('city')"><span class="zl-ico">🏙</span>City Level<span class="zl-num">City Map</span></div>
+            <div class="zl" id="zl-zone" onclick="tryZone()"><span class="zl-ico">🏘</span>Zone Level<span class="zl-num">District/Zone</span></div>
+            <div class="zl" id="zl-ward" onclick="tryWard()"><span class="zl-ico">🛣</span>Ward Level<span class="zl-num">Ward/Cluster</span></div>
+            <div class="zl" id="zl-street" onclick="tryStreet()"><span class="zl-ico">🚶</span>Street Level<span class="zl-num">Road/Lane</span></div>
             <div class="zl" id="zl-asset" onclick="tryAsset()"><span class="zl-ico">⚙️</span>Asset Level<span class="zl-num">Bin/Signal</span></div>
           </div>
         </div>
@@ -710,6 +756,7 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
     <div class="map-wrap">
       <div id="map"></div>
       <div class="drill-tip" id="drillTip">Click a state bubble → zone → ward → street → asset</div>
+      <div class="map-legend" id="mapLegend"></div>
       <div class="refresh-ring" id="refreshRing">
         <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="#DDE1EA" stroke-width="3"/><path d="M16 3 A13 13 0 0 1 29 16" stroke="#0052CC" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
@@ -722,9 +769,18 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       </div>
     </div>
     <div class="sidebar-r">
-      <div><div class="pan-title">Live Alerts</div><div id="alertList"></div></div>
-      <div><div class="pan-title">24h Trend</div><div id="trendList"></div></div>
-      <div><div class="pan-title">Live Feed</div><div id="feedList"></div></div>
+      <!-- National Snapshot panel (India level) -->
+      <div id="natl-panel">
+        <div class="pan-title">National Snapshot</div>
+        <div id="natlSnapshotBody" class="natl-snapshot"></div>
+        <div style="margin-top:8px"><div class="pan-title">24h Trend</div><div id="trendListNatl"></div></div>
+      </div>
+      <!-- City-level panel (state/city/ward/asset level) -->
+      <div id="city-panel-r" style="display:none">
+        <div><div class="pan-title">Live Alerts</div><div id="alertList"></div></div>
+        <div><div class="pan-title">24h Trend</div><div id="trendList"></div></div>
+        <div><div class="pan-title">Live Feed</div><div id="feedList"></div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -989,6 +1045,142 @@ var CITIES=[{n:'Surat',s:92,lat:21.1702,lng:72.8311,state:'GJ'},{n:'Indore',s:88
 var HB=[{city:'Mumbai',state:'MH',score:71,inc:42,res:18,resp:'3.8h',aud:'1,247'},{city:'Delhi',state:'DL',score:68,inc:38,res:15,resp:'4.1h',aud:'987'},{city:'Bengaluru',state:'KA',score:74,inc:29,res:21,resp:'3.2h',aud:'1,089'},{city:'Chennai',state:'TN',score:72,inc:31,res:19,resp:'3.6h',aud:'876'}];
 var gMap,mLyr,stLyr,curLyr='all',dlvl='india',curState=null,curCity=null,curWard=null;
 var lastRefresh=Date.now(),emShown=false,hbIdx=0;
+/* ── TIME FILTER ── */
+var curTime='24h';
+var TIME_MULT={'24h':1,'48h':1.8,'7d':5.2,'1m':22,'3m':65};
+function setTime(t){
+  curTime=t;
+  var labels={'24h':'24h','48h':'48h','7d':'7 days','1m':'Month','3m':'3 Mo'};
+  document.querySelectorAll('.tf-tab').forEach(function(el){
+    el.classList.toggle('active',el.textContent.trim()===labels[t]);
+  });
+  applyTimeFilter();
+}
+function applyTimeFilter(){
+  var mult=TIME_MULT[curTime]||1;
+  /* Update KPIs */
+  var aEl=document.getElementById('kAlerts'),rEl=document.getElementById('kResolved');
+  if(aEl)aEl.textContent=Math.round(247*mult).toLocaleString('en-IN');
+  if(rEl)rEl.textContent=Math.round(624*mult).toLocaleString('en-IN');
+  /* Re-render current level with scaled counts */
+  if(dlvl==='india'){renderStateMarkersScaled();renderNatlSnapshot();updateLegend();}
+  else if(dlvl==='state'&&curState)setLevel('state',curState);
+  else if(dlvl==='city'&&curCity)setLevel('city',curCity);
+  renderTrends();
+}
+function renderStateMarkersScaled(){
+  /* Re-draws state bubbles scaling INC by TIME_MULT */
+  stLyr.clearLayers();mLyr.clearLayers();
+  var mult=TIME_MULT[curTime]||1;
+  STATES.forEach(function(s){
+    var cnt=Math.round(s.inc*mult);
+    var st=stStyle(cnt),sz=Math.max(48,Math.min(88,cnt*1.6/(mult||1)+26));
+    /* Clamp bubble size for large time ranges */
+    sz=Math.max(44,Math.min(90,Math.sqrt(cnt)*8+28));
+    var ico=L.divIcon({className:'',html:'<div onclick="clickState(\''+s.id+'\')" style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:'+st.bg+';border:2px solid '+st.bd+';display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(15,28,63,.18);transition:transform .15s" title="'+s.name+'"><div style="text-align:center"><div style="font-size:'+Math.max(11,sz*.22)+'px;font-weight:800;color:'+st.tx+'">'+cnt+'</div><div style="font-size:'+Math.max(7,sz*.14)+'px;color:'+st.tx+';opacity:.8">'+s.name.split(' ')[0]+'</div></div></div>',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
+    L.marker([s.lat,s.lng],{icon:ico}).addTo(stLyr);
+  });
+}
+/* ── NATIONAL SNAPSHOT ── */
+function renderNatlSnapshot(){
+  var nb=document.getElementById('natlSnapshotBody');if(!nb)return;
+  var mult=TIME_MULT[curTime]||1;
+  var totalInc=Math.round(235*mult),resolved=Math.round(146*mult),slaB=Math.round(28*mult);
+  var cities=Math.min(87+Math.round((mult-1)*12),362);
+  var sorted=STATES.slice().sort(function(a,b){return (b.inc*mult)-(a.inc*mult)});
+  var maxCnt=Math.round(sorted[0].inc*mult);
+  var top5HTML=sorted.slice(0,5).map(function(s,i){
+    var cnt=Math.round(s.inc*mult);
+    var pct=Math.round(cnt/maxCnt*100);
+    var c=i===0?'#DC2626':i===1?'#D97706':i===2?'#F59E0B':'#0052CC';
+    return '<div class="natl-top5-row">'+
+      '<div class="natl-rank">#'+(i+1)+'</div>'+
+      '<div class="natl-sname">'+s.name+'</div>'+
+      '<div class="natl-sbar-wrap"><div class="natl-sbar" style="width:'+pct+'%;background:'+c+'"></div></div>'+
+      '<div class="natl-scnt">'+cnt+'</div></div>';
+  }).join('');
+  var fastHTML=CITIES.slice(0,3).map(function(c){
+    return '<div class="natl-fast-row">'+
+      '<div class="natl-fast-city">'+c.n+'</div>'+
+      '<div class="natl-fast-score">'+c.s+'/100</div></div>';
+  }).join('');
+  nb.innerHTML=
+    '<div class="natl-stat-grid">'+
+      '<div class="natl-stat"><div class="natl-stat-v" style="color:var(--red)">'+totalInc.toLocaleString('en-IN')+'</div><div class="natl-stat-l">Total Incidents</div></div>'+
+      '<div class="natl-stat"><div class="natl-stat-v" style="color:var(--grn)">'+resolved.toLocaleString('en-IN')+'</div><div class="natl-stat-l">Resolved</div></div>'+
+      '<div class="natl-stat"><div class="natl-stat-v" style="color:var(--b6)">'+cities+'</div><div class="natl-stat-l">Cities Active</div></div>'+
+      '<div class="natl-stat"><div class="natl-stat-v" style="color:var(--amb)">'+slaB.toLocaleString('en-IN')+'</div><div class="natl-stat-l">SLA Breached</div></div>'+
+    '</div>'+
+    '<div class="natl-label">Top States by Incidents</div>'+top5HTML+
+    '<div class="natl-label" style="margin-top:6px">Fastest Resolving Cities</div>'+fastHTML;
+  /* Also render trends in national panel */
+  var ntl=document.getElementById('trendListNatl');if(ntl)ntl.innerHTML=_buildTrendHTML();
+}
+function _buildTrendHTML(){
+  var n=function(v){return Math.max(10,Math.min(95,v+Math.floor(Math.random()*8-4)));};
+  return TRENDS.map(function(t){
+    var v=n(t.pct);
+    return '<div class="trend-row">'+
+      '<div class="trend-lbl">'+t.l+'</div>'+
+      '<div class="trend-track"><div class="trend-fill" style="width:'+v+'%;background:'+t.c+'"></div></div>'+
+      '<div class="trend-delta" style="color:'+t.c+'">'+t.d+'</div></div>';
+  }).join('');
+}
+/* ── MAP LEGEND ── */
+function updateLegend(){
+  var lg=document.getElementById('mapLegend');if(!lg)return;
+  if(dlvl==='india'){
+    lg.innerHTML='<div class="legend-title">Incident Bubbles</div>'+
+      '<div class="legend-bubble-row">'+
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="legend-bubble" style="width:20px;height:20px"></div><div style="font-family:var(--fm);font-size:8px;color:var(--t5)">Low</div></div>'+
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="legend-bubble" style="width:34px;height:34px"></div><div style="font-family:var(--fm);font-size:8px;color:var(--t5)">Mid</div></div>'+
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="legend-bubble" style="width:50px;height:50px"></div><div style="font-family:var(--fm);font-size:8px;color:var(--t5)">High</div></div>'+
+      '</div>'+
+      '<div style="font-family:var(--fm);font-size:8px;color:var(--t5);margin-top:3px">Size ∝ incident count</div>';
+  } else {
+    var cats=curLyr==='all'?Object.keys(CATC):[curLyr];
+    lg.innerHTML='<div class="legend-title">Category</div>'+
+      cats.map(function(k){
+        return '<div class="legend-cat-row">'+
+          '<div class="legend-cat-dot" style="background:'+(CATC[k]||'#374151')+'"></div>'+
+          '<div class="legend-cat-lbl">'+(CATE[k]||'')+' '+(k.charAt(0).toUpperCase()+k.slice(1))+'</div></div>';
+      }).join('');
+  }
+}
+/* ── LEFT PANEL & RIGHT PANEL SWITCH ── */
+function updatePanels(){
+  var hbTitle=document.getElementById('hbPanTitle');
+  var hbCity=document.getElementById('hbCity');
+  var hbScore=document.getElementById('hbScore');
+  var hbBar=document.getElementById('hbBar');
+  var np=document.getElementById('natl-panel');
+  var cp=document.getElementById('city-panel-r');
+  if(dlvl==='india'){
+    if(hbTitle)hbTitle.textContent='National Heartbeat';
+    if(hbCity)hbCity.textContent='India — All States';
+    var avg=Math.round(STATES.reduce(function(a,s){return a+s.score},0)/STATES.length);
+    if(hbScore){hbScore.textContent=avg;hbScore.style.color=avg>=75?'var(--grn)':avg>=60?'var(--amb)':'var(--red)';}
+    if(hbBar){hbBar.style.width=avg+'%';hbBar.style.background=avg>=75?'var(--grn)':avg>=60?'var(--amb)':'var(--red)';}
+    if(np)np.style.display='';
+    if(cp)cp.style.display='none';
+    renderNatlSnapshot();
+  } else {
+    if(hbTitle)hbTitle.textContent='City Heartbeat';
+    if(np)np.style.display='none';
+    if(cp)cp.style.display='';
+  }
+}
+/* ── ZONE / STREET helpers ── */
+function tryZone(){
+  if(dlvl==='city'||dlvl==='ward'||dlvl==='street'||dlvl==='asset'){
+    showToast('Zone view — drill into a ward to see zones');
+  } else {showToast('First drill to City Level, then select a zone','warn');}
+}
+function tryStreet(){
+  if(dlvl==='ward'||dlvl==='street'||dlvl==='asset'){
+    showToast('Street Level — click a ward marker to explore streets');
+  } else {showToast('First drill to Ward Level, then pick a street','warn');}
+}
 
 /* ── AUTO REFRESH ── */
 function startRefresh(){setInterval(doRefresh,30000);setInterval(updateFreshness,5000);}
@@ -996,8 +1188,12 @@ function doRefresh(){
   var ring=document.getElementById('refreshRing'),dot=document.getElementById('freshDot'),txt=document.getElementById('freshTxt');
   if(ring)ring.classList.add('show');if(dot)dot.className='fresh-dot spin';if(txt)txt.textContent='Refreshing…';
   setTimeout(function(){
-    lastRefresh=Date.now();jit('kAlerts',247,5);jit('kResolved',624,20);
+    lastRefresh=Date.now();
+    var mult=TIME_MULT[curTime]||1;
+    jit('kAlerts',Math.round(247*mult),Math.max(3,Math.round(5*mult)));
+    jit('kResolved',Math.round(624*mult),Math.max(10,Math.round(20*mult)));
     renderTrends();renderFeed();updateHB();
+    if(dlvl==='india'){renderNatlSnapshot();}
     if(ring)ring.classList.remove('show');if(dot)dot.className='fresh-dot';if(txt)txt.textContent='Updated just now';
     checkEmergency();
   },800);
@@ -1063,18 +1259,14 @@ function initMap(){
   mLyr=L.layerGroup().addTo(gMap);stLyr=L.layerGroup().addTo(gMap);
   gMap.on('click',function(e){var el=document.getElementById('fcoords');if(el)el.value=e.latlng.lat.toFixed(5)+', '+e.latlng.lng.toFixed(5)});
   gMap.on('zoomend',function(){if(gMap.getZoom()>=15&&dlvl==='city'&&curCity&&curCity.city==='Mumbai')setLevel('ward',WARDS[3]);});
-  renderStateMarkers();renderPanels();setLevel('india');
+  renderStateMarkers();renderPanels();setLevel('india');updatePanels();updateLegend();
   setTimeout(function(){document.getElementById('loader').classList.add('gone')},500);
   startRefresh();
 }
 function stStyle(n){if(n>=35)return{bg:'#FEF2F2',bd:'#FCA5A5',tx:'#DC2626'};if(n>=25)return{bg:'#FFFBEB',bd:'#FCD34D',tx:'#D97706'};if(n>=15)return{bg:'#ECFEFF',bd:'#67E8F9',tx:'#0891B2'};return{bg:'#ECFDF5',bd:'#6EE7B7',tx:'#059669'};}
 function renderStateMarkers(){
-  stLyr.clearLayers();
-  STATES.forEach(function(s){
-    var st=stStyle(s.inc),sz=Math.max(48,Math.min(88,s.inc*1.6+26));
-    var ico=L.divIcon({className:'',html:'<div onclick="clickState(\''+s.id+'\')" style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;background:'+st.bg+';border:1.5px solid '+st.bd+';display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(15,28,63,.12);transition:all .17s" onmouseenter="this.style.transform=\'scale(1.08)\';this.style.boxShadow=\'0 4px 16px rgba(15,28,63,.2)\'" onmouseleave="this.style.transform=\'none\';this.style.boxShadow=\'0 2px 8px rgba(15,28,63,.12)\'"><div style="font-family:var(--fm);font-size:12px;font-weight:600;color:'+st.tx+';line-height:1">'+s.inc+'</div><div style="font-family:var(--fm);font-size:7.5px;color:'+st.tx+';opacity:.7;letter-spacing:.04em">issues</div></div>',iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
-    L.marker([s.lat,s.lng],{icon:ico}).bindPopup('<div class="pop"><div class="pop-tag">'+s.id+' · '+s.cities.length+' cities</div><div class="pop-city">'+s.name+'</div><div class="pop-badges"><span class="pop-badge" style="background:'+st.bg+';color:'+st.tx+';border-color:'+st.bd+'">'+s.inc+' incidents</span><span class="pop-badge" style="background:#ECFDF5;color:#059669;border-color:#6EE7B7">Score: '+s.score+'</span></div><div style="font-family:var(--fm);font-size:9px;color:var(--t3);margin-bottom:9px">'+s.cities.slice(0,3).join(' · ')+'</div><button class="pop-drill" onclick="clickState(\''+s.id+'\')">Drill into '+s.name+' →</button></div>',{maxWidth:260,minWidth:220}).addTo(stLyr);
-  });
+  /* Delegate to scaled version so time filter is always applied */
+  renderStateMarkersScaled();
 }
 function mkIcon(d,live){
   var catC=CATC[d.type]||'#374151',sevC=SEVC[d.sev],sz=SEVSZ[d.sev]||27;
@@ -1141,6 +1333,7 @@ function setLevel(level,data){
     setText('levelLabel',data.name||'');
     showToast('⚙️ Street level — click any asset marker to open Spotlight');
   }
+  updatePanels();updateLegend();
 }
 /* ── SPOTLIGHT PANEL ── */
 var lbItems=[],lbIdx=0;
@@ -1301,8 +1494,9 @@ function tryAsset(){if(dlvl==='ward'){var p=ASSETS.find(function(a){return a.sta
 function setLayer(l){
   curLyr=l;document.querySelectorAll('.ltab').forEach(function(b){b.classList.remove('active')});
   var el=document.getElementById('lt-'+l);if(el)el.classList.add('active');
-  if(dlvl==='city'&&curCity)setLevel('city',curCity);
-  else if(dlvl==='india'){mLyr.clearLayers();(l==='all'?INC:INC.filter(function(d){return d.type===l})).forEach(function(d){L.marker([d.lat,d.lng],{icon:mkIcon(d,true)}).bindPopup(buildIncPop(d),{maxWidth:260,minWidth:210}).addTo(mLyr);});}
+  if(dlvl==='india'){renderStateMarkersScaled();updateLegend();}
+  else if(dlvl==='state'&&curState)setLevel('state',curState);
+  else if(dlvl==='city'&&curCity)setLevel('city',curCity);
 }
 function drillUp(){if(dlvl==='ward'){setLevel('city',curCity);dlvl='city';}else if(dlvl==='city'&&curState){setLevel('state',curState);dlvl='state';}else{setLevel('india');dlvl='india';}}
 function drillTo(l){if(l==='india')setLevel('india');else if(l==='state'&&curState)setLevel('state',curState);else if(l==='city'&&curCity)setLevel('city',curCity);}
@@ -1317,7 +1511,7 @@ function setBreadcrumb(parts){
   setHTML('breadcrumb',html);
 
 }
-function setZL(a){['india','state','city','ward','asset'].forEach(function(id){var el=document.getElementById('zl-'+id);if(el)el.className='zl'+(id===a?' active':'');});}
+function setZL(a){['india','state','city','zone','ward','street','asset'].forEach(function(id){var el=document.getElementById('zl-'+id);if(el)el.className='zl'+(id===a?' active':'');});}
 /* ── PINCODE SEARCH ── */
 function searchByPin(){
   var v=(document.getElementById('pinSearch').value||'').trim();
@@ -1501,15 +1695,9 @@ function renderPanels(){
 }
 
 function renderTrends(){
-  var n=function(v){return Math.max(10,Math.min(95,v+Math.floor(Math.random()*8-4)));};
-  var html=TRENDS.map(function(t){
-    var v=n(t.pct);
-    return '<div class="trend-row">'+
-      '<div class="trend-lbl">'+t.l+'</div>'+
-      '<div class="trend-track"><div class="trend-fill" style="width:'+v+'%;background:'+t.c+'"></div></div>'+
-      '<div class="trend-delta" style="color:'+t.c+'">'+t.d+'</div></div>';
-  }).join('');
-  setHTML('trendList',html);
+  var h=_buildTrendHTML();
+  setHTML('trendList',h);
+  var ntl=document.getElementById('trendListNatl');if(ntl)ntl.innerHTML=h;
 }
 
 function renderFeed(){
