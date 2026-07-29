@@ -1702,7 +1702,7 @@ function ilRender(){
     var sc=sevC[d.sev],sb=sevBg[d.sev],sbd=sevBd[d.sev];
     var rowId='ND-'+String(start+i+1).padStart(4,'0');
     return '<tr>'
-      +'<td data-label="Audit ID"><span class="il-id">'+rowId+'</span></td>'
+      +'<td data-label="Incident ID"><span class="il-id">'+rowId+'</span></td>'
       +'<td data-label="City" style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
       +'<td data-label="PIN"><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
       +'<td data-label="Category"><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
@@ -2614,7 +2614,7 @@ waitForLeaflet(initMap);
       <table class="il-table">
         <thead>
           <tr>
-            <th onclick="ilSortBy('id')" id="ilTh-id">Audit ID <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('id')" id="ilTh-id">Incident ID <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('city')" id="ilTh-city">City <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('pin')" id="ilTh-pin">PIN <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('type')" id="ilTh-type">Category <span class="sort-arr">↕</span></th>
