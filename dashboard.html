@@ -588,6 +588,41 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 }
 
 
+/* ── Category filter chip bar (mobile overlay on map) ── */
+.cat-chips-mobile{display:none}
+@media(max-width:767px){
+  .cat-chips-mobile{
+    display:flex;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    gap:8px;
+    padding:10px 16px;
+    background:var(--w);
+    border-bottom:1px solid var(--g100);
+    position:absolute;top:0;left:0;right:0;z-index:450;
+    box-shadow:0 2px 8px rgba(15,28,63,.08);
+  }
+  .cat-chips-mobile::-webkit-scrollbar{display:none}
+  .cat-chip{
+    flex-shrink:0;
+    scroll-snap-align:start;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12.5px;
+    font-weight:600;
+    white-space:nowrap;
+    border:1.5px solid var(--g200);
+    background:var(--w);
+    cursor:pointer;
+    font-family:var(--ff);
+    color:var(--t7);
+    transition:all .15s;
+  }
+  .cat-chip.active{background:var(--n9);color:#fff;border-color:var(--n9);}
+}
+
 /* ── Pattern 2: Horizontal filter chips (mobile layers drawer) ── */
 .nd-filter-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
 .nd-filter-chips::-webkit-scrollbar{display:none}
@@ -784,6 +819,20 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       </div>
     </div>
     <div class="map-wrap">
+      <!-- Mobile category filter chips (Pattern 2 — visible bar on map) -->
+      <div class="cat-chips-mobile" id="catChipsMobile">
+        <button class="cat-chip active" data-key="all" onclick="setLayer('all')">🌐 All</button>
+        <button class="cat-chip" data-key="garbage" onclick="setLayer('garbage')">🗑️ Garbage</button>
+        <button class="cat-chip" data-key="pothole" onclick="setLayer('pothole')">🕳️ Pothole</button>
+        <button class="cat-chip" data-key="water" onclick="setLayer('water')">💧 Waterlogging</button>
+        <button class="cat-chip" data-key="streetlight" onclick="setLayer('streetlight')">💡 Streetlight</button>
+        <button class="cat-chip" data-key="fire" onclick="setLayer('fire')">🔥 Fire Safety</button>
+        <button class="cat-chip" data-key="traffic" onclick="setLayer('traffic')">🚦 Traffic</button>
+        <button class="cat-chip" data-key="footpath" onclick="setLayer('footpath')">🚶 Footpath</button>
+        <button class="cat-chip" data-key="encroachment" onclick="setLayer('encroachment')">🏗️ Encroachment</button>
+        <button class="cat-chip" data-key="stray" onclick="setLayer('stray')">🐕 Stray Animals</button>
+        <button class="cat-chip" data-key="aquatic" onclick="setLayer('aquatic')">🌊 Water Body</button>
+      </div>
       <div id="map"></div>
       <div class="drill-tip" id="drillTip">Click a state bubble → zone → ward → street → asset</div>
       <div class="map-legend" id="mapLegend"></div>
@@ -1290,6 +1339,8 @@ function initMap(){
   gMap.on('click',function(e){var el=document.getElementById('fcoords');if(el)el.value=e.latlng.lat.toFixed(5)+', '+e.latlng.lng.toFixed(5)});
   gMap.on('zoomend',function(){if(gMap.getZoom()>=15&&dlvl==='city'&&curCity&&curCity.city==='Mumbai')setLevel('ward',WARDS[3]);});
   renderStateMarkers();renderPanels();setLevel('india');updatePanels();updateLegend();
+  /* Pick up category preset from landing page chip tap */
+  try{var _cf=localStorage.getItem('nd_cat_filter');if(_cf&&_cf!=='all'){setLayer(_cf);localStorage.removeItem('nd_cat_filter');}}catch(e){}
   setTimeout(function(){document.getElementById('loader').classList.add('gone')},500);
   startRefresh();
 }
@@ -1522,8 +1573,15 @@ function tryWard(){if(dlvl==='city'&&curCity&&curCity.city==='Mumbai')clickWard(
 function tryAsset(){if(dlvl==='ward'){var p=ASSETS.find(function(a){return a.status!=='normal'});if(p)openSpotlight(p.id);}else showToast('Drill to Ward level first to view assets',false);}
 /* ── LAYER / DRILL ── */
 function setLayer(l){
-  curLyr=l;document.querySelectorAll('.ltab').forEach(function(b){b.classList.remove('active')});
+  curLyr=l;
+  document.querySelectorAll('.ltab').forEach(function(b){b.classList.remove('active')});
   var el=document.getElementById('lt-'+l);if(el)el.classList.add('active');
+  /* Sync mobile cat-chips bar */
+  document.querySelectorAll('.cat-chip').forEach(function(b){b.classList.remove('active')});
+  var chip=document.querySelector('.cat-chip[data-key="'+l+'"]');if(chip)chip.classList.add('active');
+  /* Sync mobile nd-chip drawer chips */
+  document.querySelectorAll('.nd-chip').forEach(function(b){b.classList.remove('active')});
+  var ndChip=document.querySelector('.nd-chip[data-key="'+l+'"]');if(ndChip)ndChip.classList.add('active');
   if(dlvl==='india'){renderStateMarkersScaled();updateLegend();}
   else if(dlvl==='state'&&curState)setLevel('state',curState);
   else if(dlvl==='city'&&curCity)setLevel('city',curCity);
