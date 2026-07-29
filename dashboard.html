@@ -588,6 +588,36 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 }
 
 
+/* ── Pattern 2: Horizontal filter chips (mobile layers drawer) ── */
+.nd-filter-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
+.nd-filter-chips::-webkit-scrollbar{display:none}
+.nd-chip{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1.5px solid #E2E8F0;background:#fff;font-size:12px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;font-family:"Plus Jakarta Sans",sans-serif;transition:all .15s;flex-shrink:0}
+.nd-chip.active{border-color:#0052CC;background:#EFF6FF;color:#0052CC}
+
+/* ── Pattern 3: Mobile incident cards (hide table, show cards) ── */
+.nd-incident-cards{display:none;flex-direction:column;gap:8px;padding:8px 12px}
+.nd-inc-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.nd-inc-card-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid #F1F5F9}
+.nd-inc-card-body{padding:9px 12px}
+.nd-inc-card-id{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;color:#0052CC}
+.nd-inc-card-meta{font-family:"IBM Plex Mono",monospace;font-size:10px;color:#94A3B8;margin-bottom:7px}
+.nd-inc-card-issue{font-size:12px;color:#374151;line-height:1.55;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nd-inc-card-actions{display:flex;gap:6px}
+
+/* ── Pattern 5: Floating Action Button ── */
+.nd-fab{display:none;position:fixed;bottom:72px;right:16px;z-index:700;width:56px;height:56px;border-radius:28px;background:#0052CC;border:none;box-shadow:0 4px 16px rgba(0,82,204,.38);cursor:pointer;font-size:22px;transition:width .25s cubic-bezier(.22,1,.36,1),border-radius .25s;overflow:hidden;align-items:center;justify-content:center;padding:0;gap:0;color:#fff}
+.nd-fab.expanded{width:176px;padding:0 18px;gap:8px}
+.nd-fab-ico{font-size:22px;flex-shrink:0;line-height:1;display:flex}
+.nd-fab-txt{font-size:13px;font-weight:700;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .25s ease}
+.nd-fab.expanded .nd-fab-txt{max-width:120px}
+
+@media(max-width:767px){
+  .nd-incident-cards{display:flex}
+  .il-table{display:none}
+  .nd-fab{display:flex}
+  .il-filters .il-export{display:none}
+}
+
 /* ══ AI AUDIT PROGRESS MODAL ══ */
 .aip-overlay{display:none;position:fixed;inset:0;background:rgba(10,18,42,.82);backdrop-filter:blur(8px);z-index:9900;align-items:center;justify-content:center}
 .aip-overlay.open{display:flex}
@@ -1620,6 +1650,30 @@ function ilRender(){
       +'</td>'
       +'</tr>';
   }).join(''):'<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
+  /* Mobile cards (Pattern 3) */
+  var sevEmoji={critical:'🔴',high:'🟠',medium:'🟡',low:'🟢'};
+  setHTML('ilCards',page.length?page.map(function(d,i){
+    var cc=CATC[d.type]||'#374151',cb=CATBG[d.type]||'#F8F9FB';
+    var sc=sevC[d.sev],sb=sevBg[d.sev],sbd=sevBd[d.sev];
+    var rowId='ND-'+String(start+i+1).padStart(4,'0');
+    var sla=Math.floor(Math.random()*180+30);
+    return '<div class="nd-inc-card">'
+      +'<div class="nd-inc-card-hdr">'
+      +'<span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span>'
+      +'<span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+sevEmoji[d.sev]+' '+d.sev.toUpperCase()+'</span>'
+      +'</div>'
+      +'<div class="nd-inc-card-body">'
+      +'<div class="nd-inc-card-id">'+rowId+' · <span style="color:#94A3B8">'+d.city+' '+d.pin+'</span></div>'
+      +'<div class="nd-inc-card-meta" style="margin-top:3px">'+d.city+' · '+d.pin+(d.assetId?' · '+d.assetId:'')+'</div>'
+      +'<div class="nd-inc-card-issue">'+d.issue+'</div>'
+      +'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10px;color:#64748B;margin-bottom:8px">⏰ SLA: '+sla+' min</div>'
+      +'<div class="nd-inc-card-actions">'
+      +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)" style="flex:1">📍 View on Map</button>'
+      +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Escalate</button>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }).join(''):'<div style="text-align:center;padding:40px;color:#94A3B8;font-size:13px">No incidents match your filters</div>');
   /* Chips */
   var chips=[];
   if(q)chips.push({l:'Search: "'+q+'"',c:'ilQ'});
@@ -2200,20 +2254,21 @@ function openMobDrawer(tab, btnEl) {
 
   } else if(tab === 'layers'){
     var cats=[
-      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage / Dirty Space',ico:'🗑️'},
+      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage',ico:'🗑️'},
       {k:'pothole',l:'Pothole',ico:'🕳️'},{k:'water',l:'Waterlogging',ico:'💧'},
       {k:'streetlight',l:'Streetlight',ico:'💡'},{k:'fire',l:'Fire Safety',ico:'🔥'},
       {k:'traffic',l:'Traffic',ico:'🚦'},{k:'footpath',l:'Footpath',ico:'🚶'},
       {k:'encroachment',l:'Encroachment',ico:'🏗️'},{k:'stray',l:'Stray Animals',ico:'🐕'},
-      {k:'aquatic',l:'Water Body Pollution',ico:'🌊'}
+      {k:'aquatic',l:'Water Body',ico:'🌊'}
     ];
+    var curKey=typeof curLyr!=='undefined'?curLyr:'all';
     body.innerHTML=
       '<div style="font-family:var(--fm);font-size:9px;color:#94A3B8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">FILTER BY CATEGORY</div>'+
-      '<div class="mob-cat-grid">'+
+      '<div class="nd-filter-chips">'+
         cats.map(function(c){
-          var sel=c.k==='all'?' sel':'';
-          return '<button class="mob-cat-pill'+sel+'" data-key="'+c.k+'" onclick="mobSetLayer(this.dataset.key,this)">'+
-            '<span>'+c.ico+'</span>'+c.l+'</button>';
+          var active=c.k===curKey?' active':'';
+          return '<button class="nd-chip'+active+'" data-key="'+c.k+'" onclick="mobSetLayer(this.dataset.key,this)">'+
+            c.ico+' '+c.l+'</button>';
         }).join('')+
       '</div>';
 
@@ -2274,10 +2329,39 @@ function mobSelectCity(city){
 }
 
 function mobSetLayer(key, btn){
-  document.querySelectorAll('.mob-cat-pill').forEach(function(b){ b.classList.remove('sel'); });
-  if(btn) btn.classList.add('sel');
+  document.querySelectorAll('.nd-chip').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
   if(typeof setLayer === 'function') setLayer(key);
   closeMobDrawer();
+}
+
+/* ── Pattern 4: List tab opens incident list modal ── */
+function mobOpenList(btnEl){
+  document.querySelectorAll('.mob-tab').forEach(function(b){ b.classList.remove('active'); });
+  if(btnEl) btnEl.classList.add('active');
+  closeMobDrawer();
+  viewIncidentList();
+}
+
+/* ── Pattern 5: FAB expand/collapse + open audit ── */
+var _fabExpanded=false,_fabTimer=null;
+function ndFabTap(){
+  var fab=ge('ndFab');
+  if(!fab)return;
+  if(!_fabExpanded){
+    _fabExpanded=true;
+    fab.classList.add('expanded');
+    clearTimeout(_fabTimer);
+    _fabTimer=setTimeout(function(){
+      _fabExpanded=false;
+      fab.classList.remove('expanded');
+    },2200);
+  } else {
+    clearTimeout(_fabTimer);
+    _fabExpanded=false;
+    fab.classList.remove('expanded');
+    openModal();
+  }
 }
 
 function mobGPS(){
@@ -2461,6 +2545,7 @@ waitForLeaflet(initMap);
     </div>
     <div id="ilChips" style="display:none" class="il-chips"></div>
     <div class="il-body">
+      <!-- Desktop: sortable table -->
       <table class="il-table">
         <thead>
           <tr>
@@ -2476,6 +2561,8 @@ waitForLeaflet(initMap);
         </thead>
         <tbody id="ilBody"></tbody>
       </table>
+      <!-- Mobile: swipeable cards (Pattern 3) -->
+      <div class="nd-incident-cards" id="ilCards"></div>
     </div>
     <div class="il-foot">
       <div style="display:flex;align-items:center;gap:8px">
@@ -2497,6 +2584,12 @@ waitForLeaflet(initMap);
   <!-- Overlay -->
   <div class="mob-overlay" id="mobOverlay" onclick="closeMobDrawer()"></div>
 
+  <!-- FAB: Start Civic Audit (mobile only, Pattern 5) -->
+  <button class="nd-fab" id="ndFab" onclick="ndFabTap()" aria-label="Start Civic Audit">
+    <span class="nd-fab-ico">🚩</span>
+    <span class="nd-fab-txt">Start Audit</span>
+  </button>
+
   <!-- Bottom nav bar (mobile only) -->
   <div class="mob-bar" id="mobBar">
     <button class="mob-tab active" id="mobt-search" onclick="openMobDrawer('search',this)">
@@ -2510,6 +2603,9 @@ waitForLeaflet(initMap);
     </button>
     <button class="mob-tab" id="mobt-alerts" onclick="openMobDrawer('alerts',this)">
       <span class="mob-tab-ico">🔔</span><span id="mobAlertBadge">Alerts</span>
+    </button>
+    <button class="mob-tab" id="mobt-list" onclick="mobOpenList(this)">
+      <span class="mob-tab-ico">📋</span>List
     </button>
   </div>
 
