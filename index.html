@@ -782,6 +782,8 @@ footer{background:var(--n9);color:#fff}
 /* ── Category filter chip bar (landing page, mobile only) ── */
 /* ── Landing page category cards: hidden on desktop, Behance-style on mobile ── */
 .cat-chips-mobile{display:none}
+.pts-mob-block{display:none}
+.cat-chip-pts{font-family:var(--fm);font-size:9px;font-weight:700;color:rgba(255,255,255,.9);line-height:1}
 @media(max-width:767px){
   .cat-chips-mobile{
     display:flex;
@@ -827,41 +829,10 @@ footer{background:var(--n9);color:#fff}
   /* On mobile, hide the 5-col detail grid — the chip row replaces it */
   .nd-cards-grid.cols-5{display:none}
 
-  /* ── "How you earn points" + "What your badge unlocks" ── */
-  .pts-ul-wrap{grid-template-columns:1fr !important;gap:14px !important}
-  .pts-panel,.ul-panel{padding:16px !important}
-  .pts-head{margin-bottom:10px !important}
-
-  /* horizontal scroll containers */
-  .pts-list,.ul-list{
-    display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scroll-snap-type:x mandatory;scrollbar-width:none;
-    gap:8px;padding-bottom:4px;
-  }
-  .pts-list::-webkit-scrollbar,.ul-list::-webkit-scrollbar{display:none}
-
-  /* pts-row → vertical Behance card */
-  .pts-row{
-    flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;flex-shrink:0;scroll-snap-align:start;
-    width:92px;min-height:90px;border-radius:12px;
-    padding:10px 6px;margin-bottom:0;gap:4px;
-  }
-  .pts-ic{font-size:22px;width:auto}
-  .pts-lb{font-size:9px;line-height:1.3;flex:none}
-  .pts-vl{font-size:10.5px;margin-top:2px}
-
-  /* ul-row → vertical Behance card */
-  .ul-row{
-    flex-direction:column;align-items:center;justify-content:flex-start;
-    text-align:center;flex-shrink:0;scroll-snap-align:start;
-    width:112px;min-height:96px;border:1px solid var(--g200);
-    border-radius:12px;padding:12px 8px;margin-bottom:0;gap:5px;
-    background:var(--w);box-shadow:var(--s1);
-  }
-  .ul-ic{flex-shrink:0}
-  .ul-ti{font-size:10px;font-weight:700;color:var(--n9);line-height:1.3}
-  .ul-de{display:none}
+  /* ── "How you earn points" + "What your badge unlocks": desktop panels hidden, mobile chip rows shown ── */
+  .pts-ul-wrap{display:none !important}
+  .pts-mob-block{display:block;margin-top:20px}
+  .pts-mob-ttl{font-size:15px;font-weight:800;color:var(--n9);padding:0 16px;margin-bottom:2px}
 
   /* ── Coverage city cards: horizontal scroll ── */
   .cg{
@@ -1324,6 +1295,28 @@ footer{background:var(--n9);color:#fff}
     <div class="bg-card" style="border-color:#93C5FD;position:relative"><div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--b6);color:#fff;font-family:var(--fm);font-size:7.5px;font-weight:600;padding:3px 9px;border-radius:0 0 var(--r2) var(--r2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap">Most Common</div><div class="bg-ic" style="margin-top:8px">🔍</div><div class="bg-lv" style="color:var(--b6)">Level 3</div><div class="bg-nm">Inspector</div><div class="bg-ct">31–50 audits</div><div class="bg-bar"><div class="bg-bf" style="width:60%;background:var(--b6)"></div></div><p class="bg-de">Video evidence included. Triggered 3+ Community Surge events.</p></div>
     <div class="bg-card" style="border-color:#FCD34D"><div class="bg-ic">🛡</div><div class="bg-lv" style="color:var(--amb)">Level 4</div><div class="bg-nm">Sentinel</div><div class="bg-ct">51–250 audits</div><div class="bg-bar"><div class="bg-bf" style="width:80%;background:var(--amb)"></div></div><p class="bg-de">Your pincode's top auditor. Officers recognise your reports.</p></div>
     <div class="bg-card gdn"><div class="bg-ic">🏛</div><div class="bg-lv" style="color:rgba(255,255,255,.45)">Level 5</div><div class="bg-nm">Guardian</div><div class="bg-ct" style="color:rgba(255,255,255,.3)">250+ audits</div><div class="bg-bar" style="background:rgba(255,255,255,.12)"><div class="bg-bf" style="width:100%;background:linear-gradient(90deg,#60A5FA,#A78BFA)"></div></div><p class="bg-de">Your audits are cited by name in official municipal reports.</p></div>
+  </div>
+  <!-- Mobile-only: "How you earn points" Behance chip row -->
+  <div class="pts-mob-block">
+    <div class="pts-mob-ttl">How you earn points</div>
+    <div class="cat-chips-mobile">
+      <div class="cat-chip" style="background:linear-gradient(145deg,#1664D6,#0F1C3F)"><span class="cat-chip-ico">📝</span><span class="cat-chip-lbl">Submit Audit</span><span class="cat-chip-pts">+10 pts</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#059669,#064E3B)"><span class="cat-chip-ico">📷</span><span class="cat-chip-lbl">Photo Evidence</span><span class="cat-chip-pts">+15 pts</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#7C3AED,#4C1D95)"><span class="cat-chip-ico">🎥</span><span class="cat-chip-lbl">Video Evidence</span><span class="cat-chip-pts">+25 pts</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#D97706,#78350F)"><span class="cat-chip-ico">👍</span><span class="cat-chip-lbl">Community Confirms</span><span class="cat-chip-pts">+5 each</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#DC2626,#7F1D1D)"><span class="cat-chip-ico">✅</span><span class="cat-chip-lbl">Issue Resolved</span><span class="cat-chip-pts">+50 pts</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#0F1C3F,#2D3E8E)"><span class="cat-chip-ico">🚨</span><span class="cat-chip-lbl">Trigger Surge</span><span class="cat-chip-pts">+100 pts</span></div>
+    </div>
+  </div>
+  <!-- Mobile-only: "What your badge unlocks" Behance chip row -->
+  <div class="pts-mob-block">
+    <div class="pts-mob-ttl">What your badge unlocks</div>
+    <div class="cat-chips-mobile">
+      <div class="cat-chip" style="background:linear-gradient(145deg,#1664D6,#1B2A5C)"><span class="cat-chip-ico">🪪</span><span class="cat-chip-lbl">Public Profile</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#059669,#065F46)"><span class="cat-chip-ico">📊</span><span class="cat-chip-lbl">Priority Escalation</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#D97706,#92400E)"><span class="cat-chip-ico">🏆</span><span class="cat-chip-lbl">City Leaderboard</span></div>
+      <div class="cat-chip" style="background:linear-gradient(145deg,#0F1C3F,#2D3E8E)"><span class="cat-chip-ico">🏛</span><span class="cat-chip-lbl">Municipal Reports</span></div>
+    </div>
   </div>
   <div class="rvs pts-ul-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px">
     <div class="pts-panel" style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
