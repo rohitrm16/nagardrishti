@@ -588,6 +588,77 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
 }
 
 
+/* ── Category filter chip bar (mobile overlay on map) ── */
+/* ── Category chip bar: always hidden except on mobile ── */
+.cat-chips-mobile{display:none}
+@media(max-width:767px){
+  /* map-wrap becomes a flex column so chip bar sits ABOVE the map */
+  #map-wrap{display:flex;flex-direction:column}
+  #map{flex:1;min-height:0;width:100%;height:auto}
+
+  .cat-chips-mobile{
+    display:flex;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    gap:8px;
+    padding:8px 14px;
+    background:var(--w);
+    border-bottom:1px solid var(--g100);
+    flex-shrink:0;
+    box-shadow:0 2px 6px rgba(15,28,63,.07);
+  }
+  .cat-chips-mobile::-webkit-scrollbar{display:none}
+  .cat-chip{
+    flex-shrink:0;
+    scroll-snap-align:start;
+    display:flex;align-items:center;gap:5px;
+    padding:5px 13px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    white-space:nowrap;
+    border:1.5px solid var(--g200);
+    background:var(--g50);
+    cursor:pointer;
+    font-family:var(--ff);
+    color:var(--t7);
+    transition:all .15s;
+  }
+  .cat-chip.active{background:var(--n9);color:#fff;border-color:var(--n9);}
+}
+
+/* ── Pattern 2: Horizontal filter chips (mobile layers drawer) ── */
+.nd-filter-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
+.nd-filter-chips::-webkit-scrollbar{display:none}
+.nd-chip{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1.5px solid #E2E8F0;background:#fff;font-size:12px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;font-family:"Plus Jakarta Sans",sans-serif;transition:all .15s;flex-shrink:0}
+.nd-chip.active{border-color:#0052CC;background:#EFF6FF;color:#0052CC}
+
+/* ── Pattern 3: Mobile incident cards (hide table, show cards) ── */
+.nd-incident-cards{display:none;flex-direction:column;gap:8px;padding:8px 12px}
+.nd-inc-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.nd-inc-card-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid #F1F5F9}
+.nd-inc-card-body{padding:9px 12px}
+.nd-inc-card-id{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;color:#0052CC}
+.nd-inc-card-meta{font-family:"IBM Plex Mono",monospace;font-size:10px;color:#94A3B8;margin-bottom:7px}
+.nd-inc-card-issue{font-size:12px;color:#374151;line-height:1.55;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nd-inc-card-actions{display:flex;gap:6px}
+
+/* ── Pattern 5: Floating Action Button ── */
+.nd-fab{display:none;position:fixed;bottom:72px;right:16px;z-index:700;width:56px;height:56px;border-radius:28px;background:#0052CC;border:none;box-shadow:0 4px 16px rgba(0,82,204,.38);cursor:pointer;font-size:22px;transition:width .25s cubic-bezier(.22,1,.36,1),border-radius .25s;overflow:hidden;align-items:center;justify-content:center;padding:0;gap:0;color:#fff}
+.nd-fab.expanded{width:176px;padding:0 18px;gap:8px}
+.nd-fab-ico{font-size:22px;flex-shrink:0;line-height:1;display:flex}
+.nd-fab-txt{font-size:13px;font-weight:700;color:#fff;font-family:"Plus Jakarta Sans",sans-serif;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .25s ease}
+.nd-fab.expanded .nd-fab-txt{max-width:120px}
+
+@media(max-width:767px){
+  .nd-incident-cards{display:flex}
+  .il-table{display:none}
+  .nd-fab{display:flex}
+  .il-filters .il-export{display:none}
+}
+
 /* ══ AI AUDIT PROGRESS MODAL ══ */
 .aip-overlay{display:none;position:fixed;inset:0;background:rgba(10,18,42,.82);backdrop-filter:blur(8px);z-index:9900;align-items:center;justify-content:center}
 .aip-overlay.open{display:flex}
@@ -754,6 +825,20 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
       </div>
     </div>
     <div class="map-wrap">
+      <!-- Mobile category filter chips (Pattern 2 — visible bar on map) -->
+      <div class="cat-chips-mobile" id="catChipsMobile">
+        <button class="cat-chip active" data-key="all" onclick="setLayer('all')">🌐 All</button>
+        <button class="cat-chip" data-key="garbage" onclick="setLayer('garbage')">🗑️ Garbage</button>
+        <button class="cat-chip" data-key="pothole" onclick="setLayer('pothole')">🕳️ Pothole</button>
+        <button class="cat-chip" data-key="water" onclick="setLayer('water')">💧 Waterlogging</button>
+        <button class="cat-chip" data-key="streetlight" onclick="setLayer('streetlight')">💡 Streetlight</button>
+        <button class="cat-chip" data-key="fire" onclick="setLayer('fire')">🔥 Fire Safety</button>
+        <button class="cat-chip" data-key="traffic" onclick="setLayer('traffic')">🚦 Traffic</button>
+        <button class="cat-chip" data-key="footpath" onclick="setLayer('footpath')">🚶 Footpath</button>
+        <button class="cat-chip" data-key="encroachment" onclick="setLayer('encroachment')">🏗️ Encroachment</button>
+        <button class="cat-chip" data-key="stray" onclick="setLayer('stray')">🐕 Stray Animals</button>
+        <button class="cat-chip" data-key="aquatic" onclick="setLayer('aquatic')">🌊 Water Body</button>
+      </div>
       <div id="map"></div>
       <div class="drill-tip" id="drillTip">Click a state bubble → zone → ward → street → asset</div>
       <div class="map-legend" id="mapLegend"></div>
@@ -1260,6 +1345,8 @@ function initMap(){
   gMap.on('click',function(e){var el=document.getElementById('fcoords');if(el)el.value=e.latlng.lat.toFixed(5)+', '+e.latlng.lng.toFixed(5)});
   gMap.on('zoomend',function(){if(gMap.getZoom()>=15&&dlvl==='city'&&curCity&&curCity.city==='Mumbai')setLevel('ward',WARDS[3]);});
   renderStateMarkers();renderPanels();setLevel('india');updatePanels();updateLegend();
+  /* Pick up category preset from landing page chip tap */
+  try{var _cf=localStorage.getItem('nd_cat_filter');if(_cf&&_cf!=='all'){setLayer(_cf);localStorage.removeItem('nd_cat_filter');}}catch(e){}
   setTimeout(function(){document.getElementById('loader').classList.add('gone')},500);
   startRefresh();
 }
@@ -1492,8 +1579,15 @@ function tryWard(){if(dlvl==='city'&&curCity&&curCity.city==='Mumbai')clickWard(
 function tryAsset(){if(dlvl==='ward'){var p=ASSETS.find(function(a){return a.status!=='normal'});if(p)openSpotlight(p.id);}else showToast('Drill to Ward level first to view assets',false);}
 /* ── LAYER / DRILL ── */
 function setLayer(l){
-  curLyr=l;document.querySelectorAll('.ltab').forEach(function(b){b.classList.remove('active')});
+  curLyr=l;
+  document.querySelectorAll('.ltab').forEach(function(b){b.classList.remove('active')});
   var el=document.getElementById('lt-'+l);if(el)el.classList.add('active');
+  /* Sync mobile cat-chips bar */
+  document.querySelectorAll('.cat-chip').forEach(function(b){b.classList.remove('active')});
+  var chip=document.querySelector('.cat-chip[data-key="'+l+'"]');if(chip)chip.classList.add('active');
+  /* Sync mobile nd-chip drawer chips */
+  document.querySelectorAll('.nd-chip').forEach(function(b){b.classList.remove('active')});
+  var ndChip=document.querySelector('.nd-chip[data-key="'+l+'"]');if(ndChip)ndChip.classList.add('active');
   if(dlvl==='india'){renderStateMarkersScaled();updateLegend();}
   else if(dlvl==='state'&&curState)setLevel('state',curState);
   else if(dlvl==='city'&&curCity)setLevel('city',curCity);
@@ -1608,18 +1702,43 @@ function ilRender(){
     var sc=sevC[d.sev],sb=sevBg[d.sev],sbd=sevBd[d.sev];
     var rowId='ND-'+String(start+i+1).padStart(4,'0');
     return '<tr>'
-      +'<td><span class="il-id">'+rowId+'</span></td>'
-      +'<td style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
-      +'<td><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
-      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
-      +'<td><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+( d.assetId||'—')+'</span></td>'+'<td><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
-      +'<td><div class="il-issue" title="'+d.issue+'">'+d.issue+'</div></td>'
-      +'<td style="display:flex;gap:5px">'
+      +'<td data-label="Incident ID"><span class="il-id">'+rowId+'</span></td>'
+      +'<td data-label="City" style="font-weight:600;color:var(--n9)">'+d.city+'</td>'
+      +'<td data-label="PIN"><span style="font-family:var(--fm);font-size:11px;color:var(--b6)">'+d.pin+'</span></td>'
+      +'<td data-label="Category"><span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span></td>'
+      +'<td data-label="Asset ID"><span style="font-family:var(--fm);font-size:11px;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:4px;font-weight:600">'+(d.assetId||'—')+'</span></td>'
+      +'<td data-label="Severity"><span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+d.sev+'</span></td>'
+      +'<td data-label="Issue"><div class="il-issue" title="'+d.issue+'">'+d.issue+'</div></td>'
+      +'<td data-label="Action" style="display:flex;gap:5px">'
       +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)">📍 Map</button>'
       +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Esc</button>'
       +'</td>'
       +'</tr>';
   }).join(''):'<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--t3);font-family:var(--fm);font-size:11px">No incidents match your filters</td></tr>');
+  /* Mobile cards (Pattern 3) */
+  var sevEmoji={critical:'🔴',high:'🟠',medium:'🟡',low:'🟢'};
+  setHTML('ilCards',page.length?page.map(function(d,i){
+    var cc=CATC[d.type]||'#374151',cb=CATBG[d.type]||'#F8F9FB';
+    var sc=sevC[d.sev],sb=sevBg[d.sev],sbd=sevBd[d.sev];
+    var rowId='ND-'+String(start+i+1).padStart(4,'0');
+    var sla=Math.floor(Math.random()*180+30);
+    return '<div class="nd-inc-card">'
+      +'<div class="nd-inc-card-hdr">'
+      +'<span class="il-badge" style="background:'+cb+';color:'+cc+';border-color:'+cc+'33">'+CATE[d.type]+' '+d.type+'</span>'
+      +'<span class="il-badge" style="background:'+sb+';color:'+sc+';border-color:'+sbd+'">'+sevEmoji[d.sev]+' '+d.sev.toUpperCase()+'</span>'
+      +'</div>'
+      +'<div class="nd-inc-card-body">'
+      +'<div class="nd-inc-card-id">'+rowId+' · <span style="color:#94A3B8">'+d.city+' '+d.pin+'</span></div>'
+      +'<div class="nd-inc-card-meta" style="margin-top:3px">'+d.city+' · '+d.pin+(d.assetId?' · '+d.assetId:'')+'</div>'
+      +'<div class="nd-inc-card-issue">'+d.issue+'</div>'
+      +'<div style="font-family:\'IBM Plex Mono\',monospace;font-size:10px;color:#64748B;margin-bottom:8px">⏰ SLA: '+sla+' min</div>'
+      +'<div class="nd-inc-card-actions">'
+      +'<button class="il-act-map" data-lat="'+d.lat+'" data-lng="'+d.lng+'" data-city="'+d.city+'" onclick="ilFlyToBtn(this)" style="flex:1">📍 View on Map</button>'
+      +'<button class="il-act-esc" data-city="'+d.city+'" onclick="ilEscBtn(this)">🚩 Escalate</button>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+  }).join(''):'<div style="text-align:center;padding:40px;color:#94A3B8;font-size:13px">No incidents match your filters</div>');
   /* Chips */
   var chips=[];
   if(q)chips.push({l:'Search: "'+q+'"',c:'ilQ'});
@@ -2200,20 +2319,21 @@ function openMobDrawer(tab, btnEl) {
 
   } else if(tab === 'layers'){
     var cats=[
-      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage / Dirty Space',ico:'🗑️'},
+      {k:'all',l:'All',ico:'🌐'},{k:'garbage',l:'Garbage',ico:'🗑️'},
       {k:'pothole',l:'Pothole',ico:'🕳️'},{k:'water',l:'Waterlogging',ico:'💧'},
       {k:'streetlight',l:'Streetlight',ico:'💡'},{k:'fire',l:'Fire Safety',ico:'🔥'},
       {k:'traffic',l:'Traffic',ico:'🚦'},{k:'footpath',l:'Footpath',ico:'🚶'},
       {k:'encroachment',l:'Encroachment',ico:'🏗️'},{k:'stray',l:'Stray Animals',ico:'🐕'},
-      {k:'aquatic',l:'Water Body Pollution',ico:'🌊'}
+      {k:'aquatic',l:'Water Body',ico:'🌊'}
     ];
+    var curKey=typeof curLyr!=='undefined'?curLyr:'all';
     body.innerHTML=
       '<div style="font-family:var(--fm);font-size:9px;color:#94A3B8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">FILTER BY CATEGORY</div>'+
-      '<div class="mob-cat-grid">'+
+      '<div class="nd-filter-chips">'+
         cats.map(function(c){
-          var sel=c.k==='all'?' sel':'';
-          return '<button class="mob-cat-pill'+sel+'" data-key="'+c.k+'" onclick="mobSetLayer(this.dataset.key,this)">'+
-            '<span>'+c.ico+'</span>'+c.l+'</button>';
+          var active=c.k===curKey?' active':'';
+          return '<button class="nd-chip'+active+'" data-key="'+c.k+'" onclick="mobSetLayer(this.dataset.key,this)">'+
+            c.ico+' '+c.l+'</button>';
         }).join('')+
       '</div>';
 
@@ -2274,10 +2394,39 @@ function mobSelectCity(city){
 }
 
 function mobSetLayer(key, btn){
-  document.querySelectorAll('.mob-cat-pill').forEach(function(b){ b.classList.remove('sel'); });
-  if(btn) btn.classList.add('sel');
+  document.querySelectorAll('.nd-chip').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
   if(typeof setLayer === 'function') setLayer(key);
   closeMobDrawer();
+}
+
+/* ── Pattern 4: List tab opens incident list modal ── */
+function mobOpenList(btnEl){
+  document.querySelectorAll('.mob-tab').forEach(function(b){ b.classList.remove('active'); });
+  if(btnEl) btnEl.classList.add('active');
+  closeMobDrawer();
+  viewIncidentList();
+}
+
+/* ── Pattern 5: FAB expand/collapse + open audit ── */
+var _fabExpanded=false,_fabTimer=null;
+function ndFabTap(){
+  var fab=ge('ndFab');
+  if(!fab)return;
+  if(!_fabExpanded){
+    _fabExpanded=true;
+    fab.classList.add('expanded');
+    clearTimeout(_fabTimer);
+    _fabTimer=setTimeout(function(){
+      _fabExpanded=false;
+      fab.classList.remove('expanded');
+    },2200);
+  } else {
+    clearTimeout(_fabTimer);
+    _fabExpanded=false;
+    fab.classList.remove('expanded');
+    openModal();
+  }
 }
 
 function mobGPS(){
@@ -2461,10 +2610,11 @@ waitForLeaflet(initMap);
     </div>
     <div id="ilChips" style="display:none" class="il-chips"></div>
     <div class="il-body">
+      <!-- Desktop: sortable table -->
       <table class="il-table">
         <thead>
           <tr>
-            <th onclick="ilSortBy('id')" id="ilTh-id">Audit ID <span class="sort-arr">↕</span></th>
+            <th onclick="ilSortBy('id')" id="ilTh-id">Incident ID <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('city')" id="ilTh-city">City <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('pin')" id="ilTh-pin">PIN <span class="sort-arr">↕</span></th>
             <th onclick="ilSortBy('type')" id="ilTh-type">Category <span class="sort-arr">↕</span></th>
@@ -2476,6 +2626,8 @@ waitForLeaflet(initMap);
         </thead>
         <tbody id="ilBody"></tbody>
       </table>
+      <!-- Mobile: swipeable cards (Pattern 3) -->
+      <div class="nd-incident-cards" id="ilCards"></div>
     </div>
     <div class="il-foot">
       <div style="display:flex;align-items:center;gap:8px">
@@ -2497,6 +2649,12 @@ waitForLeaflet(initMap);
   <!-- Overlay -->
   <div class="mob-overlay" id="mobOverlay" onclick="closeMobDrawer()"></div>
 
+  <!-- FAB: Start Civic Audit (mobile only, Pattern 5) -->
+  <button class="nd-fab" id="ndFab" onclick="ndFabTap()" aria-label="Start Civic Audit">
+    <span class="nd-fab-ico">🚩</span>
+    <span class="nd-fab-txt">Start Audit</span>
+  </button>
+
   <!-- Bottom nav bar (mobile only) -->
   <div class="mob-bar" id="mobBar">
     <button class="mob-tab active" id="mobt-search" onclick="openMobDrawer('search',this)">
@@ -2510,6 +2668,9 @@ waitForLeaflet(initMap);
     </button>
     <button class="mob-tab" id="mobt-alerts" onclick="openMobDrawer('alerts',this)">
       <span class="mob-tab-ico">🔔</span><span id="mobAlertBadge">Alerts</span>
+    </button>
+    <button class="mob-tab" id="mobt-list" onclick="mobOpenList(this)">
+      <span class="mob-tab-ico">📋</span>List
     </button>
   </div>
 
