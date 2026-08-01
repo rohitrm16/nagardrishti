@@ -826,6 +826,51 @@ footer{background:var(--n9);color:#fff}
 
   /* On mobile, hide the 5-col detail grid — the chip row replaces it */
   .nd-cards-grid.cols-5{display:none}
+
+  /* ── "How you earn points" + "What your badge unlocks" ── */
+  .pts-ul-wrap{grid-template-columns:1fr !important;gap:14px !important}
+  .pts-panel,.ul-panel{padding:16px !important}
+  .pts-head{margin-bottom:10px !important}
+
+  /* horizontal scroll containers */
+  .pts-list,.ul-list{
+    display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;scrollbar-width:none;
+    gap:8px;padding-bottom:4px;
+  }
+  .pts-list::-webkit-scrollbar,.ul-list::-webkit-scrollbar{display:none}
+
+  /* pts-row → vertical Behance card */
+  .pts-row{
+    flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;flex-shrink:0;scroll-snap-align:start;
+    width:92px;min-height:90px;border-radius:12px;
+    padding:10px 6px;margin-bottom:0;gap:4px;
+  }
+  .pts-ic{font-size:22px;width:auto}
+  .pts-lb{font-size:9px;line-height:1.3;flex:none}
+  .pts-vl{font-size:10.5px;margin-top:2px}
+
+  /* ul-row → vertical Behance card */
+  .ul-row{
+    flex-direction:column;align-items:center;justify-content:flex-start;
+    text-align:center;flex-shrink:0;scroll-snap-align:start;
+    width:112px;min-height:96px;border:1px solid var(--g200);
+    border-radius:12px;padding:12px 8px;margin-bottom:0;gap:5px;
+    background:var(--w);box-shadow:var(--s1);
+  }
+  .ul-ic{flex-shrink:0}
+  .ul-ti{font-size:10px;font-weight:700;color:var(--n9);line-height:1.3}
+  .ul-de{display:none}
+
+  /* ── Coverage city cards: horizontal scroll ── */
+  .cg{
+    display:flex !important;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;scrollbar-width:none;
+    gap:10px;padding-bottom:10px;
+  }
+  .cg::-webkit-scrollbar{display:none}
+  .cc{min-width:148px;flex-shrink:0;scroll-snap-align:start}
 }
 
 /* ── ND CARDS GRID — explicit breakpoints via CSS variables ── */
@@ -1280,22 +1325,26 @@ footer{background:var(--n9);color:#fff}
     <div class="bg-card" style="border-color:#FCD34D"><div class="bg-ic">🛡</div><div class="bg-lv" style="color:var(--amb)">Level 4</div><div class="bg-nm">Sentinel</div><div class="bg-ct">51–250 audits</div><div class="bg-bar"><div class="bg-bf" style="width:80%;background:var(--amb)"></div></div><p class="bg-de">Your pincode's top auditor. Officers recognise your reports.</p></div>
     <div class="bg-card gdn"><div class="bg-ic">🏛</div><div class="bg-lv" style="color:rgba(255,255,255,.45)">Level 5</div><div class="bg-nm">Guardian</div><div class="bg-ct" style="color:rgba(255,255,255,.3)">250+ audits</div><div class="bg-bar" style="background:rgba(255,255,255,.12)"><div class="bg-bf" style="width:100%;background:linear-gradient(90deg,#60A5FA,#A78BFA)"></div></div><p class="bg-de">Your audits are cited by name in official municipal reports.</p></div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px" class="rvs">
-    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
-      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">How you earn points</div>
-      <div class="pts-row"><div class="pts-ic">📝</div><div class="pts-lb">Submit a civic audit</div><div class="pts-vl" style="color:var(--b6);border-color:#C7D9FF;background:var(--b0)">+10 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">📷</div><div class="pts-lb">Include photo evidence</div><div class="pts-vl" style="color:var(--grn);border-color:#6EE7B7;background:var(--gb)">+15 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">🎥</div><div class="pts-lb">Include video evidence</div><div class="pts-vl" style="color:var(--vio);border-color:#DDD6FE;background:var(--vb)">+25 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">👍</div><div class="pts-lb">Community confirms your audit</div><div class="pts-vl" style="color:var(--amb);border-color:#FCD34D;background:var(--ab)">+5 each</div></div>
-      <div class="pts-row"><div class="pts-ic">✅</div><div class="pts-lb">Your audit leads to resolution</div><div class="pts-vl" style="color:var(--red);border-color:#FCA5A5;background:var(--rb)">+50 pts</div></div>
-      <div class="pts-row"><div class="pts-ic">🚨</div><div class="pts-lb">You trigger a Community Surge</div><div class="pts-vl" style="color:var(--n9);border-color:#C7D9FF;background:var(--b0)">+100 pts</div></div>
+  <div class="rvs pts-ul-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px">
+    <div class="pts-panel" style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
+      <div class="pts-head" style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">How you earn points</div>
+      <div class="pts-list">
+        <div class="pts-row"><div class="pts-ic">📝</div><div class="pts-lb">Submit a civic audit</div><div class="pts-vl" style="color:var(--b6);border-color:#C7D9FF;background:var(--b0)">+10 pts</div></div>
+        <div class="pts-row"><div class="pts-ic">📷</div><div class="pts-lb">Include photo evidence</div><div class="pts-vl" style="color:var(--grn);border-color:#6EE7B7;background:var(--gb)">+15 pts</div></div>
+        <div class="pts-row"><div class="pts-ic">🎥</div><div class="pts-lb">Include video evidence</div><div class="pts-vl" style="color:var(--vio);border-color:#DDD6FE;background:var(--vb)">+25 pts</div></div>
+        <div class="pts-row"><div class="pts-ic">👍</div><div class="pts-lb">Community confirms your audit</div><div class="pts-vl" style="color:var(--amb);border-color:#FCD34D;background:var(--ab)">+5 each</div></div>
+        <div class="pts-row"><div class="pts-ic">✅</div><div class="pts-lb">Your audit leads to resolution</div><div class="pts-vl" style="color:var(--red);border-color:#FCA5A5;background:var(--rb)">+50 pts</div></div>
+        <div class="pts-row"><div class="pts-ic">🚨</div><div class="pts-lb">You trigger a Community Surge</div><div class="pts-vl" style="color:var(--n9);border-color:#C7D9FF;background:var(--b0)">+100 pts</div></div>
+      </div>
     </div>
-    <div style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
-      <div style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">What your badge unlocks</div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--b0);border:1px solid #C7D9FF">🪪</div><div><div class="ul-ti">Verified Public Profile</div><div class="ul-de">A shareable page showing your audit history, badges and resolution rate — verifiable by anyone.</div></div></div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--gb);border:1px solid #6EE7B7">📊</div><div><div class="ul-ti">Priority Escalation</div><div class="ul-de">Inspector+ auditors get escalations fast-tracked with a verified badge shown to municipal officers.</div></div></div>
-      <div class="ul-row"><div class="ul-ic" style="background:var(--ab);border:1px solid #FCD34D">🏆</div><div><div class="ul-ti">City Leaderboard</div><div class="ul-de">Top auditors per pincode, ward and city are ranked publicly on the NagarDrishti homepage.</div></div></div>
-      <div class="ul-row" style="margin-bottom:0"><div class="ul-ic" style="background:var(--vb);border:1px solid #DDD6FE">🏛</div><div><div class="ul-ti">Guardian: Municipal Reports</div><div class="ul-de">Guardian-level audits are cited by name in quarterly municipal compliance reports.</div></div></div>
+    <div class="ul-panel" style="background:var(--w);border:1px solid var(--g200);border-radius:var(--r4);padding:28px;box-shadow:var(--s1)">
+      <div class="pts-head" style="font-size:16px;font-weight:800;color:var(--n9);margin-bottom:17px">What your badge unlocks</div>
+      <div class="ul-list">
+        <div class="ul-row"><div class="ul-ic" style="background:var(--b0);border:1px solid #C7D9FF">🪪</div><div><div class="ul-ti">Verified Public Profile</div><div class="ul-de">A shareable page showing your audit history, badges and resolution rate — verifiable by anyone.</div></div></div>
+        <div class="ul-row"><div class="ul-ic" style="background:var(--gb);border:1px solid #6EE7B7">📊</div><div><div class="ul-ti">Priority Escalation</div><div class="ul-de">Inspector+ auditors get escalations fast-tracked with a verified badge shown to municipal officers.</div></div></div>
+        <div class="ul-row"><div class="ul-ic" style="background:var(--ab);border:1px solid #FCD34D">🏆</div><div><div class="ul-ti">City Leaderboard</div><div class="ul-de">Top auditors per pincode, ward and city are ranked publicly on the NagarDrishti homepage.</div></div></div>
+        <div class="ul-row"><div class="ul-ic" style="background:var(--vb);border:1px solid #DDD6FE">🏛</div><div><div class="ul-ti">Guardian: Municipal Reports</div><div class="ul-de">Guardian-level audits are cited by name in quarterly municipal compliance reports.</div></div></div>
+      </div>
     </div>
   </div>
 </div></div>
