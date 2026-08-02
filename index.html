@@ -837,6 +837,13 @@ footer{background:var(--n9);color:#fff}
   .pts-mob-block .cat-chip-lbl{color:var(--n9) !important;text-shadow:none}
   .pts-mob-block .cat-chip-pts{color:var(--b6) !important}
 
+  /* ── Nav: hide "Open Live Dashboard" on mobile — logo + 1 CTA fits cleanly ── */
+  .nav-live-btn{display:none}
+
+  /* ── Blue "you are ready" card: stack text above buttons on mobile ── */
+  .qs-card-inner{flex-direction:column;flex-shrink:1;width:100%}
+  .qs-card-inner .bh-w,.qs-card-inner .bh-o{width:100%;justify-content:center}
+
   /* ── Coverage city cards: horizontal scroll ── */
   .cg{
     display:flex !important;overflow-x:auto;-webkit-overflow-scrolling:touch;
@@ -920,7 +927,7 @@ footer{background:var(--n9);color:#fff}
     <div class="nav-ct">
       <button class="bn-g" onclick="om('signin')">Sign In</button>
       <button class="bn-a" onclick="om('report')">📋 Start an Audit</button>
-      <button class="bn-b" onclick="goDash()">Open Live Dashboard →</button>
+      <button class="bn-b nav-live-btn" onclick="goDash()">Open Live Dashboard →</button>
       <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -1100,7 +1107,7 @@ footer{background:var(--n9);color:#fff}
   </div>
   <div style="margin-top:18px;background:var(--b6);border-radius:var(--r4);padding:30px 36px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap" class="rv">
     <div><div style="display:flex;align-items:center;gap:6px;margin-bottom:7px"><div class="ep" style="background:#4ADE80;box-shadow:0 0 6px #4ADE80"></div><span style="font-family:var(--fm);font-size:9px;color:rgba(255,255,255,.55);letter-spacing:.12em;text-transform:uppercase">You are ready</span></div><div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:4px">Open the map. View incidents. Filter by type or radius.</div><div style="font-size:13px;color:rgba(255,255,255,.6)">Select your Alert Zone and get notified of incidents near your home or workplace.</div></div>
-    <div style="display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap"><button class="bh-w" style="font-size:13.5px;padding:11px 21px" onclick="goDash()">🗺 View Live Incidents</button><button class="bh-o" style="font-size:13.5px;padding:11px 21px" onclick="om('report')">📋 Start an Audit</button></div>
+    <div class="qs-card-inner" style="display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap"><button class="bh-w" style="font-size:13.5px;padding:11px 21px" onclick="goDash()">🗺 View Live Incidents</button><button class="bh-o" style="font-size:13.5px;padding:11px 21px" onclick="om('report')">📋 Start an Audit</button></div>
   </div>
 </div></div>
 
