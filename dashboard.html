@@ -484,17 +484,46 @@ html{height:100%;overflow:hidden}body{height:100%;background:var(--g50);color:va
     display:flex;position:fixed;bottom:0;left:0;right:0;
     height:60px;background:#fff;border-top:1px solid #E2E8F0;
     z-index:500;box-shadow:0 -2px 12px rgba(0,0,0,.10);
+    overflow:visible;align-items:flex-end;
   }
   .mob-tab{
     flex:1;display:flex;flex-direction:column;align-items:center;
     justify-content:center;gap:3px;cursor:pointer;
     font-size:9.5px;font-weight:600;color:#94A3B8;
     border:none;background:none;font-family:"Plus Jakarta Sans",sans-serif;
-    transition:color .15s;padding:8px 0;
+    transition:color .15s;padding:8px 0;height:60px;
   }
   .mob-tab-ico{font-size:20px;line-height:1}
   .mob-tab.active{color:#0052CC}
   .mob-tab.active .mob-tab-ico{filter:drop-shadow(0 0 4px rgba(0,82,204,.35))}
+  /* ── Center raised CTA tab ── */
+  .mob-tab-cta{
+    flex:1.2;display:flex;flex-direction:column;align-items:center;
+    justify-content:flex-end;padding-bottom:8px;
+    border:none;background:none;cursor:pointer;
+    font-family:"Plus Jakarta Sans",sans-serif;
+    overflow:visible;height:60px;position:relative;
+  }
+  .mob-tab-cta-pill{
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    background:#0052CC;color:#fff;border-radius:24px;
+    font-size:12px;font-weight:700;white-space:nowrap;
+    padding:10px 18px;box-shadow:0 -4px 18px rgba(0,82,204,.38);
+    position:relative;top:-8px;
+    font-family:"Plus Jakarta Sans",sans-serif;
+    transition:background .15s,box-shadow .15s;
+  }
+  .mob-tab-cta:active .mob-tab-cta-pill{background:#003EA6;box-shadow:0 -2px 8px rgba(0,82,204,.25)}
+  /* ── Alert count badge ── */
+  .mob-alert-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}
+  .mob-alert-count{
+    position:absolute;top:-5px;right:-10px;
+    min-width:16px;height:16px;border-radius:8px;
+    background:#DC2626;color:#fff;font-size:9px;font-weight:700;
+    display:none;align-items:center;justify-content:center;padding:0 4px;
+    font-family:"Plus Jakarta Sans",sans-serif;line-height:1;
+  }
+  .mob-alert-count.has-count{display:flex}
 
   /* ── SLIDE-UP DRAWER ── */
   .mob-drawer{
@@ -655,7 +684,7 @@ html{height:100%;overflow:hidden}body{height:100%;background:var(--g50);color:va
 @media(max-width:767px){
   .nd-incident-cards{display:flex}
   .il-table{display:none}
-  .nd-fab{display:flex}
+  .nd-fab{display:none}
   .il-filters .il-export{display:none}
 }
 
@@ -2481,11 +2510,22 @@ function mobGPS(){
 
 /* Update alert badge count */
 function updateMobAlertBadge(){
-  var badge=ge('mobAlertBadge');
+  var badge=ge('mobAlertCount');
   if(!badge) return;
   var crit = typeof ALERTS!=='undefined' ? ALERTS.filter(function(a){return a.sev==='critical';}).length : 0;
-  badge.textContent = crit>0 ? 'Alerts ('+crit+')' : 'Alerts';
-  badge.style.color = crit>0 ? '#DC2626' : '';
+  if(crit>0){
+    badge.textContent = crit>9?'9+':String(crit);
+    badge.classList.add('has-count');
+  } else {
+    badge.textContent='';
+    badge.classList.remove('has-count');
+  }
+}
+function clearAlertBadge(){
+  var badge=ge('mobAlertCount');
+  if(!badge) return;
+  badge.textContent='';
+  badge.classList.remove('has-count');
 }
 
 
@@ -2664,16 +2704,18 @@ waitForLeaflet(initMap);
       <span class="mob-tab-ico">🔍</span>Search
     </button>
     <button class="mob-tab" id="mobt-gps" onclick="openMobDrawer('gps',this)">
-      <span class="mob-tab-ico">📡</span>Near Me
+      <span class="mob-tab-ico">📍</span>Nearby
     </button>
-    <button class="mob-tab" id="mobt-layers" onclick="openMobDrawer('layers',this)">
-      <span class="mob-tab-ico">🗂️</span>Layers
+    <button class="mob-tab-cta" id="mobt-audit" onclick="ndFabTap()" aria-label="Start Civic Audit">
+      <div class="mob-tab-cta-pill">
+        <span style="font-size:14px;line-height:1">+</span> Audit
+      </div>
     </button>
-    <button class="mob-tab" id="mobt-alerts" onclick="openMobDrawer('alerts',this)">
-      <span class="mob-tab-ico">🔔</span><span id="mobAlertBadge">Alerts</span>
+    <button class="mob-tab" id="mobt-alerts" onclick="clearAlertBadge();openMobDrawer('alerts',this)">
+      <span class="mob-tab-ico" style="position:relative;display:inline-block">🔔<span class="mob-alert-count" id="mobAlertCount"></span></span>Alerts
     </button>
     <button class="mob-tab" id="mobt-list" onclick="mobOpenList(this)">
-      <span class="mob-tab-ico">📋</span>List
+      <span class="mob-tab-ico">☰</span>Incidents
     </button>
   </div>
 
