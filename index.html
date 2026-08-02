@@ -1166,122 +1166,6 @@ footer{background:var(--n9);color:#fff}
     </div>
   </div>
 
-  <!-- LIST VIEW — part of Incidents section -->
-  <div id="incidentlist" style="margin-top:32px;padding-top:28px;border-top:1px solid var(--g200)">
-    <div class="stag rv" style="margin-bottom:10px">Incident List View</div>
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:20px">
-      <h2 class="sh2 rv" style="font-size:clamp(22px,3vw,34px)">All incidents,<br><span class="hl">in one table</span></h2>
-      <p class="sp rv" style="margin:0;font-size:14px">Browse, filter, search and export every civic audit. Sortable by city, category, severity and status.</p>
-    </div>
-  <div class="il-wrap rv">
-    <!-- Toolbar -->
-    <div class="il-toolbar">
-      <div class="il-toolbar-left">
-        <div class="il-search">
-          <span style="color:var(--t3);font-size:14px">⌕</span>
-          <input type="text" id="ilSearch" placeholder="Search city, pincode, issue..." oninput="ilFilter()">
-        </div>
-        <select class="il-sel" id="ilCatFilter" onchange="ilFilter()">
-          <option value="">All Categories</option>
-          <option value="garbage">🗑️ Garbage</option>
-          <option value="traffic">🚦 Traffic</option>
-          <option value="footpath">🚶 Footpath</option>
-          <option value="cleanliness">✨ Cleanliness</option>
-          <option value="water">🌊 Water Pollution</option>
-          <option value="drain">💧 Drain</option>
-        </select>
-        <select class="il-sel" id="ilSevFilter" onchange="ilFilter()">
-          <option value="">All Severities</option>
-          <option value="critical">🔴 Critical</option>
-          <option value="high">🟠 High</option>
-          <option value="medium">🟡 Medium</option>
-          <option value="low">🟢 Low</option>
-        </select>
-        <select class="il-sel" id="ilStatusFilter" onchange="ilFilter()">
-          <option value="">All Statuses</option>
-          <option value="open">Open</option>
-          <option value="active">Active</option>
-          <option value="resolved">Resolved</option>
-        </select>
-        <select class="il-sel" id="ilCityFilter" onchange="ilFilter()">
-          <option value="">All Cities</option>
-          <option>Mumbai</option><option>Delhi</option><option>Bengaluru</option>
-          <option>Chennai</option><option>Kolkata</option><option>Hyderabad</option>
-          <option>Pune</option><option>Jaipur</option><option>Ahmedabad</option>
-          <option>Lucknow</option><option>Surat</option><option>Chandigarh</option>
-          <option>Bhopal</option><option>Patna</option><option>Thane</option>
-          <option>Gurgaon</option><option>Coimbatore</option><option>Vadodara</option>
-        </select>
-      </div>
-      <div class="il-toolbar-right">
-        <span id="ilCount" style="font-family:var(--fm);font-size:10px;color:var(--t3)">Showing 20 of 247 incidents</span>
-        <!-- Export dropdown -->
-        <div class="exp-dropdown" id="expDropdown">
-          <button class="exp-btn primary" onclick="toggleExpMenu()">
-            ⬇ Export <span style="font-size:10px;opacity:.7">▾</span>
-          </button>
-          <div class="exp-menu" id="expMenu">
-            <div class="exp-menu-item" onclick="exportData('csv')">
-              <span class="exp-ico">📄</span>
-              <div><div class="exp-lbl">Export as CSV</div><div class="exp-sub">Opens in Excel, Google Sheets</div></div>
-            </div>
-            <div class="exp-menu-item" onclick="exportData('json')">
-              <span class="exp-ico">📦</span>
-              <div><div class="exp-lbl">Export as JSON</div><div class="exp-sub">For developers and APIs</div></div>
-            </div>
-            <div class="exp-menu-item" onclick="exportData('pdf')">
-              <span class="exp-ico">📑</span>
-              <div><div class="exp-lbl">Export as PDF Report</div><div class="exp-sub">Formatted municipal report</div></div>
-            </div>
-            <div class="exp-menu-item" onclick="exportData('filtered')">
-              <span class="exp-ico">🔍</span>
-              <div><div class="exp-lbl">Export Current Filter</div><div class="exp-sub">Only what's visible now</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filter summary chips -->
-    <div id="ilChips" style="display:none;padding:8px 20px;background:var(--b0);border-bottom:1px solid #C7D9FF;flex-wrap:wrap;gap:6px;align-items:center">
-      <span style="font-family:var(--fm);font-size:9.5px;color:var(--b6)">Active filters:</span>
-      <span id="ilChipContainer" style="display:flex;gap:5px;flex-wrap:wrap"></span>
-      <button onclick="clearFilters()" style="background:none;border:none;font-family:var(--fm);font-size:9.5px;color:var(--red);cursor:pointer;padding:0 4px">✕ Clear all</button>
-    </div>
-
-    <!-- Table -->
-    <div style="overflow-x:auto">
-      <table class="il-table">
-        <thead>
-          <tr>
-            <th onclick="ilSort('id')">Incident ID<span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('city')">City <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('pincode')">PIN<span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('category')">Category <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('assetId')">Asset ID<span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('severity')">Severity <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('status')">Status <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('confirmations')">Confirms <span class="sort-arrow">↕</span></th>
-            <th onclick="ilSort('created_at')">Submitted <span class="sort-arrow">↕</span></th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="ilTbody"></tbody>
-      </table>
-    </div>
-
-    <!-- Pagination -->
-    <div class="il-pagination">
-      <div class="il-page-info" id="ilPageInfo">Showing 1-5 of 15</div>
-      <div class="il-page-btns"><span id="ilPageNums" style="display:flex;gap:4px"></span></div>
-      <select class="il-sel" id="ilPageSize" onchange="ilChangePageSize()" style="font-size:11px;padding:4px 8px">
-        <option value="5" selected>5 / page</option>
-        <option value="10">10 / page</option>
-        <option value="20">20 / page</option>
-      </select>
-    </div>
-    </div>
-  </div>
 </div></div>
 
 
@@ -2550,6 +2434,7 @@ var SEV_STYLE = {
 };
 
 function ilFilter(){
+  if(!document.getElementById('ilTbody'))return;
   var q   = (document.getElementById('ilSearch').value||'').toLowerCase();
   var cat = (document.getElementById('ilCatFilter').value||'');
   var sev = (document.getElementById('ilSevFilter').value||'');
