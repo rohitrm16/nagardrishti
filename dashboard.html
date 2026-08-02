@@ -23,7 +23,7 @@
   --r1:4px;--r2:8px;--r3:12px;--r4:16px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font-family:var(--ff);-webkit-font-smoothing:antialiased}
+html{height:100%;overflow:hidden}body{height:100%;background:var(--g50);color:var(--t9);font-family:var(--ff);-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--g300);border-radius:4px}
 #loader{position:fixed;inset:0;background:var(--w);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .5s}
 #loader.gone{opacity:0;pointer-events:none}
@@ -475,8 +475,8 @@ html,body{height:100%;overflow:hidden;background:var(--g50);color:var(--t9);font
   .sidebar-l,.sidebar-r{display:none}
   .map-legend{display:none}
 
-  /* Map: fill entire main area including bottom-bar overlap */
-  #map-wrap{position:absolute;inset:0;z-index:1}
+  /* Map: fixed viewport — explicit top/bottom keeps it off topbar & tab bar */
+  #map-wrap{position:fixed;top:52px;bottom:60px;left:0;right:0;z-index:1}
   #map{width:100%;height:100%}
 
   /* ── BOTTOM NAV BAR ── */
@@ -1348,7 +1348,9 @@ function initMap(){
   /* Pick up category preset from landing page chip tap */
   try{var _cf=localStorage.getItem('nd_cat_filter');if(_cf&&_cf!=='all'){setLayer(_cf);localStorage.removeItem('nd_cat_filter');}}catch(e){}
   setTimeout(function(){document.getElementById('loader').classList.add('gone')},500);
-  setTimeout(function(){gMap.invalidateSize()},300);
+  setTimeout(function(){gMap.invalidateSize()},500);
+  window.addEventListener('resize',function(){gMap.invalidateSize()});
+  window.addEventListener('orientationchange',function(){setTimeout(function(){gMap.invalidateSize()},300)});
   startRefresh();
 }
 function stStyle(n){if(n>=35)return{bg:'#FEF2F2',bd:'#FCA5A5',tx:'#DC2626'};if(n>=25)return{bg:'#FFFBEB',bd:'#FCD34D',tx:'#D97706'};if(n>=15)return{bg:'#ECFEFF',bd:'#67E8F9',tx:'#0891B2'};return{bg:'#ECFDF5',bd:'#6EE7B7',tx:'#059669'};}
